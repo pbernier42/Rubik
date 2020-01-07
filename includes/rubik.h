@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:06:32 by pbernier          #+#    #+#             */
-/*   Updated: 2020/01/07 13:06:34 by pbernier         ###   ########.fr       */
+/*   Updated: 2020/01/07 19:24:20 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,19 @@
 
 # include <unistd.h>
 # include <stdbool.h>
-
+# include <stdlib.h>
 # include <stdio.h>
 
-typedef enum e_side		t_side;
-typedef enum e_mod		t_mod;
-typedef struct s_move	t_move;
+# include <libft.h>
 
-# define INITIALS_SIDE	((char[6]){"FRUBLD"})
-# define INITIALS_MOD	((char[2]){"2'"})
+typedef enum e_side			t_side;
+typedef enum e_mod			t_mod;
+typedef struct s_move		t_move;
 
-enum					e_side
+# define INITIALS_SIDE		((char[6]){"FRUBLD"})
+# define INITIALS_MOD		((char[2]){"2'"})
+
+enum						e_side
 {
 	side_front,
 	side_right,
@@ -36,26 +38,38 @@ enum					e_side
 	side_null
 };
 
-enum					e_mod
+enum						e_mod
 {
 	mod_twice,
 	mode_reverse,
 	mod_null
 };
 
-struct					s_move
+struct						s_move
 {
-	t_side				side;
-	t_mod				mod;
+	t_side					side;
+	t_mod					mod;
 };
+
+/*
+** error.c
+*/
+
+void						error(int typecode);
+
+/*
+** init.c
+*/
+
+char						***init_tab(void);
 
 /*
 ** main.c
 */
 
-int		arg_count(char *argv);
-void 	instructions(int arg_count, char *argv);
-t_move	arg_instruction(char arg[3]);
+int							arg_count(char *argv);
+void						instructions(int arg_count, char *argv);
+t_move						arg_instruction(char arg[3]);
 
 /*
 ** utils.c
@@ -67,7 +81,7 @@ t_move	arg_instruction(char arg[3]);
 # define IS_MOD(mod)		in_string(mod, INITIALS_MOD)
 
 
-bool	in_string(char lettre, char *string);
-size_t	skip_space(size_t len, char *string);
+bool						in_string(char lettre, char *string);
+size_t						skip_space(size_t len, char *string);
 
 #endif
