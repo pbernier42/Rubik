@@ -12,7 +12,8 @@ DIR_INC			=	includes/
 INCLUDES		=	-I $(DIR_INC)
 
 SRC_INCLUDE		=	rubik.h
-SRC_FIlE		=	main.c
+SRC_FIlE		=	main.c \
+					utils.c
 
 INC				=	$(addprefix $(DIR_INC),$(SRC_INCLUDE))
 SRC				=	$(addprefix $(DIR_SRC),$(SRC_FIlE))

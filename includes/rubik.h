@@ -16,25 +16,58 @@
 # include <unistd.h>
 # include <stdbool.h>
 
+# include <stdio.h>
+
 typedef enum e_side		t_side;
+typedef enum e_mod		t_mod;
 typedef struct s_move	t_move;
+
+# define INITIALS_SIDE	((char[6]){"FRUBLD"})
+# define INITIALS_MOD	((char[2]){"2'"})
 
 enum					e_side
 {
-	side_null,
 	side_front,
 	side_right,
 	side_up,
 	side_back,
 	side_left,
-	side_down
+	side_down,
+	side_null
+};
+
+enum					e_mod
+{
+	mod_twice,
+	mode_reverse,
+	mod_null
 };
 
 struct					s_move
 {
 	t_side				side;
-	bool				twice;
-	bool				reverse;
+	t_mod				mod;
 };
+
+/*
+** main.c
+*/
+
+int		arg_count(char *argv);
+void 	instructions(int arg_count, char *argv);
+t_move	arg_instruction(char arg[3]);
+
+/*
+** utils.c
+*/
+
+# define INITIALS_SPACE		((char[5]){" \t\r\v\f"})
+# define IS_SPACE(space) 	in_string(space, INITIALS_SPACE)
+# define IS_SIDE(side)		in_string(side, INITIALS_SIDE)
+# define IS_MOD(mod)		in_string(mod, INITIALS_MOD)
+
+
+bool	in_string(char lettre, char *string);
+size_t	skip_space(size_t len, char *string);
 
 #endif
