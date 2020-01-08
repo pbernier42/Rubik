@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:06:32 by pbernier          #+#    #+#             */
-/*   Updated: 2020/01/08 16:46:07 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/01/08 17:01:36 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,10 @@ char						***init_tab(void);
 */
 
 int							arg_count(char *argv);
-void						instructions(int arg_count, char *argv);
+void						instructions(char ***cube, int arg_count, char *argv);
 t_move						arg_instruction(char arg[2]);
-void						read_instruction(int arg_count, t_move *instruction);
-t_turn						instruction_turn(t_side side);
+void						read_instruction(char ***cube, int arg_count, t_move *instruction);
+t_turn						instruction_turn(char ***cube, t_side side);
 
 /*
 ** utils.c

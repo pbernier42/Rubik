@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/08 16:15:53 by rlecart           #+#    #+#             */
-/*   Updated: 2020/01/08 16:47:37 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/01/08 17:05:13 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,14 @@ void	display(char ***tab, bool sw, int cel[12])
 		while (++j < 3)
 		{
 			if (cel[i] == 7)
-				ft_putstr("   ");
+				ft_putstr("xxx");
 			else
-				ft_putstr(tab[6][cel[i] * 3 + j]);
+				ft_putstr("   ");
+				//ft_putstr(tab[6][cel[i] * 3 + j]);
+			ft_putchar('\n');
 		}
+		if (i % 3)
+			ft_putchar('\n');
 	}
+	(void)tab;
 }

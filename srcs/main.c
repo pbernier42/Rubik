@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:04:51 by pbernier          #+#    #+#             */
-/*   Updated: 2020/01/07 13:04:52 by pbernier         ###   ########.fr       */
+/*   Updated: 2020/01/08 17:01:37 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,14 @@
 
 int		main(int argc, char **argv)
 {
-	int	arg_number;
-	//cube
+	int			arg_number;
+	char		***cube;
 
 	if (argc != 2 || !(arg_number = arg_count(argv[1])))
 		return (printf("error\n"));
-	instructions(arg_number, argv[1]);//cube
+	cube = init_tab();
+	display(cube, 0, NULL);
+	instructions(cube, arg_number, argv[1]);
 	return (0);
 }
 
@@ -44,7 +46,7 @@ int		arg_count(char *argv)
 	return (count);
 }
 
-void	instructions(int arg_count, char *argv) //importer cube
+void	instructions(char ***cube, int arg_count, char *argv)
 {
 	size_t		len;
 	int			count;
@@ -60,7 +62,7 @@ void	instructions(int arg_count, char *argv) //importer cube
 		len = skip_space(len, argv);
 		//printf("[%d] - [%d]\n", instruction[count - 1].side, instruction[count - 1].mod);
 	}
-	read_instruction(arg_count, instruction);
+	read_instruction(cube, arg_count, instruction);
 }
 
 t_move	arg_instruction(char arg[2])
@@ -78,7 +80,7 @@ t_move	arg_instruction(char arg[2])
 	return (ret);
 }
 
-void 	read_instruction(int arg_count, t_move *instruction)
+void	read_instruction(char ***cube, int arg_count, t_move *instruction)
 {
 	int			count;
 	t_turn		turn;
@@ -86,7 +88,7 @@ void 	read_instruction(int arg_count, t_move *instruction)
 	count = 0;
 	while (count < arg_count)
 	{
-		turn = instruction_turn(instruction[count++].side);
+		turn = instruction_turn(cube, instruction[count++].side);
 		//converti instruction into -> s_turn
 
 		//tourne
@@ -95,7 +97,7 @@ void 	read_instruction(int arg_count, t_move *instruction)
 	}
 }
 
-t_turn	instruction_turn(t_side side)
+t_turn	instruction_turn(char ***cube, t_side side)
 {
 	t_turn	turn;
 	// char	***cube;
@@ -109,5 +111,6 @@ t_turn	instruction_turn(t_side side)
 	// 	});
 	(void)side;
 	turn.turn = NULL;
+	(void)cube;
 	return (turn);
 }
