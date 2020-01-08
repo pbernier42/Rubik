@@ -6,49 +6,34 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 16:59:26 by rlecart           #+#    #+#             */
-/*   Updated: 2020/01/08 16:53:48 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/01/08 17:51:16 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <rubik.h>
 
-char	**create_tab(int y, int x)
-{
-	char	**ret;
-
-	ret = NULL;
-	if (x > 0 && y > 0)
-	{
-		if (!(ret = (char**)malloc(sizeof(char*) * y)))
-			error(-1);
-		ret[y] = NULL;
-		while (--y >= 0)
-		{
-			if (!(ret[y] = (char*)malloc(sizeof(char) * x)))
-				error(-1);
-
-		}
-	}
-	return (ret);
-}
-
 char	***init_tab(void)
 {
 	int		i;
+	int		j;
 	char	***ret;
 
 	ret = NULL;
 	if (!(ret = (char***)malloc(sizeof(char**) * 8)))
 		error(-1);
-	if (!(ret[6] = (char**)malloc(sizeof(char*) * ((3 * 6) + 1))))
-		error(-2);
-	ret[6][3 * 6] = NULL;
+	ret[8] = NULL;
 	i = -1;
-	while (++i < (3 * 6))
+	while (++i < 6)
 	{
-		if (!(ret[6][i] = ft_strnew(3)))
-			error(-3);
+		if (!(ret[i] = (char**)malloc(sizeof(char*) * (3 + 1))))
+			error(-2);
+		ret[i][4] = NULL;
+		j = -1;
+		while (++j < 3)
+		{
+			if (!(ret[i][j] = ft_strnew(3)))
+				error(-3);
+		}
 	}
-	display(ret, FULL, NULL);
 	return (ret);
 }
