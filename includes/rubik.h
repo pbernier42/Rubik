@@ -18,11 +18,13 @@
 # include <stdlib.h>
 # include <stdio.h>
 
-# include <libft.h>
+# include "../lib/libft/includes/libft.h"
 
 typedef enum e_side			t_side;
 typedef enum e_mod			t_mod;
 typedef struct s_move		t_move;
+typedef struct s_turn		t_turn;
+
 
 # define INITIALS_SIDE		((char[6]){"FRUBLD"})
 # define INITIALS_MOD		((char[2]){"2'"})
@@ -51,6 +53,16 @@ struct						s_move
 	t_mod					mod;
 };
 
+struct						s_turn
+{
+	char					**turn;
+
+	char					**right;
+	char					**down;
+	char					**left;
+	char					**up;
+};
+
 /*
 ** error.c
 */
@@ -69,7 +81,9 @@ char						***init_tab(void);
 
 int							arg_count(char *argv);
 void						instructions(int arg_count, char *argv);
-t_move						arg_instruction(char arg[3]);
+t_move						arg_instruction(char arg[2]);
+void						read_instruction(int arg_count, t_move *instruction);
+t_turn						instruction_turn(t_side side);
 
 /*
 ** utils.c

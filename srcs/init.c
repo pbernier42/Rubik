@@ -46,8 +46,8 @@ char	***init_tab(void)
 	i = -1;
 	while (++i < (3 * 6))
 	{
-		if (!(ret[6][i] = ft_strdup(3)))
-			error(-3);
+		// if (!(ret[6][i] = ft_strdup(3)))
+		// 	error(-3);
 	}
 	return (ret);
 }
