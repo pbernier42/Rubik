@@ -57,7 +57,7 @@ struct						s_move
 
 struct						s_turn
 {
-	char					**turn;
+	char					**front;
 
 	char					**right;
 	char					**down;
@@ -92,6 +92,7 @@ void						instructions(char ***cube, int arg_count, char *argv);
 t_move						arg_instruction(char arg[2]);
 void						read_instruction(char ***cube, int arg_count, t_move *instruction);
 t_turn						instruction_turn(char ***cube, t_side side);
+void						turn_side(t_turn turn);
 
 /*
 ** utils.c

@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:04:51 by pbernier          #+#    #+#             */
-/*   Updated: 2020/01/08 20:01:44 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/01/08 20:03:08 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,28 +89,57 @@ void	read_instruction(char ***cube, int arg_count, t_move *instruction)
 	while (count < arg_count)
 	{
 		turn = instruction_turn(cube, instruction[count++].side);
-		//converti instruction into -> s_turn
-
-		//tourne
-		//if (instruction[count].mod == mod_twice)
-			//tourne
+		//si reverse changer turn
+		turn_side(turn);
+		if (instruction[count].mod == mod_twice)
+			turn_side(turn);
 	}
 }
 
 t_turn	instruction_turn(char ***cube, t_side side)
 {
 	t_turn	turn;
-	// char	***cube;
-	//
-	// if (side == side_front)
+
+	// printf("[%c]\n", cube[6][0][0]);
+	if (side == side_front)
+	{
+		turn = ((t_turn){
+			cube[side_front],
+			NULL,
+			&(cube[side_down][0]),
+			NULL,
+			&(cube[side_up][0])
+		});
+		// printf("[%p]\n", turn.turn);
+		// printf("[%p]\n", turn.right);
+		// printf("[%p][%c]\n", turn.down, turn.down[0][0]);
+		// printf("[%p]\n", turn.left);
+		// printf("[%p]\n\n", turn.up);
+	}
 	// 	turn = ((t_turn){cube[side_front],
 	// 		((char**){&(cube[side_right][0][0]), &(cube[side_right][1][0]), &(cube[side_right][2][0])}),
 	// 		&(cube[side_down][0]),
 	// 		((char**){&(cube[side_left][0][2]), &(cube[side_left][1][2]), &(cube[side_left][2][2])}),
 	// 		&(cube[side_up][2])
 	// 	});
+
 	(void)side;
-	turn.turn = NULL;
+	turn.front = NULL;
 	(void)cube;
 	return (turn);
+}
+
+void	turn_side(t_turn turn)
+{
+	char	swap;
+
+	// swap = turn.front[0][0];
+	// turn.front[0][0] = turn.front[2][0];
+	// turn.front[2][0] = turn.front[2][2];
+	// turn.front[2][2] = turn.front[0][2];
+	// turn.front[0][2] = swap;
+
+	(void)swap;
+	(void)turn;
+	return;
 }
