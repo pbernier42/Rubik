@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:06:32 by pbernier          #+#    #+#             */
-/*   Updated: 2020/01/07 19:24:20 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/01/08 16:46:07 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 
-# include <libft.h>
+# include "../lib/libft/includes/libft.h"
 
 typedef enum e_side			t_side;
 typedef enum e_mod			t_mod;
@@ -26,6 +26,9 @@ typedef struct s_move		t_move;
 
 # define INITIALS_SIDE		((char[6]){"FRUBLD"})
 # define INITIALS_MOD		((char[2]){"2'"})
+
+# define SQUARE				true
+# define FULL				false
 
 enum						e_side
 {
@@ -56,6 +59,12 @@ struct						s_move
 */
 
 void						error(int typecode);
+
+/*
+** display.c
+*/
+
+void						display(char ***tab, bool sw, int cel[12]);
 
 /*
 ** init.c

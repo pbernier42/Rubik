@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 16:59:26 by rlecart           #+#    #+#             */
-/*   Updated: 2020/01/07 19:24:03 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/01/08 16:46:01 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,9 @@ char	***init_tab(void)
 	i = -1;
 	while (++i < (3 * 6))
 	{
-		if (!(ret[6][i] = ft_strdup(3)))
+		if (!(ret[6][i] = ft_strnew(3)))
 			error(-3);
 	}
+	display(ret, FULL, NULL);
 	return (ret);
 }

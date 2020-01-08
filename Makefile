@@ -18,7 +18,8 @@ SRC_INCLUDE		=	rubik.h
 SRC_FIlE		=	main.c \
 					utils.c \
 					error.c \
-					init.c
+					init.c \
+					display.c
 
 INC				=	$(addprefix $(DIR_INC),$(SRC_INCLUDE)) \
 					lib/libft/includes/libft.h
@@ -44,7 +45,7 @@ help:
 
 $(NAME): $(DIR_OBJ) $(OBJ)
 	@printf "[$(PROJECT)] Objs compilation done.                    \n"
-	@$(CC) -o $(NAME) $(FLAGS) $(OBJ)
+	@$(CC) -o $(NAME) $(FLAGS) lib/libft/libft.a $(OBJ)
 	@printf "[$(PROJECT)] "
 	@printf "$(NAME) compiled\n"
 
