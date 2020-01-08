@@ -20,7 +20,7 @@ int		main(int argc, char **argv)
 	if (argc != 2 || !(arg_number = arg_count(argv[1])))
 		return (printf("error\n"));
 	cube = init_tab();
-	display(cube, 0, NULL);
+	//display(cube, 0, NULL);
 	instructions(cube, arg_number, argv[1]);
 	return (0);
 }
@@ -89,20 +89,33 @@ void	read_instruction(char ***cube, int arg_count, t_move *instruction)
 	while (count < arg_count)
 	{
 		turn = instruction_turn(cube, instruction[count++].side);
-		//converti instruction into -> s_turn
-
-		//tourne
-		//if (instruction[count].mod == mod_twice)
-			//tourne
+		//si reverse changer turn
+		turn_side(turn);
+		if (instruction[count].mod == mod_twice)
+			turn_side(turn);
 	}
 }
 
 t_turn	instruction_turn(char ***cube, t_side side)
 {
 	t_turn	turn;
-	// char	***cube;
-	//
-	// if (side == side_front)
+
+	// printf("[%c]\n", cube[6][0][0]);
+	if (side == side_front)
+	{
+		turn = ((t_turn){
+			cube[side_front],
+			NULL,
+			&(cube[side_down][0]),
+			NULL,
+			&(cube[side_up][0])
+		});
+		// printf("[%p]\n", turn.turn);
+		// printf("[%p]\n", turn.right);
+		// printf("[%p][%c]\n", turn.down, turn.down[0][0]);
+		// printf("[%p]\n", turn.left);
+		// printf("[%p]\n\n", turn.up);
+	}
 	// 	turn = ((t_turn){cube[side_front],
 	// 		((char**){&(cube[side_right][0][0]), &(cube[side_right][1][0]), &(cube[side_right][2][0])}),
 	// 		&(cube[side_down][0]),
@@ -113,4 +126,9 @@ t_turn	instruction_turn(char ***cube, t_side side)
 	turn.turn = NULL;
 	(void)cube;
 	return (turn);
+}
+
+void	turn_side(t_turn turn)
+{
+	(void)turn;
 }

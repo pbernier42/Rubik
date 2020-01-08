@@ -40,15 +40,23 @@ char	***init_tab(void)
 	ret = NULL;
 	if (!(ret = (char***)malloc(sizeof(char**) * 8)))
 		error(-1);
-	if (!(ret[6] = (char**)malloc(sizeof(char*) * ((3 * 6) + 1))))
-		error(-2);
+	// if (!(ret[6] = (char**)malloc(sizeof(char*) * ((3 * 6) + 1))))
+	// 	error(-2);
+	//malloc 6 *  3 *  3
+	//
 	ret[6][3 * 6] = NULL;
+
 	i = -1;
+	//while i < 6
+	//	&ret[i] = &ret[6] + (i * 9) 
+
 	while (++i < (3 * 6))
 	{
-		if (!(ret[6][i] = ft_strnew(3)))
+		if (!(ret[6][i] = ft_strdup("000")))
 			error(-3);
+		if (i % 3)
+			ret[i] = ret[6];
 	}
-	display(ret, FULL, NULL);
+	//display(ret, FULL, NULL);
 	return (ret);
 }
