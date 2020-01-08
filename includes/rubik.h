@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:06:32 by pbernier          #+#    #+#             */
-/*   Updated: 2020/01/08 17:01:36 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/01/08 19:39:54 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,7 @@ typedef struct s_turn		t_turn;
 # define INITIALS_SIDE		((char[6]){"FRUBLD"})
 # define INITIALS_MOD		((char[2]){"2'"})
 
-# define SQUARE				true
-# define FULL				false
+# define NONE				-1
 
 enum						e_side
 {
@@ -76,7 +75,7 @@ void						error(int typecode);
 ** display.c
 */
 
-void						display(char ***tab, bool sw, int cel[12]);
+void						display(char ***tab, int face, int cel[12]);
 
 /*
 ** init.c
