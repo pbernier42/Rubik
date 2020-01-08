@@ -122,13 +122,24 @@ t_turn	instruction_turn(char ***cube, t_side side)
 	// 		((char**){&(cube[side_left][0][2]), &(cube[side_left][1][2]), &(cube[side_left][2][2])}),
 	// 		&(cube[side_up][2])
 	// 	});
+
 	(void)side;
-	turn.turn = NULL;
+	turn.front = NULL;
 	(void)cube;
 	return (turn);
 }
 
 void	turn_side(t_turn turn)
 {
+	char	swap;
+
+	// swap = turn.front[0][0];
+	// turn.front[0][0] = turn.front[2][0];
+	// turn.front[2][0] = turn.front[2][2];
+	// turn.front[2][2] = turn.front[0][2];
+	// turn.front[0][2] = swap;
+
+	(void)swap;
 	(void)turn;
+	return;
 }
