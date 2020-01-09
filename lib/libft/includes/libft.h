@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/09 00:30:13 by pbernier          #+#    #+#             */
-/*   Updated: 2018/04/08 22:42:09 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/01/09 20:23:02 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,15 @@
 # define C_PINK "\033[38;5;5m"
 # define C_BRIGHT_BLUE "\033[38;5;6m"
 # define C_GREY "\033[38;5;8m"
+
+# define C_BBLACK	"\033[40m"
+# define C_BRED		"\033[41m"
+# define C_BGREEN	"\033[42m"
+# define C_BYELLOW	"\033[43m"
+# define C_BBLUE	"\033[44m"
+# define C_BPURPLE	"\033[45m"
+# define C_BCYAN	"\033[46m"
+# define C_BWHITE	"\033[47m"
 
 # include <string.h>
 # include <stdlib.h>
@@ -152,5 +161,6 @@ int					ft_which_endian(void);
 int					ft_max_val(int *tab, int size);
 int					ft_c_atoi(char *str);
 int					ft_al_exist(void *tab, int nb, int size);
+void				ft_putnstr(char *str, size_t len);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:06:32 by pbernier          #+#    #+#             */
-/*   Updated: 2020/01/08 19:39:54 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/01/09 18:07:08 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void						turn_side(t_turn turn);
 ** utils.c
 */
 
-# define INITIALS_SPACE		((char[5]){" \t\r\v\f"})
+# define INITIALS_SPACE		((char[6]){" \t\r\v\f\0"})
 # define IS_SPACE(space) 	in_string(space, INITIALS_SPACE)
 # define IS_SIDE(side)		in_string(side, INITIALS_SIDE)
 # define IS_MOD(mod)		in_string(mod, INITIALS_MOD)

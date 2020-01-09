@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 16:59:26 by rlecart           #+#    #+#             */
-/*   Updated: 2020/01/08 19:39:32 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/01/09 18:09:58 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	***init_tab(void)
 	ret = NULL;
 	if (!(ret = (char***)malloc(sizeof(char**) * 8)))
 		error(-1);
-	ret[8] = NULL;
+	ret[7] = NULL;
 	i = -1;
 	if (!(ret[6] = (char**)malloc(sizeof(char*) * ((6 * 3) + 1))))
 		error(-2);
