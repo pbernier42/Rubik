@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 16:59:26 by rlecart           #+#    #+#             */
-/*   Updated: 2020/01/09 18:09:58 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/01/10 18:29:36 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,15 @@ char	***init_tab(void)
 	if (!(ret[6] = (char**)malloc(sizeof(char*) * ((6 * 3) + 1))))
 		error(-2);
 	ret[6][6 * 3] = NULL;
-	j = -1;
+	j = 0;
 	while (++i < 6 * 3)
 	{
 		ret[6][i] = ft_strnew(3);
-		ret[6][i][0] = 'a' + j;
-		ret[6][i][1] = 'a' + j;
-		ret[6][i][2] = 'a' + j;
-		if (!(i % 3))
-			ret[++j] = &ret[6][i];
+		ret[6][i][0] = INITIALS_SIDE[j];
+		ret[6][i][1] = INITIALS_SIDE[j];
+		ret[6][i][2] = INITIALS_SIDE[j];
+		if ((i % 3) == 2)
+			ret[j++] = &ret[6][i - 2];
 	}
 
 //	while (++i < 6)

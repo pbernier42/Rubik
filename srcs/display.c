@@ -6,64 +6,30 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/08 16:15:53 by rlecart           #+#    #+#             */
-/*   Updated: 2020/01/09 20:22:14 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/01/10 20:46:01 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <rubik.h>
 
-void	init_colors(char col[31]) // Probleme de concat des couleurs
+void	init_colors(char col[31])
 {
+	ft_bzero(col, 31);
 	ft_strcat(col, C_BRED);
 	ft_strcat(col, C_BYELLOW);
 	ft_strcat(col, C_BBLUE);
 	ft_strcat(col, C_BCYAN);
 	ft_strcat(col, C_BWHITE);
 	ft_strcat(col, C_BGREEN);
-	ft_strcat(col, C_RESET);
-	col[30] = '\0';
-	int tmp;
-
-	tmp = ft_strlen(C_BRED);
-	ft_putnstr(&col[0 * 4], tmp);
-	ft_putstr("bonjour");
-	sleep(1);
-	ft_putnstr(&col[1 * 4], tmp);
-	ft_putstr("bonjour");
-	sleep(1);
-	ft_putnstr(&col[2 * 4], tmp);
-	ft_putstr("bonjour");
-	sleep(1);
-	ft_putnstr(&col[3 * 4], tmp);
-	ft_putstr("bonjour");
-	sleep(1);
-	ft_putnstr(&col[4 * 4], tmp);
-	ft_putstr("bonjour");
-	sleep(1);
-	ft_putnstr(&col[5 * 4], tmp);
-	ft_putstr("bonjour");
-	sleep(1);
-	ft_putnstr(&col[6 * 4], tmp);
-	ft_putstr("bonjour");
-	while (1);
 }
 
-void	putchar_color(char c, char *color)
+void	putchar_color(char c, char *color, int len)
 {
-	int		i;
-	int		len;
-
-	(void)c;
-	i = 0;
-	len = ft_strlen(C_BRED);
 	write(1, color, len);
-	ft_putchar(c);
-	//ft_putchar(' ');
-	//ft_putstr(str);
+	(void)c;
+	// ici mettre une condition pour pouvoir avoir un visu avec des lettres (define pour switch)
+	ft_putchar(' ');
 	ft_putstr(C_RESET);
-	//printf("%d\n", colors);
-	//printf("c = %c | %p original | %ld resultat\n", str[i], col, (ft_strchr(col, str[i]) - col));
-	//sleep(1);
 }
 //RGBWOY
 
@@ -77,28 +43,15 @@ void	display(char ***tab, int face, int cel[12])
 	int		i;
 	int		j;
 	int		k;
-	int		tmp;
+	int		tmp[3];
 	char	col[31];
 
 	i = 0;
 	cel = (int[12]){7, 4, 7, 7, 3, 7, 5, 1, 2, 7, 6, 7};
+	ft_bzero(col, 7);
 	init_colors(col);
-	tmp = ft_strlen(C_BRED);
-	ft_putnstr(&col[0 * 4], tmp);
-	ft_putstr("bonjour");
-	ft_putnstr(&col[1 * 4], tmp);
-	ft_putstr("bonjour");
-	ft_putnstr(&col[2 * 4], tmp);
-	ft_putstr("bonjour");
-	ft_putnstr(&col[3 * 4], tmp);
-	ft_putstr("bonjour");
-	ft_putnstr(&col[4 * 4], tmp);
-	ft_putstr("bonjour");
-	ft_putnstr(&col[5 * 4], tmp);
-	ft_putstr("bonjour");
-	ft_putnstr(&col[6 * 4], tmp);
-	ft_putstr("bonjour");
-	while (1);
+	tmp[1] = ft_strlen(C_BRED);
+	//face = 1;
 	while (i < 12)
 	{
 		j = -1;
@@ -107,14 +60,26 @@ void	display(char ***tab, int face, int cel[12])
 			k = -1;
 			while (++k < 3)
 			{
-				tmp = (cel[i + (j % 3)] * 3) - 2;
-				if (face == -1 && cel[i + (j % 3)] == 7)
-					ft_putstr("a");
+				if (face == -1)
+					tmp[0] = cel[i + (j % 3)]; // calcul pour iterer sur cel (123,123,123,456,456,456,789, etc)
 				else
-					putchar_color(tab[6][tmp][k], &col[find_col(tmp, "abcdef\0") * ft_strlen(C_BRED)]);
+					tmp[0] = face;
+				if (tmp[0] != 7)
+					tmp[2] = tab[6][(tmp[0] - 1) * 3][k]; // calcul pour choper le caractere exact
+				if (face == -1 && tmp[0] == 7)
+					ft_putchar(' ');
+				else
+					putchar_color(tmp[2], col + (tmp[1] *
+						find_col(tmp[2], INITIALS_SIDE)), tmp[1]);
 			}
 			if (j % 3 == 2)
 				ft_putchar('\n');
+
+
+			if (face != -1 && j == 3) // Pour gerer une seule face, mais je sais pas ou le mettre (et comment)
+				return ;
+
+
 		}
 		i += 3;
 	}
@@ -134,9 +99,4 @@ void	display(char ***tab, int face, int cel[12])
 //			
 //		}
 //	}
-//}
-//
-//void	ft_display(char ***tab, int face, int cel[12])
-//{
-//	
 //}

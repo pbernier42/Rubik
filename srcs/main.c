@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:04:51 by pbernier          #+#    #+#             */
-/*   Updated: 2020/01/08 20:03:08 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/01/10 17:28:06 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,10 @@ void	read_instruction(char ***cube, int arg_count, t_move *instruction)
 	count = 0;
 	while (count < arg_count)
 	{
-		turn = instruction_turn(cube, instruction[count++].side);
+		turn = instruction_turn(cube, instruction[count].side);
 		//si reverse changer turn
 		turn_side(turn);
-		if (instruction[count].mod == mod_twice)
+		if (instruction[count++].mod == mod_twice)
 			turn_side(turn);
 	}
 }
