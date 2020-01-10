@@ -27,6 +27,7 @@ typedef struct s_turn		t_turn;
 
 
 # define INITIALS_SIDE		((char[6]){"FRUBLD"})
+# define INITIALS_SIDE2		((char[6]){"frubld"})
 # define INITIALS_MOD		((char[2]){"2'"})
 
 # define NONE				-1
@@ -58,11 +59,10 @@ struct						s_move
 struct						s_turn
 {
 	char					**front;
-
-	char					**right;
-	char					**down;
-	char					**left;
-	char					**up;
+	char					*right[3];
+	char					*down[3];
+	char					*left[3];
+	char					*up[3];
 };
 
 /*
@@ -91,6 +91,7 @@ int							arg_count(char *argv);
 void						instructions(char ***cube, int arg_count, char *argv);
 t_move						arg_instruction(char arg[2]);
 void						read_instruction(char ***cube, int arg_count, t_move *instruction);
+// void						init_line(char ***cube, char *line[3], t_side side, int coor[3][2]);
 t_turn						instruction_turn(char ***cube, t_side side);
 void						turn_side(t_turn turn);
 
