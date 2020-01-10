@@ -25,25 +25,25 @@ void	init_colors(char col[31]) // Probleme de concat des couleurs
 	int tmp;
 
 	tmp = ft_strlen(C_BRED);
-	ft_putnstr(&col[0 * 4], tmp);
+	ft_putnstr(&col[0 * 6], tmp);
 	ft_putstr("bonjour");
 	sleep(1);
-	ft_putnstr(&col[1 * 4], tmp);
+	ft_putnstr(&col[1 * 6], tmp);
 	ft_putstr("bonjour");
 	sleep(1);
-	ft_putnstr(&col[2 * 4], tmp);
+	ft_putnstr(&col[2 * 6], tmp);
 	ft_putstr("bonjour");
 	sleep(1);
-	ft_putnstr(&col[3 * 4], tmp);
+	ft_putnstr(&col[3 * 6], tmp);
 	ft_putstr("bonjour");
 	sleep(1);
-	ft_putnstr(&col[4 * 4], tmp);
+	ft_putnstr(&col[4 * 6], tmp);
 	ft_putstr("bonjour");
 	sleep(1);
-	ft_putnstr(&col[5 * 4], tmp);
+	ft_putnstr(&col[5 * 6], tmp);
 	ft_putstr("bonjour");
 	sleep(1);
-	ft_putnstr(&col[6 * 4], tmp);
+	ft_putnstr(&col[6 * 6], tmp);
 	ft_putstr("bonjour");
 	while (1);
 }
@@ -131,12 +131,12 @@ void	display(char ***tab, int face, int cel[12])
 //		j = -1;
 //		while (face[i][++j])
 //		{
-//			
+//
 //		}
 //	}
 //}
 //
 //void	ft_display(char ***tab, int face, int cel[12])
 //{
-//	
+//
 //}
