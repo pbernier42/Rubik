@@ -100,7 +100,7 @@ void	read_instruction(char ***cube, int arg_count, t_move *instruction)
 }
 
 # define L_LEFT		((int[3][2]){{0, 0}, {1, 0}, {2, 0}})
-# define L_UP		((int[3][2]){{0, 0}, {0, 1}, {0, 2}})
+# define L_UP			((int[3][2]){{0, 0}, {0, 1}, {0, 2}})
 # define L_RIGHT	((int[3][2]){{0, 2}, {1, 2}, {2, 2}})
 # define L_DOWN		((int[3][2]){{2, 0}, {2, 1}, {2, 2}})
 
@@ -112,21 +112,35 @@ void	init_line(char ***cube, char *line[3], t_side side, int coor[3][2])
 	line[2] = (&cube[side][coor[2][0]][coor[2][1]]);
 }
 
+t_turn	init_turn(char ***cube, t_side side[4], int line[4][3][2])
+{
+	t_turn	turn;
+
+	init_line(cube, turn.right, side[0], line[0]);
+	init_line(cube, turn.down, side[1], line[1]);
+	init_line(cube, turn.left, side[2], line[2]);
+	init_line(cube, turn.up, side[3], line[3]);
+	return (turn)
+}
+
 t_turn	instruction_turn(char ***cube, t_side side)
 {
 	t_turn	turn;
 
 	if (side == side_front)
-	{
-		turn.front = cube[side_front];
-		init_line(cube, turn.right, side_right, L_LEFT);
-		init_line(cube, turn.down, side_down, L_UP);
-		init_line(cube, turn.left, side_left, L_RIGHT);
-		init_line(cube, turn.up, side_up, L_DOWN);
-	}
-	else
-		turn.front = NULL;
+		init_turn(cube,
+			((t_side[4]){side_right, side_down, side_left, side_up}),
+			((line[4][3][2]){L_LEFT, L_UP, L_RIGHT, L_DOWN});
+	else if (side == side_right)
+		init_turn(cube,
+			((t_side[4]){side_back, side_down, side_front, side_up}),
+			((line[4][3][2]){L_LEFT, L_RIGHT, L_RIGHT, L_RIGHT});
+	else if (side == side_up)
+		init_turn(cube,
+			((t_side[4]){side_right, side_front, side_lefr, side_back}),
+			((line[4][3][2]){L_UP, L_UP, L_UP, L_UP});
 
+	turn.front = cube[side];
 	(void)side;
 	(void)cube;
 	return (turn);
