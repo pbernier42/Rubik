@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/08 16:15:53 by rlecart           #+#    #+#             */
-/*   Updated: 2020/01/13 17:45:38 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/01/13 19:33:44 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ void	init_colors(char col[31])
 	ft_strcat(col, C_BRED);
 	ft_strcat(col, C_BYELLOW);
 	ft_strcat(col, C_BBLUE);
-	ft_strcat(col, C_BCYAN);
+	ft_strcat(col, C_BORANGE);
+	printf("%sbonjour | len = %lu%s\n", C_BORANGE, strlen(C_BORANGE),  C_RESET);
+	//ft_strcat(col, C_BCYAN);
 	ft_strcat(col, C_BWHITE);
 	ft_strcat(col, C_BGREEN);
 }
@@ -61,6 +63,7 @@ void	display(char ***tab, int face, int cel[12])
 			while (++k < 3)
 			{
 				tmp[0] = cel[i + (j % 3)]; // calcul pour iterer sur cel (123,123,123,456,456,456,789, etc)
+				//usleep(250000);
 				if (tmp[0] != 7)
 					tmp[2] = tab[6][(tmp[0] - 1) * 3][k]; // calcul pour choper le caractere exact
 				if (!face && tmp[0] == 7)
