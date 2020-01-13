@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:04:51 by pbernier          #+#    #+#             */
-/*   Updated: 2020/01/10 20:49:25 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/01/13 18:51:18 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,9 @@ int		main(int argc, char **argv)
 	if (argc != 2 || !(arg_number = arg_count(argv[1])))
 		return (printf("error\n"));
 	cube = init_tab();
-	display(cube, NONE, NULL);
-	instructions(cube, arg_number, argv[1]);
+	//display(cube, F_NONE, NULL);
+	DISPLAY(cube, F_NONE);
+//	instructions(cube, arg_number, argv[1]);
 	return (0);
 }
 
@@ -120,7 +121,7 @@ t_turn	init_turn(char ***cube, t_side side[4], int line[4][3][2])
 	init_line(cube, turn.down, side[1], line[1]);
 	init_line(cube, turn.left, side[2], line[2]);
 	init_line(cube, turn.up, side[3], line[3]);
-	return (turn)
+	return (turn);
 }
 
 t_turn	instruction_turn(char ***cube, t_side side)

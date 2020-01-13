@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:06:32 by pbernier          #+#    #+#             */
-/*   Updated: 2020/01/09 18:07:08 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/01/13 18:51:29 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,17 @@ typedef struct s_turn		t_turn;
 # define INITIALS_SIDE2		((char[6]){"frubld"})
 # define INITIALS_MOD		((char[2]){"2'"})
 
-# define NONE				-1
+# define WITH_LETTER		1
+
+# define F_NONE				0
+# define F_FRONT			1
+# define F_RIGHT			2
+# define F_UP				3
+# define F_BACK				4
+# define F_LEFT				5
+# define F_DOWN				6
+
+# define DISPLAY(cube, F_NONE)		display(cube, F_NONE, NULL)
 
 enum						e_side
 {
