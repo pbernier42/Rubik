@@ -24,6 +24,7 @@ typedef enum e_side			t_side;
 typedef enum e_mod			t_mod;
 typedef struct s_move		t_move;
 typedef struct s_turn		t_turn;
+typedef struct s_line		t_line;
 
 
 # define INITIALS_SIDE		((char[6]){"FRUBLD"})
@@ -58,6 +59,12 @@ enum						e_mod
 	mod_twice,
 	mode_reverse,
 	mod_null
+};
+
+struct						s_line
+{
+	t_side					side;
+	short					coo[3][2];
 };
 
 struct						s_move
@@ -101,7 +108,18 @@ int							arg_count(char *argv);
 void						instructions(char ***cube, int arg_count, char *argv);
 t_move						arg_instruction(char arg[2]);
 void						read_instruction(char ***cube, int arg_count, t_move *instruction);
-// void						init_line(char ***cube, char *line[3], t_side side, int coor[3][2]);
+
+# define C_LEFT				{{0, 0}, {1, 0}, {2, 0}}
+# define C_UP				{{0, 0}, {0, 1}, {0, 2}}
+# define C_RIGHT			{{0, 2}, {1, 2}, {2, 2}}
+# define C_DOWN				{{2, 0}, {2, 1}, {2, 2}}
+# define LINE(l_s, l_c)		((t_line){l_s, l_c})
+# define A_RIGHT			((t_line[6]){LINE(side_right, C_LEFT), LINE(side_back, C_LEFT), LINE(side_right, C_UP), LINE(side_left, C_LEFT), LINE(side_front, C_LEFT), LINE(side_right, C_DOWN)})
+# define A_DOWN				((t_line[6]){LINE(side_down, C_UP), LINE(side_down, C_RIGHT), LINE(side_front, C_UP), LINE(side_down, C_DOWN), LINE(side_down, C_LEFT), LINE(side_back, C_DOWN)})
+# define A_LEFT				((t_line[6]){LINE(side_left, C_RIGHT), LINE(side_front, C_RIGHT), LINE(side_left, C_UP), LINE(side_right, C_RIGHT), LINE(side_back, C_RIGHT), LINE(side_left, C_DOWN)})
+# define A_UP				((t_line[6]){LINE(side_up, C_DOWN), LINE(side_up, C_RIGHT), LINE(side_back, C_UP), LINE(side_up, C_UP), LINE(side_up, C_LEFT), LINE(side_up, C_DOWN)})
+# define AROUND(side)		((t_line[4]){A_RIGHT[side], A_DOWN[side], A_LEFT[side], A_UP[side]})
+
 t_turn						instruction_turn(char ***cube, t_side side);
 void						turn_side(t_turn turn);
 
