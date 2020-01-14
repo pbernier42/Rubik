@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/09 00:30:13 by pbernier          #+#    #+#             */
-/*   Updated: 2020/01/09 20:23:02 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/01/14 17:53:22 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,15 @@
 # define C_BRIGHT_BLUE "\033[38;5;6m"
 # define C_GREY "\033[38;5;8m"
 
-# define C_BBLACK	"\033[40m"
-# define C_BRED		"\033[41m"
-# define C_BGREEN	"\033[42m"
-# define C_BYELLOW	"\033[43m"
-# define C_BBLUE	"\033[44m"
-# define C_BPURPLE	"\033[45m"
-# define C_BCYAN	"\033[46m"
-# define C_BWHITE	"\033[47m"
+# define C_BBLACK	"\033[40;01;01;01;01m"
+# define C_BRED		"\033[41;01;01;01;01m"
+# define C_BGREEN	"\033[42;01;01;01;01m"
+# define C_BYELLOW	"\033[43;01;01;01;01m"
+# define C_BBLUE	"\033[44;01;01;01;01m"
+# define C_BPURPLE	"\033[45;01;01;01;01m"
+# define C_BORANGE	"\033[48;2;255;165;1m"
+# define C_BCYAN	"\033[46;01;01;01;01m"
+# define C_BWHITE	"\033[47;01;01;01;01m"
 
 # include <string.h>
 # include <stdlib.h>

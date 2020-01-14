@@ -6,20 +6,20 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/08 16:15:53 by rlecart           #+#    #+#             */
-/*   Updated: 2020/01/13 19:33:44 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/01/14 17:46:29 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <rubik.h>
 
-void	init_colors(char col[31])
+void	init_colors(char col[103])
 {
-	ft_bzero(col, 31);
+	ft_bzero(col, 103);
 	ft_strcat(col, C_BRED);
 	ft_strcat(col, C_BYELLOW);
 	ft_strcat(col, C_BBLUE);
 	ft_strcat(col, C_BORANGE);
-	printf("%sbonjour | len = %lu%s\n", C_BORANGE, strlen(C_BORANGE),  C_RESET);
+	//printf("%sbonjour | len = %lu%s\n", C_BORANGE, strlen(C_BORANGE),  C_RESET);
 	//ft_strcat(col, C_BCYAN);
 	ft_strcat(col, C_BWHITE);
 	ft_strcat(col, C_BGREEN);
@@ -28,7 +28,6 @@ void	init_colors(char col[31])
 void	putchar_color(char c, char *color, int len)
 {
 	write(1, color, len);
-	(void)c;
 	if (!WITH_LETTER)
 		ft_putchar(c);
 	else
@@ -47,11 +46,11 @@ void	display(char ***tab, int face, int cel[12])
 	int		j;
 	int		k;
 	int		tmp[3];
-	char	col[31];
+	char	col[103];
 
 	i = 0;
 	cel = (int[12]){7, 4, 7, 7, 3, 7, 5, 1, 2, 7, 6, 7};
-	ft_bzero(col, 7);
+	ft_bzero(col, 103);
 	init_colors(col);
 	tmp[1] = ft_strlen(C_BRED);
 	while (i < 12)
