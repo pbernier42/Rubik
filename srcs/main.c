@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:04:51 by pbernier          #+#    #+#             */
-/*   Updated: 2020/01/14 17:46:40 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/01/15 19:48:39 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int		main(int argc, char **argv)
 	if (argc != 2 || !(arg_number = arg_count(argv[1])))
 		return (printf("error\n"));
 	cube = init_tab();
-	instructions(cube, arg_number, argv[1]);
+	//instructions(cube, arg_number, argv[1]);
 	//resolve(cube);
 	ungly_display(cube);
 	DISPLAY(cube, F_NONE);
