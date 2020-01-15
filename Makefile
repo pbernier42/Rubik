@@ -20,7 +20,8 @@ SRC_FIlE		=	main.c \
 					utils.c \
 					error.c \
 					init.c \
-					display.c
+					display.c \
+					resolve.c
 
 INC				=	$(addprefix $(DIR_INC),$(SRC_INCLUDE)) \
 					lib/libft/includes/libft.h

@@ -20,8 +20,12 @@ int		main(int argc, char **argv)
 	if (argc != 2 || !(arg_number = arg_count(argv[1])))
 		return (printf("error\n"));
 	cube = init_tab();
-	DISPLAY(cube, F_NONE);
 	instructions(cube, arg_number, argv[1]);
+	resolve(cube);
+	printf("[%c][%c][%c]\n", cube[side_up][0][0], cube[side_up][0][1], cube[side_up][0][2]);
+	printf("[%c][%c][%c]\n", cube[side_up][1][0], cube[side_up][1][1], cube[side_up][1][2]);
+	printf("[%c][%c][%c]\n", cube[side_up][2][0], cube[side_up][2][1], cube[side_up][2][2]);
+	DISPLAY(cube, F_NONE);
 	return (0);
 }
 
