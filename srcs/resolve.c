@@ -14,5 +14,5 @@
 
 void	resolve(char ***cube)
 {
-	(void);
+	(void)cube;
 }

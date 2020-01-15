@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:06:32 by pbernier          #+#    #+#             */
-/*   Updated: 2020/01/13 18:51:29 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/01/14 17:53:36 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ typedef enum e_mod			t_mod;
 typedef struct s_move		t_move;
 typedef struct s_turn		t_turn;
 typedef struct s_line		t_line;
-
 
 # define INITIALS_SIDE		((char[6]){"FRUBLD"})
 # define INITIALS_SIDE2		((char[6]){"frubld"})
