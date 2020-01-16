@@ -49,7 +49,6 @@ void	display(char ***tab, int face, int cel[12])
 	char	col[103];
 
 	i = 0;
-	cel = (int[12]){7, 4, 7, 7, 3, 7, 5, 1, 2, 7, 6, 7};
 	ft_bzero(col, 103);
 	init_colors(col);
 	tmp[1] = ft_strlen(C_BRED);
@@ -65,13 +64,13 @@ void	display(char ***tab, int face, int cel[12])
 				//usleep(250000);
 				if (tmp[0] != 7)
 					tmp[2] = tab[6][(tmp[0] - 1) * 3][k]; // calcul pour choper le caractere exact
-				if (!face && tmp[0] == 7)
+				if (face == side_null && tmp[0] == 7)
 					ft_putchar(' ');
-				else if (!face || (face && tmp[0] == face))
+				else if (face == side_null || (face != side_null && tmp[0] - 1 == face))
 					putchar_color(tmp[2], col + (tmp[1] *
 						find_col(tmp[2], INITIALS_SIDE)), tmp[1]);
 			}
-			if ((!face && j % 3 == 2) || (face && face == tmp[0]))
+			if ((face == side_null && j % 3 == 2) || (face != side_null && face == tmp[0] - 1))
 				ft_putchar('\n');
 		}
 		i += 3;

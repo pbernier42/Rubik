@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:06:32 by pbernier          #+#    #+#             */
-/*   Updated: 2020/01/14 17:53:36 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/01/16 17:09:07 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,7 @@ typedef unsigned long long	t_binary;
 
 # define WITH_LETTER		1
 
-# define F_NONE				0
-# define F_FRONT			1
-# define F_RIGHT			2
-# define F_UP				3
-# define F_BACK				4
-# define F_LEFT				5
-# define F_DOWN				6
-
-# define DISPLAY(cube, F_NONE)		display(cube, F_NONE, NULL)
+# define DISPLAY(cube, side_null)		display(cube, side_null, (int[12]){7, 4, 7, 7, 3, 7, 5, 1, 2, 7, 6, 7})
 
 enum						e_side
 {
