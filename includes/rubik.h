@@ -32,15 +32,7 @@ typedef struct s_line		t_line;
 
 # define WITH_LETTER		1
 
-# define F_NONE				0
-# define F_FRONT			1
-# define F_RIGHT			2
-# define F_UP				3
-# define F_BACK				4
-# define F_LEFT				5
-# define F_DOWN				6
-
-# define DISPLAY(cube, F_NONE)		display(cube, F_NONE, NULL)
+# define DISPLAY(cube, side_null)		display(cube, side_null, (int[12]){7, 4, 7, 7, 3, 7, 5, 1, 2, 7, 6, 7})
 
 enum						e_side
 {

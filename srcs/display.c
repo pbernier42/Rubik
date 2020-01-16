@@ -49,7 +49,6 @@ void	display(char ***tab, int face, int cel[12])
 	char	col[103];
 
 	i = 0;
-	cel = (int[12]){7, 4, 7, 7, 3, 7, 5, 1, 2, 7, 6, 7};
 	ft_bzero(col, 103);
 	init_colors(col);
 	tmp[1] = ft_strlen(C_BRED);
