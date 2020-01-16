@@ -12,6 +12,17 @@
 
 #include <rubik.h>
 
+short	in_side_tab(t_side side, t_side *tab_side, short size_tab)
+{
+	short	len_tab;
+
+	len_tab = -1;
+	while (tab_side && ++len_tab < size_tab)
+		if (side == tab_side[len_tab])
+			return (len_tab);
+	return (-1);
+}
+
 bool	in_string(char c, char *string)
 {
 	short	len;

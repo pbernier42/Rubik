@@ -21,10 +21,13 @@
 # include "../lib/libft/includes/libft.h"
 
 typedef enum e_side			t_side;
+typedef enum e_color		t_color;
 typedef enum e_mod			t_mod;
 typedef struct s_move		t_move;
 typedef struct s_turn		t_turn;
 typedef struct s_line		t_line;
+typedef struct s_face		t_face;
+typedef unsigned long long	t_binary;
 
 # define INITIALS_SIDE		((char[6]){"FRUBLD"})
 # define INITIALS_SIDE2		((char[6]){"frubld"})
@@ -81,6 +84,13 @@ struct						s_turn
 	char					*up[3];
 };
 
+struct						s_face
+{
+	t_side					side;
+	short					coo[2];
+};
+
+
 /*
 ** error.c
 */
@@ -134,5 +144,13 @@ void						turn_side(t_turn turn);
 
 bool						in_string(char lettre, char *string);
 size_t						skip_space(size_t len, char *string);
+short						in_side_tab(t_side side, t_side *tab_side,
+								short size_tab);
+
+/*
+** resolve.c
+*/
+
+void		resolve(char ***cube);
 
 #endif

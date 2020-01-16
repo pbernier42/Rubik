@@ -40,9 +40,9 @@ int		main(int argc, char **argv)
 		return (printf("error\n"));
 	cube = init_tab();
 	instructions(cube, arg_number, argv[1]);
-	//resolve(cube);
-	ungly_display(cube);
-	DISPLAY(cube, F_NONE);
+	resolve(cube);
+	//ungly_display(cube);
+	//DISPLAY(cube, F_NONE);
 	return (0);
 }
 
