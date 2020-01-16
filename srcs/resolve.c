@@ -47,28 +47,9 @@ void		bin(t_binary nbr)
 void		resolve(char ***cube)
 {
 	two_two_bloc(cube);
-	t_face		tmp[3];
 
-	tmp[0].side = side_front;
-	tmp[0].coo[0] = 0;
-	tmp[0].coo[1] = 0;
-	tmp[1].side = side_left;
-	tmp[1].coo[0] = 0;
-	tmp[1].coo[1] = 2;
-	tmp[2].side = side_up;
-	tmp[2].coo[0] = 2;
-	tmp[2].coo[1] = 0;
 
-	tmp[0].side = side_front;
-	tmp[0].coo[0] = 2;
-	tmp[0].coo[1] = 2;
-	tmp[1].side = side_right;
-	tmp[1].coo[0] = 2;
-	tmp[1].coo[1] = 0;
-	tmp[2].side = side_down;
-	tmp[2].coo[0] = 0;
-	tmp[2].coo[1] = 2;
-	bin(coor_binary(tmp));
+	//bin(coor_binary(tmp));
 	//1000000000000000000000001000000000000010000000
 	// 1000000000000000000000001000000000000010000000000000000
 
@@ -80,6 +61,7 @@ void		two_two_bloc(char ***cube)
 	t_binary	binary;
 
 	binary = bloc_binary(cube, (t_side[3]){side_front, side_left, side_up});
+	coor_binary((t_face[3])({side_front, {0, 0}});
 
 	// (void)move;
 }
@@ -127,11 +109,6 @@ t_binary	side_binary(char **cube_side, t_side side)
 	}
 	return (binary);
 }
-// 000000001 000 000 000
-// 000 000 000
-// 000 001 000
-// 000 000 000
-// 010 000 000
 
 
 # define SIDE_TAB	((t_side[3]){bloc[0].side, bloc[1].side, bloc[2].side})
