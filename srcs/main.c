@@ -42,7 +42,7 @@ int		main(int argc, char **argv)
 	//instructions(cube, arg_number, argv[1]);
 	//resolve(cube);
 	ungly_display(cube);
-	DISPLAY(cube, F_NONE);
+	DISPLAY(cube, side_null);
 	return (0);
 }
 
