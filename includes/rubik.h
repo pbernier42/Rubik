@@ -48,6 +48,17 @@ enum						e_side
 	side_null
 };
 
+enum						e_color
+{
+	color_red,
+	color_yellow,
+	color_blue,
+	color_orange,
+	color_white,
+	color_green,
+	color_null
+};
+
 enum						e_mod
 {
 	mod_twice,
