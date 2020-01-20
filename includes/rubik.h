@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:06:32 by pbernier          #+#    #+#             */
-/*   Updated: 2020/01/20 19:58:25 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/01/20 20:48:07 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,13 @@
 # include "../lib/libft/includes/libft.h"
 
 typedef enum e_side			t_side;
+typedef enum e_color		t_color;
 typedef enum e_mod			t_mod;
 typedef struct s_move		t_move;
 typedef struct s_turn		t_turn;
 typedef struct s_line		t_line;
+typedef struct s_face		t_face;
+typedef unsigned long long	t_binary;
 
 # define INITIALS_SIDE		((char[6]){"FRUBLD"})
 # define INITIALS_SIDE2		((char[6]){"frubld"})
@@ -43,6 +46,17 @@ enum						e_side
 	side_left,
 	side_down,
 	side_null
+};
+
+enum						e_color
+{
+	color_red,
+	color_yellow,
+	color_blue,
+	color_orange,
+	color_white,
+	color_green,
+	color_null
 };
 
 enum						e_mod
@@ -72,6 +86,13 @@ struct						s_turn
 	char					*left[3];
 	char					*up[3];
 };
+
+struct						s_face
+{
+	t_side					side;
+	short					coo[2];
+};
+
 
 /*
 ** error.c
@@ -133,5 +154,13 @@ void						turn_side(t_turn turn);
 bool						in_string(char lettre, char *string);
 size_t						skip_space(size_t len, char *string);
 void						ungly_display(char ***cube);
+short						in_side_tab(t_side side, t_side *tab_side,
+								short size_tab);
+
+/*
+** resolve.c
+*/
+
+void		resolve(char ***cube);
 
 #endif
