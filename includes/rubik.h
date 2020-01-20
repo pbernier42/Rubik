@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:06:32 by pbernier          #+#    #+#             */
-/*   Updated: 2020/01/16 17:09:07 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/01/20 19:58:25 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ struct						s_turn
 ** error.c
 */
 
-void						error(int typecode);
+void						error(int typecode, char *str);
 
 /*
 ** display.c
@@ -90,6 +90,12 @@ void						display(char ***tab, int face, int cel[12]);
 */
 
 char						***init_tab(void);
+
+/*
+** refine.c
+*/
+
+void						refine(t_move *tab, size_t nb);
 
 /*
 ** main.c
@@ -126,5 +132,6 @@ void						turn_side(t_turn turn);
 
 bool						in_string(char lettre, char *string);
 size_t						skip_space(size_t len, char *string);
+void						ungly_display(char ***cube);
 
 #endif

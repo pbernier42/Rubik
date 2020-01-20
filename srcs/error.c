@@ -6,13 +6,14 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 17:43:36 by rlecart           #+#    #+#             */
-/*   Updated: 2020/01/07 17:44:10 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/01/20 19:52:51 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <rubik.h>
 
-void	error(int codetype)
+void	error(int typecode, char *str)
 {
-	exit(codetype);
+	ft_putendl_fd(str, 2);
+	exit(typecode);
 }
