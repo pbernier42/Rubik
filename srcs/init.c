@@ -20,10 +20,10 @@ char	***init_tab(void)
 
 	ret = NULL;
 	if (!(ret = (char***)malloc(sizeof(char**) * 8)))
-		error(-1);
+		error(-1, "Malloc");
 	ret[7] = NULL;
 	if (!(ret[6] = (char**)malloc(sizeof(char*) * (18 + 1))))
-		error(-2);
+		error(-2, "Malloc");
 	ret[6][18] = NULL;
 	i = -1;
 	j = 0;

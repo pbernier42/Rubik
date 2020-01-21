@@ -30,7 +30,6 @@ typedef struct s_face		t_face;
 typedef unsigned long long	t_binary;
 
 # define INITIALS_SIDE		((char[6]){"FRUBLD"})
-# define INITIALS_SIDE2		((char[6]){"frubld"})
 # define INITIALS_MOD		((char[2]){"2'"})
 
 # define WITH_LETTER		1
@@ -39,12 +38,12 @@ typedef unsigned long long	t_binary;
 
 enum						e_side
 {
-	side_front,
-	side_right,
-	side_up,
-	side_back,
-	side_left,
-	side_down,
+	side_front, //0
+	side_right, //1
+	side_up,	//2
+	side_back,	//3
+	side_left,	//4
+	side_down,	//5
 	side_null
 };
 
@@ -135,7 +134,7 @@ void						read_instruction(char ***cube, int arg_count, t_move *instruction);
 # define A_RIGHT			((t_line[6]){LINE(side_right, C_LEFT), LINE(side_back, C_LEFT), LINE(side_right, C_UP), LINE(side_left, C_LEFT), LINE(side_front, C_LEFT), LINE(side_right, C_DOWN)})
 # define A_DOWN				((t_line[6]){LINE(side_down, C_UP), LINE(side_down, C_RIGHT), LINE(side_front, C_UP), LINE(side_down, C_DOWN), LINE(side_down, C_LEFT), LINE(side_back, C_DOWN)})
 # define A_LEFT				((t_line[6]){LINE(side_left, C_RIGHT), LINE(side_front, C_RIGHT), LINE(side_left, C_UP), LINE(side_right, C_RIGHT), LINE(side_back, C_RIGHT), LINE(side_left, C_DOWN)})
-# define A_UP				((t_line[6]){LINE(side_up, C_DOWN), LINE(side_up, C_RIGHT), LINE(side_back, C_UP), LINE(side_up, C_UP), LINE(side_up, C_LEFT), LINE(side_up, C_DOWN)})
+# define A_UP				((t_line[6]){LINE(side_up, C_DOWN), LINE(side_up, C_RIGHT), LINE(side_back, C_UP), LINE(side_up, C_UP), LINE(side_up, C_LEFT), LINE(side_front, C_DOWN)})
 # define AROUND(side)		((t_line[4]){A_RIGHT[side], A_DOWN[side], A_LEFT[side], A_UP[side]})
 
 t_turn						instruction_turn(char ***cube, t_side side);

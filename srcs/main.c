@@ -18,11 +18,12 @@ int		main(int argc, char **argv)
 	char		***cube;
 	//t_move		*args;
 
+	arg_number = 0;
 	if (argc != 2 || !(arg_number = arg_count(argv[1])))
 		error(-1, "error");
 	cube = init_tab();
 	instructions(cube, arg_number, argv[1]);
-	//resolve(cube);
+	resolve(cube);
 	//ungly_display(cube);
 	//refine(args, arg_number);
 	DISPLAY(cube, side_null);
