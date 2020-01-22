@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:06:32 by pbernier          #+#    #+#             */
-/*   Updated: 2020/01/22 20:35:10 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/01/22 21:11:12 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ typedef struct s_move		t_move;
 typedef struct s_turn		t_turn;
 typedef struct s_line		t_line;
 typedef struct s_face		t_face;
+typedef struct s_action		t_action;
+typedef struct s_condition	t_condition;
 typedef unsigned long long	t_binary;
 
 # define INITIALS_SIDE		((char[7]){"FRUBLD"})
@@ -92,6 +94,19 @@ struct						s_face
 	short					coo[2];
 };
 
+struct						s_action
+{
+	t_side					side;
+	t_binary				binary;
+};
+
+struct						s_condition
+{
+	t_binary				binary;
+	t_side					side;
+	t_mod					mod;
+};
+
 
 /*
 ** error.c
@@ -138,6 +153,7 @@ void						read_instruction(char ***cube, int arg_count, t_move *instruction);
 # define AROUND(side)		((t_line[4]){A_RIGHT[side], A_DOWN[side], A_LEFT[side], A_UP[side]})
 
 t_turn						instruction_turn(char ***cube, t_side side);
+void						turn_multiple(t_turn turn, t_mod mod);
 void						turn_side(t_turn turn);
 
 /*
@@ -155,11 +171,14 @@ size_t						skip_space(size_t len, char *string);
 void						ungly_display(char ***cube);
 short						in_side_tab(t_side side, t_side *tab_side,
 								short size_tab);
+t_binary					combine_binary(t_binary *tab, short size_tab);
+
 
 /*
 ** resolve.c
 */
 
 void		resolve(char ***cube);
+void		bin(t_binary nbr);
 
 #endif
