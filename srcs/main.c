@@ -94,11 +94,7 @@ void	read_instruction(char ***cube, int arg_count, t_move *instruction)
 	while (count < arg_count)
 	{
 		turn = instruction_turn(cube, instruction[count].side);
-		turn_side(turn);
-		if (instruction[count].mod != mod_null)
-			turn_side(turn);
-		if (instruction[count].mod == mode_reverse)
-			turn_side(turn);
+		turn_multiple(turn, instruction[count].mod);
 		++count;
 	}
 }
@@ -125,9 +121,20 @@ t_turn	instruction_turn(char ***cube, t_side side)
 {
 	t_turn	turn;
 
+	printf("side = [%d]\n", side);
 	turn = init_turn(cube, AROUND(side));
 	turn.front = cube[side];
 	return (turn);
+}
+
+void	turn_multiple(t_turn turn, t_mod mod)
+{
+	printf("mod = [%d]\n\n", mod);
+	turn_side(turn);
+	if (mod != mod_null)
+		turn_side(turn);
+	if (mod == mod_reverse)
+		turn_side(turn);
 }
 
 void	turn_side(t_turn turn)

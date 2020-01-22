@@ -40,6 +40,18 @@ size_t	skip_space(size_t len, char *string)
 	return (len);
 }
 
+t_binary	combine_binary(t_binary *tab, short size_tab)
+{
+	t_binary	ret;
+	short		len_tab;
+
+	ret = 0;
+	len_tab = -1;
+	while (tab && ++len_tab < size_tab)
+		ret += tab[len_tab];
+	return (ret);
+}
+
 void 	ungly_display(char ***cube)
 {
 	printf("          [%c][%c][%c]    \n", cube[side_back][0][0], cube[side_back][0][1], cube[side_back][0][2]);
