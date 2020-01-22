@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:06:32 by pbernier          #+#    #+#             */
-/*   Updated: 2020/01/20 20:48:07 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/01/22 20:35:10 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ typedef struct s_line		t_line;
 typedef struct s_face		t_face;
 typedef unsigned long long	t_binary;
 
-# define INITIALS_SIDE		((char[6]){"FRUBLD"})
-# define INITIALS_MOD		((char[2]){"2'"})
+# define INITIALS_SIDE		((char[7]){"FRUBLD"})
+# define INITIALS_MOD		((char[3]){"2'"})
 
 # define WITH_LETTER		1
 
@@ -61,7 +61,7 @@ enum						e_color
 enum						e_mod
 {
 	mod_twice,
-	mode_reverse,
+	mod_reverse,
 	mod_null
 };
 

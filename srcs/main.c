@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:04:51 by pbernier          #+#    #+#             */
-/*   Updated: 2020/01/20 20:47:27 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/01/22 20:56:59 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ int		main(int argc, char **argv)
 		error(-1, "error");
 	cube = init_tab();
 	instructions(cube, arg_number, argv[1]);
-	resolve(cube);
+	//resolve(cube);
 	//ungly_display(cube);
 	//refine(args, arg_number);
-	DISPLAY(cube, side_null);
+	//DISPLAY(cube, side_null);
 	return (0);
 }
 
@@ -67,7 +67,9 @@ void	instructions(char ***cube, int arg_count, char *argv)
 		len = skip_space(len, argv);
 		//printf("[%d] - [%d]\n", instruction[count - 1].side, instruction[count - 1].mod);
 	}
-	read_instruction(cube, arg_count, instruction);
+	(void)cube;
+	refine(instruction, arg_count);
+	//read_instruction(cube, arg_count, instruction);
 }
 
 t_move	arg_instruction(char arg[2])
@@ -97,7 +99,7 @@ void	read_instruction(char ***cube, int arg_count, t_move *instruction)
 		turn_side(turn);
 		if (instruction[count].mod != mod_null)
 			turn_side(turn);
-		if (instruction[count].mod == mode_reverse)
+		if (instruction[count].mod == mod_reverse)
 			turn_side(turn);
 		++count;
 	}
