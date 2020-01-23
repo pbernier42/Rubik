@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:06:32 by pbernier          #+#    #+#             */
-/*   Updated: 2020/01/22 21:11:12 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/01/23 20:42:09 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,6 +172,14 @@ void						ungly_display(char ***cube);
 short						in_side_tab(t_side side, t_side *tab_side,
 								short size_tab);
 t_binary					combine_binary(t_binary *tab, short size_tab);
+
+/*
+** utils2.c
+*/
+
+void						print_ins(t_move *tab, size_t nb);
+int							pdebug(void);
+int							mod_range(int a, int b, int n);
 
 
 /*

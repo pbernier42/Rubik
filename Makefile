@@ -4,7 +4,7 @@ NAME			=	rubik
 NO_TO_BE		=	ON
 
 CC				=	gcc
-FLAGS			=	-Wall -Werror -Wextra
+FLAGS			=	-Wall -Werror -Wextra $(DFLAGS)
 DFLAGS			=	-g -fsanitize=address
 
 # DIR_LIB			=	lib/
@@ -22,7 +22,8 @@ SRC_FIlE		=	main.c \
 					init.c \
 					display.c \
 					resolve.c \
-					refine.c
+					refine.c \
+					utils2.c
 
 INC				=	$(addprefix $(DIR_INC),$(SRC_INCLUDE)) \
 					lib/libft/includes/libft.h
