@@ -23,6 +23,8 @@
 typedef enum e_side			t_side;
 typedef enum e_color		t_color;
 typedef enum e_mod			t_mod;
+typedef enum e_around		t_around;
+
 typedef struct s_move		t_move;
 typedef struct s_turn		t_turn;
 typedef struct s_line		t_line;
@@ -65,6 +67,15 @@ enum						e_mod
 	mod_twice,
 	mod_reverse,
 	mod_null
+};
+
+enum						e_around
+{
+	around_right,
+	around_down,
+	around_left,
+	around_up,
+	around_null
 };
 
 struct						s_line

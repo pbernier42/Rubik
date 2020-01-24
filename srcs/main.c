@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:04:51 by pbernier          #+#    #+#             */
-/*   Updated: 2020/01/24 20:26:48 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/01/24 20:28:44 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int		main(int argc, char **argv)
 		error(-1, "error");
 	cube = init_tab();
 	instructions(cube, arg_number, argv[1]);
-	//resolve(cube);
-	//ungly_display(cube);
+	resolve(cube);
+	ungly_display(cube);
 	//refine(args, arg_number);
 	//DISPLAY(cube, side_null);
 	return (0);
@@ -69,7 +69,7 @@ void	instructions(char ***cube, int arg_count, char *argv)
 	}
 	(void)cube;
 	//refine(instruction, arg_count);
-	//read_instruction(cube, arg_count, instruction);
+	read_instruction(cube, arg_count, instruction);
 	t_binary	b;
 	t_side		s[3] = {instruction[0].side, instruction[1].side, instruction[2].side};
 	b = bloc_binary(cube, s);
