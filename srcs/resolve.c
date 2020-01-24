@@ -240,14 +240,15 @@ void		two_two_bloc(char ***cube, t_color corner[3])
 	side = side_front;
 	while (!found && side != side_null)
 	{
-		// if (stob(side, BIN_CORNER ^ BIN_CORNER_LESS))
-		//   	found = true;
+		if (stob((t_side[1]){side}, 1, BIN_CORNER ^ BIN_CORNER_LESS))
+			found = true;
 		++side;
 	}
-	// if (--side != side_null)
-	// {
-	// 	//if (//a plus de 2 bit)
-	// }
+	if (--side != side_null)
+	{
+		printf("%d\n", side);
+		//if (//a plus de 2 bit)
+	}
 	bin(BIN_CORNER_LESS | BIN_EDGE);
 	//bin(BIN_CUBE);
 	//BIN_CORNER_LESS = (BIN_CUBE & BIN_CORNER);
