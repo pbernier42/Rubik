@@ -78,7 +78,6 @@ t_action	commun_side(t_binary corner_edge)
 		ret = corner_edge;
 		while (++i < 9)
 		{
-
 			if ((corner_edge % 2))
 			{
 				if (found)
@@ -149,6 +148,7 @@ t_move		condition(t_binary binary, t_condition *conditions)
 # define BIN_CORNER				(binary[1])
 # define BIN_EDGE				(binary[2])
 # define BIN_EXTREMITY_EDGE		(binary[3])
+# define BIN_CORNER_LESS		(binary[4])
 
 
 # define EDGE_OPPOSITE			(edge[0])
@@ -166,8 +166,9 @@ void		two_two_bloc(char ***cube, t_color corner[3])
 	short		i[3];
 	bool		found;
 	t_binary	edge[2][3];
-	t_binary	binary[4];
+	t_binary	binary[5];
 	t_action	action;
+	t_move		move;
 
 	I = -1;
 	found = false;
@@ -185,8 +186,10 @@ void		two_two_bloc(char ***cube, t_color corner[3])
 	while (!found && ++J < 3)
 		found = (EDGE_OPPOSITE[J] == (BIN_CUBE & EDGE_OPPOSITE[J]));
 	if (found)
+	{
 		TURN_SIDE(TAB_BIN_CORNER[(I + 4) % 8][J].side, mod_null);
-	BIN_CUBE = bloc_binary(cube, (t_side[3]){(t_side)corner[0], (t_side)corner[1], side_null});
+		BIN_CUBE = bloc_binary(cube, (t_side[3]){(t_side)corner[0], (t_side)corner[1], side_null});
+	}
 	edge_corner(EDGE_NEAR, TAB_BIN_CORNER[I]);
 
 	BIN_EXTREMITY_EDGE = combine_binary((t_binary[6]){
@@ -195,6 +198,7 @@ void		two_two_bloc(char ***cube, t_color corner[3])
 
 	K = -1;
 	found = false;
+
 	while (!found && ++K < 12)
 	{
 		BIN_EDGE = coor_binary(TAB_BIN_EDGE[K]);
@@ -202,31 +206,51 @@ void		two_two_bloc(char ***cube, t_color corner[3])
 			BIN_EDGE == (BIN_CUBE & BIN_EDGE))
 		{
 			action = commun_side(BIN_CORNER | BIN_EDGE);
-
-			t_move	tmp;
-
-
-			tmp = condition(action.binary,
+			move = condition(action.binary,
 				(t_condition[8]){
-					{0b100001000, AROUND(action.side)[3].side, mod_reverse},
-					{0b100000010, AROUND(action.side)[2].side, mod_null},
-					{0b001100000, AROUND(action.side)[3].side, mod_null},
-					{0b001000010, AROUND(action.side)[0].side, mod_reverse},
-					{0b010000100, AROUND(action.side)[2].side, mod_reverse},
-					{0b000001100, AROUND(action.side)[1].side, mod_null},
-					{0b010000001, AROUND(action.side)[0].side, mod_null},
-					{0b000100001, AROUND(action.side)[1].side, mod_reverse}
+					{0b100001000, AROUND(action.side)[around_up].side, mod_reverse},
+					{0b100000010, AROUND(action.side)[around_left].side, mod_null},
+					{0b001100000, AROUND(action.side)[around_up].side, mod_null},
+					{0b001000010, AROUND(action.side)[around_right].side, mod_reverse},
+					{0b010000100, AROUND(action.side)[around_left].side, mod_reverse},
+					{0b000001100, AROUND(action.side)[around_down].side, mod_null},
+					{0b010000001, AROUND(action.side)[around_right].side, mod_null},
+					{0b000100001, AROUND(action.side)[around_down].side, mod_reverse}
 				});
-			TURN_SIDE(tmp.side, tmp.mod);
-			//bin(action.binary);
-			//printf("%d...\n", commun_side(BIN_CORNER + BIN_EDGE));
-			//printf("%d\n", commun_side(BIN_CORNER + BIN_EDGE));
-			//	printf("%d - %d\n", TAB_BIN_EDGE[K][0].side, TAB_BIN_EDGE[K][1].side);
-			//	printf("%d - %d - %d\n", TAB_BIN_CORNER[I][0].side,
-			//	TAB_BIN_CORNER[I][1].side, TAB_BIN_CORNER[I][2].side);
+			TURN_SIDE(move.side, move.mod);
+			found = true;
 		}
 	}
-	//bin(BIN_EXTREMITY_EDGE);
+
+
+
+	I = -1;
+	found = false;
+	BIN_CUBE = bloc_binary(cube, (t_side*)corner);
+	while (!found && ++I < 8)
+	{
+		BIN_CORNER = coor_binary(TAB_BIN_CORNER[I]);
+		found = (BIN_CORNER == (BIN_CUBE & BIN_CORNER));
+	}
+	BIN_CUBE = bloc_binary(cube, (t_side[3]){(t_side)corner[0], (t_side)corner[1], side_null});
+	BIN_CORNER_LESS = (BIN_CUBE & BIN_CORNER);
+	found = false;
+	t_side side;
+
+	side = side_front;
+	while (!found && side != side_null)
+	{
+		// if (stob(side, BIN_CORNER ^ BIN_CORNER_LESS))
+		//   	found = true;
+		++side;
+	}
+	// if (--side != side_null)
+	// {
+	// 	//if (//a plus de 2 bit)
+	// }
+	bin(BIN_CORNER_LESS | BIN_EDGE);
+	//bin(BIN_CUBE);
+	//BIN_CORNER_LESS = (BIN_CUBE & BIN_CORNER);
 
 	//EDGE_NEAR
 	//EDGE_OPOSIT

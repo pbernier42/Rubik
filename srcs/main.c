@@ -24,7 +24,7 @@ int		main(int argc, char **argv)
 	cube = init_tab();
 	instructions(cube, arg_number, argv[1]);
 	resolve(cube);
-	//ungly_display(cube);
+	ungly_display(cube);
 	//refine(args, arg_number);
 	//DISPLAY(cube, side_null);
 	return (0);
@@ -68,8 +68,8 @@ void	instructions(char ***cube, int arg_count, char *argv)
 		//printf("[%d] - [%d]\n", instruction[count - 1].side, instruction[count - 1].mod);
 	}
 	(void)cube;
-	refine(instruction, arg_count);
-	//read_instruction(cube, arg_count, instruction);
+	//refine(instruction, arg_count);
+	read_instruction(cube, arg_count, instruction);
 }
 
 t_move	arg_instruction(char arg[2])
