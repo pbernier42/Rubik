@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:04:51 by pbernier          #+#    #+#             */
-/*   Updated: 2020/01/22 21:10:47 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/01/24 20:26:48 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,12 @@ void	instructions(char ***cube, int arg_count, char *argv)
 		//printf("[%d] - [%d]\n", instruction[count - 1].side, instruction[count - 1].mod);
 	}
 	(void)cube;
-	refine(instruction, arg_count);
+	//refine(instruction, arg_count);
 	//read_instruction(cube, arg_count, instruction);
+	t_binary	b;
+	t_side		s[3] = {instruction[0].side, instruction[1].side, instruction[2].side};
+	b = bloc_binary(cube, s);
+	stob(s, 3, b);
 }
 
 t_move	arg_instruction(char arg[2])

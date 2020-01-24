@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 17:51:47 by rlecart           #+#    #+#             */
-/*   Updated: 2020/01/23 20:45:56 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/01/24 17:03:33 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,5 @@ void	refine(t_move *tab, size_t nb)
 			count[sw] += tab[i].mod + 2;
 		i++;
 	}
-	//print_ins(ret, j);
+	print_ins(ret, j);
 }

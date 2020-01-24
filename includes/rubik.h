@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:06:32 by pbernier          #+#    #+#             */
-/*   Updated: 2020/01/24 19:39:09 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/01/24 20:21:43 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,6 +182,11 @@ int							pdebug(void);
 int							mod_range(int a, int b, int n);
 t_binary					stob(t_side *side, size_t nb_side, t_binary binary);
 
+/*
+** utils2.c
+*/
+
+size_t						byte_counter(t_binary binary, size_t nb);
 
 /*
 ** resolve.c

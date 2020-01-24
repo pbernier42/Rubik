@@ -6,14 +6,13 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 19:04:09 by pbernier          #+#    #+#             */
-/*   Updated: 2020/01/13 19:04:11 by pbernier         ###   ########.fr       */
+/*   Updated: 2020/01/24 18:58:06 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <rubik.h>
 
 void		two_two_bloc(char ***cube, t_color corner[3]);
-t_binary	bloc_binary(char ***cube, t_side side[3]);
 t_binary	side_binary(char **cube_side, t_side side);
 t_binary	coor_binary(t_face bloc[3]);
 void		edge_corner(t_binary edge_linked[3], t_face bloc[3]);
