@@ -23,7 +23,7 @@ int		main(int argc, char **argv)
 		error(-1, "error");
 	cube = init_tab();
 	instructions(cube, arg_number, argv[1]);
-	//resolve(cube);
+	resolve(cube);
 	//ungly_display(cube);
 	//refine(args, arg_number);
 	//DISPLAY(cube, side_null);
