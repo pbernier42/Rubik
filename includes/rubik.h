@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:06:32 by pbernier          #+#    #+#             */
-/*   Updated: 2020/01/23 20:42:09 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/01/24 19:39:09 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,6 +191,7 @@ t_binary					combine_binary(t_binary *tab, short size_tab);
 void						print_ins(t_move *tab, size_t nb);
 int							pdebug(void);
 int							mod_range(int a, int b, int n);
+t_binary					stob(t_side *side, size_t nb_side, t_binary binary);
 
 
 /*
@@ -199,5 +200,6 @@ int							mod_range(int a, int b, int n);
 
 void		resolve(char ***cube);
 void		bin(t_binary nbr);
+t_binary	bloc_binary(char ***cube, t_side side[3]);
 
 #endif
