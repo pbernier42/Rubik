@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:06:32 by pbernier          #+#    #+#             */
-/*   Updated: 2020/01/24 20:21:43 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/01/27 22:23:14 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdbool.h>
 # include <stdlib.h>
 # include <stdio.h>
+# include <stdarg.h>
 
 # include "../lib/libft/includes/libft.h"
 
@@ -37,6 +38,7 @@ typedef unsigned long long	t_binary;
 # define INITIALS_MOD		((char[3]){"2'"})
 
 # define WITH_LETTER		1
+# define NB_ITER			5
 
 # define DISPLAY(cube, side_null)		display(cube, side_null, (int[12]){7, 4, 7, 7, 3, 7, 5, 1, 2, 7, 6, 7})
 
@@ -48,7 +50,7 @@ enum						e_side
 	side_back,	//3
 	side_left,	//4
 	side_down,	//5
-	side_null
+	side_null	//6
 };
 
 enum						e_color
@@ -191,13 +193,16 @@ t_binary					combine_binary(t_binary *tab, short size_tab);
 void						print_ins(t_move *tab, size_t nb);
 int							pdebug(void);
 int							mod_range(int a, int b, int n);
+t_binary					isolate(t_side side, t_binary binary);
 t_binary					stob(t_side *side, size_t nb_side, t_binary binary);
 
 /*
-** utils2.c
+** utils3.c
 */
 
 size_t						byte_counter(t_binary binary, size_t nb);
+void						fill_enum(int tab[NB_ITER], int type, int nb, ...);
+void						fill_side_bin(t_side tab[6], t_binary binary);
 
 /*
 ** resolve.c
