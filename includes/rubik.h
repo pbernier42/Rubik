@@ -62,6 +62,7 @@ enum						e_color
 	color_white,
 	color_green,
 	color_null
+
 };
 
 enum						e_mod
@@ -119,7 +120,6 @@ struct						s_condition
 	t_side					side;
 	t_mod					mod;
 };
-
 
 /*
 ** error.c
