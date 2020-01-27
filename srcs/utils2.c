@@ -45,10 +45,7 @@ void		print_ins(t_move *tab, size_t nb)
 
 t_binary	isolate(t_side side, t_binary binary)
 {
-	t_binary	ret;
-
-	ret = binary >> (9 * (5 - side));
-	return (ret & 511);
+	return (side != side_null ? (binary >> (9 * (5 - side)) & 511) : 0);
 }
 
 t_binary	stob(t_side *side, size_t nb_side, t_binary binary)
