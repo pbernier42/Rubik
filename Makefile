@@ -15,21 +15,29 @@ DIR_SRC			=	srcs/
 DIR_INC			=	includes/
 INCLUDES		=	-I $(DIR_INC)
 
-SRC_INCLUDE		=	rubik.h
+SRC_INCLUDE		=	rubik.h \
+					define.h \
+					prototype.h \
+					variable.h
+
 SRC_FIlE		=	main.c \
 					utils.c \
 					error.c \
 					init.c \
 					display.c \
-					resolve.c \
+					resolve/resolve.c \
+					resolve/two_two_bloc.c \
 					refine.c \
 					utils2.c \
-					utils3.c
+					utils3.c \
+					utils/find.c \
+					utils/converter.c \
+					utils/parsing.c
 
 INC				=	$(addprefix $(DIR_INC),$(SRC_INCLUDE)) \
 					lib/libft/includes/libft.h
 SRC				=	$(addprefix $(DIR_SRC),$(SRC_FIlE))
-OBJ				=	$(addprefix $(DIR_OBJ),$(notdir $(SRC:.c=.o)))
+OBJ				=	$(addprefix $(DIR_OBJ),$(SRC_FIlE:.c=.o))
 # LIB				= 	$(foreach L,$(addprefix $(DIR_LIB),$(NAME_LIB)),$(L)/$(lastword $(subst /, ,$(L))).a)
 
 UND				= \033[4m
@@ -60,6 +68,8 @@ $(DIR_OBJ)%.o: $(DIR_SRC)%.c $(INC) Makefile
 
 $(DIR_OBJ):
 	@mkdir -p $(DIR_OBJ)
+	@mkdir -p $(DIR_OBJ)/resolve
+	@mkdir -p $(DIR_OBJ)/utils
 
 # $(LIB):
 # 	@echo "ddd\n"

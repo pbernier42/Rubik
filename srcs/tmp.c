@@ -44,24 +44,6 @@ void		bin(t_binary nbr)
 	printf("D %.3s %.3s %.3s\n", &cube[45], &cube[48], &cube[51]);
 }
 
-void		resolve(char ***cube)
-{
-	//nb_instruction = 0
-	//tmp_instrucyion = NULL;
-
-	//while (tmp_instrcution > atuel)
-	//{
-		//ACTUEL =
-		two_two_bloc(cube, (t_color[3]){color_red, color_yellow, color_blue});
-		//
-	//}
-
-	//bin(coor_binary(tmp));
-	//1000000000000000000000001000000000000010000000
-	// 1000000000000000000000001000000000000010000000000000000
-
-}
-
 t_action	commun_side(t_binary corner_edge)
 {
 	t_side		side;
@@ -91,12 +73,12 @@ t_action	commun_side(t_binary corner_edge)
 }
 
 
-void	fill_move(t_move ret[#DEFINE], t_move move[#DEFINE])
+void	fill_move(t_move ret[NB_ITER], t_move move[NB_ITER])
 {
 	short	i;
 
 	i = -1;
-	while (++i < #DEFINE)
+	while (++i < NB_ITER)
 	{
 		ret[i].side = move.side[i];
 		ret[i].mod = move.mod[i];
@@ -107,7 +89,7 @@ void	fill_move(t_move ret[#DEFINE], t_move move[#DEFINE])
 # define J						i[1]
 # define K						i[2]
 
-void	condition(t_move move[#DEFINE], t_binary binary, t_condition *conditions)
+void	condition(t_move move[NB_ITER], t_binary binary, t_condition *conditions)
 {
 	short	i[2];
 
@@ -135,12 +117,12 @@ short	bin_comp_and_tab(t_binary binary, t_binary *tab_binary)
 	return (i);
 }
 
-void	execute_move(char ***cube, t_move move[#DEFINE])
+void	execute_move(char ***cube, t_move move[NB_ITER])
 {
 	short	i;
 
 	i = 0;
-	while (i < #DEFINE && move[i].side != side_null)
+	while (i < NB_ITER && move[i].side != side_null)
 	{
 		turn_multiple(instruction_turn(cube, move[i].side), move[i].mod);
 		++i;
@@ -148,22 +130,7 @@ void	execute_move(char ***cube, t_move move[#DEFINE])
 }
 
 
-# define FACE_NULL				{side_null, {-1, -1}}
 
-# define BIN_FRONT_UP_LEFT		{{side_front, {0, 0}}, {side_up, {2, 0}}, {side_left, {0, 2}}}
-# define BIN_FRONT_UP_RIGHT		{{side_front, {0, 2}}, {side_up, {2, 2}}, {side_right, {0, 0}}}
-# define BIN_FRONT_DOWN_RIGHT	{{side_front, {2, 2}}, {side_down, {0, 2}}, {side_right, {2, 0}}}
-# define BIN_FRONT_DOWN_LEFT	{{side_front, {2, 0}}, {side_down, {0, 0}}, {side_left, {2, 2}}}
-
-# define BIN_BACK_DOWN_RIGHT	{{side_back, {2, 0}}, {side_down, {2, 2}}, {side_right, {2, 2}}}
-# define BIN_BACK_DOWN_LEFT		{{side_back, {2, 2}}, {side_down, {2, 0}}, {side_left, {2, 0}}}
-# define BIN_BACK_UP_LEFT		{{side_back, {0, 2}}, {side_up, {0, 0}}, {side_left, {0, 0}}}
-# define BIN_BACK_UP_RIGHT		{{side_back, {0, 0}}, {side_up, {0, 2}}, {side_right, {0, 2}}}
-
-# define TAB_BIN_FRONT_CORNER	BIN_FRONT_UP_LEFT, BIN_FRONT_UP_RIGHT, BIN_FRONT_DOWN_RIGHT, BIN_FRONT_DOWN_LEFT
-# define TAB_BIN_BACK_CORNER	BIN_BACK_DOWN_RIGHT, BIN_BACK_DOWN_LEFT, BIN_BACK_UP_LEFT, BIN_BACK_UP_RIGHT
-
-# define TAB_BIN_CORNER			((t_face[8][3]){TAB_BIN_FRONT_CORNER, TAB_BIN_BACK_CORNER})
 
 # define BIN_FRONT_UP			{{side_front, {0, 1}}, {side_up, {2, 1}}, FACE_NULL}
 # define BIN_FRONT_RIGHT		{{side_front, {1, 2}}, {side_right, {1, 0}}, FACE_NULL}
@@ -188,8 +155,7 @@ void	execute_move(char ***cube, t_move move[#DEFINE])
 
 # define TAB_BIN_EDGE			((t_face[12][3]){TAB_BIN_FRONT_EDGE, TAB_BIN_TOP_EDGE, TAB_BIN_BACK_EDGE, TAB_BIN_DOWN_EDGE})
 
-# define BIN_CUBE 				(binary[0])
-# define BIN_CORNER				(binary[1])
+
 # define BIN_EDGE				(binary[2])
 # define BIN_EXTREMITY_EDGE		(binary[3])
 # define BIN_CORNER_LESS		(binary[4])
@@ -203,6 +169,12 @@ void	execute_move(char ***cube, t_move move[#DEFINE])
 # define ROTATE_AROUND(around_side, nb)		((around_side + nb) % 3)
 # define ROTATE_DNUORA(around_side, nb)		((around_side - nb) % 3)
 
+# define T_MOVE_NULL			{side_null, mod_null}
+# define PAD_FIVE_MOVE			T_MOVE_NULL, T_MOVE_NULL, T_MOVE_NULL, T_MOVE_NULL, T_MOVE_NULL
+# define RESET_MOVE(move)    	fill_move(move, t_move[NB_ITER]({PAD_FIVE_MOVE}))
+# define PAD_FOUR_SIDE			side_null, side_null, side_null, side_null
+# define PAD_FOUR_MOD			mod_null, mod_null, mod_null, mod_null
+
 void		two_two_bloc(char ***cube, t_color corner[3])
 {
 	short		i[3];
@@ -210,27 +182,16 @@ void		two_two_bloc(char ***cube, t_color corner[3])
 	t_binary	edge[2][3];
 	t_binary	binary[5];
 	t_action	action;
-	t_move		move[#DEFINE];
+	t_move		move[NB_ITER];
 
-	I = -1;
-	found = false;
-	BIN_CORNER = 0;
-	BIN_CUBE = bloc_binary(cube, (t_side*)corner);
-	while (!found && ++I < 8)
-	{
-		BIN_CORNER = coor_binary(TAB_BIN_CORNER[I]);
-		found = (BIN_CORNER == (BIN_CUBE & BIN_CORNER));
-	}
-	BIN_CUBE = bloc_binary(cube, (t_side[3]){(t_side)corner[0], (t_side)corner[1], side_null});
-	edge_corner(EDGE_OPPOSITE, TAB_BIN_CORNER[(I + 4) % 8]);
 	J = -1;
 	found = false;
 	while (!found && ++J < 3)
 		found = (EDGE_OPPOSITE[J] == (BIN_CUBE & EDGE_OPPOSITE[J]));
 	if (found)
 	{
-		//(TAB_BIN_CORNER[(I + 4) % 8][J].side, mod_null)
-		fill_move(move, );
+		RESET_MOVE(move);
+		move[0] = ((t_move){TAB_BIN_CORNER[(I + 4) % 8][J].side, mod_null});
 		execute_move(cube, move);
 		BIN_CUBE = bloc_binary(cube, (t_side[3]){(t_side)corner[0], (t_side)corner[1], side_null});
 	}
@@ -248,18 +209,31 @@ void		two_two_bloc(char ***cube, t_color corner[3])
 		if (BIN_EDGE != (BIN_EXTREMITY_EDGE & BIN_EDGE) &&
 			BIN_EDGE == (BIN_CUBE & BIN_EDGE))
 		{
+			RESET_MOVE(move);
 			action = commun_side(BIN_CORNER | BIN_EDGE);
 			//ICI
 			condition(move, action.binary,
 				(t_condition[8]){
-					{0b100001000, side_of(around_up, action.side), mod_reverse},
-					{0b100000010, side_of(around_left, action.side), mod_null},
-					{0b001100000, side_of(around_up, action.side), mod_null},
-					{0b001000010, side_of(around_right, action.side), mod_reverse},
-					{0b010000100, side_of(around_left, action.side), mod_reverse},
-					{0b000001100, side_of(around_down, action.side), mod_null},
-					{0b010000001, side_of(around_right, action.side), mod_null},
-					{0b000100001, side_of(around_down, action.side), mod_reverse}
+					{0b100001000,
+						((t_side[NB_ITER]){side_of(around_up, action.side), PAD_FOUR_SIDE}),
+						((t_mod[NB_ITER]){mod_reverse, PAD_FOUR_MOD})},
+					{0b100000010,
+						((t_side[NB_ITER]){side_of(around_left, action.side), PAD_FOUR_SIDE}),
+						 mod_null},
+					{0b001100000,
+						((t_side[NB_ITER]){side_of(around_up, action.side), PAD_FOUR_SIDE}),
+						 mod_null},
+					{0b001000010,
+						((t_side[NB_ITER]){side_of(around_right, action.side), PAD_FOUR_SIDE}),
+						mod_reverse},
+					{0b010000100,
+						((t_side[NB_ITER]){side_of(around_left, action.side), mod_reverse},
+					{0b000001100,
+						((t_side[NB_ITER]){side_of(around_down, action.side), mod_null},
+					{0b010000001,
+						((t_side[NB_ITER]){side_of(around_right, action.side), mod_null},
+					{0b000100001,
+						((t_side[NB_ITER]){side_of(around_down, action.side), mod_reverse}
 				});
 			execute_move(cube, move);
 			found = true;
@@ -290,30 +264,29 @@ void		two_two_bloc(char ***cube, t_color corner[3])
 	if ((stob((t_side[1]){action.side}, 1, BIN_CORNER_LESS | BIN_EDGE)))
 	{
 		action.binary = stob((t_side[1]){action.side}, 1, BIN_CORNER | BIN_EDGE);
-
+		RESET_MOVE(move);
 		if ((I = bin_comp_and_tab(action.binary, (t_binary[4]){
 			0b011000000, 0b100100000, 0b000000110, 0b000001001}) != -1)
+		{
 			action.side = side_of(ROTATE_DNUORA(around_up, I);
-
-			fill_move(move,
-				{side_of(ROTATE_DNUORA(around_down, I), action.side), mod_reverse}
-				{side_of(ROTATE_DNUORA(around_right, I), action.side), mod_reverse}
-				{side_of(ROTATE_DNUORA(around_down, I), action.side), mod_null}
-				{side_of(ROTATE_DNUORA(around_right, I), action.side), mod_null}
-				{side_of(ROTATE_DNUORA(around_down,  I), action.side), mod_null}
-				{action.side, mod_null}
-			});
+			move[0] = ((t_move){side_of(ROTATE_DNUORA(around_down, I), action.side), mod_reverse});
+			move[1] = ((t_move){side_of(ROTATE_DNUORA(around_right, I), action.side), mod_reverse});
+			move[2] = ((t_move){side_of(ROTATE_DNUORA(around_down, I), action.side), mod_null});
+			move[3] = ((t_move){side_of(ROTATE_DNUORA(around_right, I), action.side), mod_null});
+			move[4] = ((t_move){side_of(ROTATE_DNUORA(around_down,  I), action.side), mod_null});
+			move[5] = ((t_move){action.side, mod_null});
+		}
 		else if ((I = bin_comp_and_tab(action.binary, (t_binary[4]){
 			0b110000000, 0b000100100, 0b000000011, 0b001001000}) != -1))
+		{
 			action.side = side_of(ROTATE_DNUORA(around_up, I);
-			fill_move(move,
-				{side_of(ROTATE_DNUORA(around_down, I), action.side), mod_null}
-				{side_of(ROTATE_DNUORA(around_left, I), action.side), mod_null}
-				{side_of(ROTATE_DNUORA(around_down, I), action.side), mod_reverse}
-				{side_of(ROTATE_DNUORA(around_left, I), action.side), mod_reverse}
-				{side_of(ROTATE_DNUORA(around_down, I), action.side), mod_reverse}
-				{action.side, mod_reverse}
-			});
+			move[0] = ((t_move){side_of(ROTATE_DNUORA(around_down, I), action.side), mod_null});
+			move[1] = ((t_move){side_of(ROTATE_DNUORA(around_left, I), action.side), mod_null});
+			move[2] = ((t_move){side_of(ROTATE_DNUORA(around_down, I), action.side), mod_reverse});
+			move[3] = ((t_move){side_of(ROTATE_DNUORA(around_left, I), action.side), mod_reverse});
+			move[4] = ((t_move){side_of(ROTATE_DNUORA(around_down, I), action.side), mod_reverse});
+			move[5] = ((t_move){action.side, mod_reverse});
+		}
 		execute_move(cube, move);
 	}
 
@@ -372,114 +345,7 @@ void		two_two_bloc(char ***cube, t_color corner[3])
 	//1 coup
 }
 
-# define FACE(face)		(bloc[face])
-
-t_face	find_sticker(t_face bloc[2])
-{
-	t_line		line;
-	bool		found;
-	short		i;
-
-	i = -1;
-	found = false;
 
 
-	while (!found)
-	{
-		line = AROUND(FACE(0).side)[++i];
-		if (line.side == FACE(1).side)
-			found = true;
-	}
-	return ((t_face){line.side, {line.coo[1][0], line.coo[1][1]}});
-}
 
-void	edge_corner(t_binary edge_linked[3], t_face bloc[3])
-{
-	t_face		sticker[2];
-
-
-	sticker[0] = find_sticker((t_face[2]){FACE(0), FACE(1)});
-	sticker[1] = find_sticker((t_face[2]){FACE(1), FACE(0)});
-	// printf("\n");
-	// printf(".[%d] -> [%d][%d]\n", sticker[0].side, sticker[0].coo[0], sticker[0].coo[1]);
-	// printf(".[%d] -> [%d][%d]\n", sticker[1].side, sticker[1].coo[0], sticker[1].coo[1]);
-	// printf("\n");
-	edge_linked[0] = coor_binary((t_face[3]){sticker[0], sticker[1], {side_null, {0, 0}}});
-	sticker[0] = find_sticker((t_face[2]){FACE(1), FACE(2)});
-	sticker[1] = find_sticker((t_face[2]){FACE(2), FACE(1)});
-	edge_linked[1] = coor_binary((t_face[3]){sticker[0], sticker[1], {side_null, {0, 0}}});
-	sticker[0] = find_sticker((t_face[2]){FACE(2), FACE(0)});
-	sticker[1] = find_sticker((t_face[2]){FACE(0), FACE(2)});
-	edge_linked[2] = coor_binary((t_face[3]){sticker[0], sticker[1], {side_null, {0, 0}}});
-}
-
-# define SEL_SIDE	(side_len[1])
-
-t_binary	bloc_binary(char ***cube, t_side side[3])
-{
-	t_side		side_len;
-	short		side_select;
-	t_binary	binary;
-
-	side_len = side_front;
-	binary = 0;
-	while (side_len != side_null)
-	{
-		binary = binary << 9;
-		side_select = -1;
-		while (++side_select < 3)
-			binary += side_binary(cube[side_len], side[side_select]);
-		++side_len;
-	}
-	return (binary);
-}
-
-# define Y	coo[0]
-# define X	coo[1]
-
-t_binary	side_binary(char **cube_side, t_side side)
-{
-	short		coo[2];
-	t_binary	binary;
-
-	Y = -1;
-	binary = 0;
-	while (side != side_null && ++Y != 3)
-	{
-		X = -1;
-		while (++X != 3)
-		{
-			binary = binary << 1;
-			if (cube_side[Y][X] == INITIALS_SIDE[side])
-				++binary;
-		}
-	}
-	return (binary);
-}
-
-
-# define SIDE_TAB	((t_side[3]){bloc[0].side, bloc[1].side, bloc[2].side})
-# define POS_COO	(((bloc[i].Y * 3) + bloc[i].X) + 1)
-
-t_binary	coor_binary(t_face bloc[3])
-{
-	t_binary	binary;
-	t_side		side;
-	short		i;
-
-	side = side_front;
-	binary = 0;
-	while (side != side_null)
-	{
-		if ((i = in_side_tab(side, SIDE_TAB, 3)) != -1)
-		{
-			binary = binary << POS_COO;
-		 	binary += 1;
-		 	binary = binary << (9 - POS_COO);
-		}
-		else
-			binary = binary << 9;
-		++side;
-	}
-	return (binary);
-};
+//# define SEL_SIDE	(side_len[1])

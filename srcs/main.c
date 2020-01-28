@@ -23,7 +23,7 @@ int		main(int argc, char **argv)
 		error(-1, "error");
 	cube = init_tab();
 	instructions(cube, arg_number, argv[1]);
-	//resolve(cube);
+	resolve(cube);
 	//ungly_display(cube);
 	//refine(args, arg_number);
 	//DISPLAY(cube, side_null);
@@ -69,19 +69,19 @@ void	instructions(char ***cube, int arg_count, char *argv)
 	}
 	(void)cube;
 	//refine(instruction, arg_count);
-	read_instruction(cube, arg_count, instruction);
-	t_binary	b;
-	t_binary	b2;
-	t_side		tab[6];
-	t_side		s[3] = {instruction[0].side, instruction[1].side, instruction[2].side};
-	b = bloc_binary(cube, s);
-	bin(b);
-	b2 = stob(s, 3, b);
-	bin(b2);
-	fill_side_bin(tab, b);
-	int		i = -1;
-	while (++i < 6)
-		printf("tab[%d] = %d\n", i, tab[i]);
+	//read_instruction(cube, arg_count, instruction);
+	// t_binary	b;
+	// t_binary	b2;
+	// t_side		tab[6];
+	// t_side		s[3] = {instruction[0].side, instruction[1].side, instruction[2].side};
+	// b = bloc_binary(cube, s);
+	// bin(b);
+	// b2 = stob(s, 3, b);
+	// bin(b2);
+	// fill_side_bin(tab, b);
+	// int		i = -1;
+	// while (++i < 6)
+	// 	printf("tab[%d] = %d\n", i, tab[i]);
 }
 
 t_move	arg_instruction(char arg[2])
@@ -136,7 +136,7 @@ t_turn	instruction_turn(char ***cube, t_side side)
 	t_turn	turn;
 
 	printf("side = [%d]\n", side);
-	turn = init_turn(cube, AROUND(side));
+	turn = init_turn(cube, TLINE_TAB_AROUND(side));
 	turn.front = cube[side];
 	return (turn);
 }

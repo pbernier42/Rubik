@@ -20,21 +20,22 @@
 # include <stdarg.h>
 
 # include "../lib/libft/includes/libft.h"
+# include "define.h"
 
-typedef enum e_side			t_side;
 typedef enum e_color		t_color;
+typedef enum e_side			t_side;
 typedef enum e_mod			t_mod;
 typedef enum e_around		t_around;
-
 typedef struct s_move		t_move;
 typedef struct s_turn		t_turn;
 typedef struct s_line		t_line;
-typedef struct s_face		t_face;
+typedef struct s_sticker		t_sticker;
 typedef struct s_action		t_action;
 typedef struct s_condition	t_condition;
 typedef unsigned long long	t_binary;
 
-# define INITIALS_SIDE		((char[7]){"FRUBLD"})
+
+
 # define INITIALS_MOD		((char[3]){"2'"})
 
 # define WITH_LETTER		1
@@ -102,7 +103,7 @@ struct						s_turn
 	char					*up[3];
 };
 
-struct						s_face
+struct						s_sticker
 {
 	t_side					side;
 	short					coo[2];
@@ -117,8 +118,7 @@ struct						s_action
 struct						s_condition
 {
 	t_binary				binary;
-	t_side					side;
-	t_mod					mod;
+	t_move					move[NB_ITER];
 };
 
 /*
@@ -154,17 +154,6 @@ void						instructions(char ***cube, int arg_count, char *argv);
 t_move						arg_instruction(char arg[2]);
 void						read_instruction(char ***cube, int arg_count, t_move *instruction);
 
-# define C_LEFT				{{0, 0}, {1, 0}, {2, 0}}
-# define C_UP				{{0, 0}, {0, 1}, {0, 2}}
-# define C_RIGHT			{{0, 2}, {1, 2}, {2, 2}}
-# define C_DOWN				{{2, 0}, {2, 1}, {2, 2}}
-# define LINE(l_s, l_c)		((t_line){l_s, l_c})
-# define A_RIGHT			((t_line[6]){LINE(side_right, C_LEFT), LINE(side_back, C_LEFT), LINE(side_right, C_UP), LINE(side_left, C_LEFT), LINE(side_front, C_LEFT), LINE(side_right, C_DOWN)})
-# define A_DOWN				((t_line[6]){LINE(side_down, C_UP), LINE(side_down, C_RIGHT), LINE(side_front, C_UP), LINE(side_down, C_DOWN), LINE(side_down, C_LEFT), LINE(side_back, C_DOWN)})
-# define A_LEFT				((t_line[6]){LINE(side_left, C_RIGHT), LINE(side_front, C_RIGHT), LINE(side_left, C_UP), LINE(side_right, C_RIGHT), LINE(side_back, C_RIGHT), LINE(side_left, C_DOWN)})
-# define A_UP				((t_line[6]){LINE(side_up, C_DOWN), LINE(side_up, C_RIGHT), LINE(side_back, C_UP), LINE(side_up, C_UP), LINE(side_up, C_LEFT), LINE(side_front, C_DOWN)})
-# define AROUND(side)		((t_line[4]){A_RIGHT[side], A_DOWN[side], A_LEFT[side], A_UP[side]})
-
 t_turn						instruction_turn(char ***cube, t_side side);
 void						turn_multiple(t_turn turn, t_mod mod);
 void						turn_side(t_turn turn);
@@ -182,8 +171,6 @@ void						turn_side(t_turn turn);
 bool						in_string(char lettre, char *string);
 size_t						skip_space(size_t len, char *string);
 void						ungly_display(char ***cube);
-short						in_side_tab(t_side side, t_side *tab_side,
-								short size_tab);
 t_binary					combine_binary(t_binary *tab, short size_tab);
 
 /*
@@ -211,5 +198,9 @@ void						fill_side_bin(t_side tab[6], t_binary binary);
 void		resolve(char ***cube);
 void		bin(t_binary nbr);
 t_binary	bloc_binary(char ***cube, t_side side[3]);
+
+
+# include "prototype.h"
+# include "variable.h"
 
 #endif
