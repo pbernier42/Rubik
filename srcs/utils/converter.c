@@ -75,3 +75,18 @@ t_binary	tbin_conv_char(char **cube_side, t_side side)
 	}
 	return (binary);
 }
+
+t_binary	tbin_conv_tab_tsides(t_side *side, short nb_side, t_binary binary)
+{
+	short		i;
+	t_binary	ret;
+
+	i = -1;
+	ret = 0;
+	while (++i < nb_side)
+	{
+		ret = ret << 9;
+		ret += (side[i] != side_null ? (binary >> (9 * (5 - side[i])) & 511) : 0);
+	}
+	return (ret);
+}

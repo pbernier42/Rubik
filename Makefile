@@ -32,8 +32,9 @@ SRC_FIlE		=	main.c \
 					utils3.c \
 					utils/find.c \
 					utils/converter.c \
-					utils/parsing.c
-
+					utils/parsing.c \
+					turn.c
+					
 INC				=	$(addprefix $(DIR_INC),$(SRC_INCLUDE)) \
 					lib/libft/includes/libft.h
 SRC				=	$(addprefix $(DIR_SRC),$(SRC_FIlE))

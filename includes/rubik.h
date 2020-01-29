@@ -29,7 +29,7 @@ typedef enum e_around		t_around;
 typedef struct s_move		t_move;
 typedef struct s_turn		t_turn;
 typedef struct s_line		t_line;
-typedef struct s_sticker		t_sticker;
+typedef struct s_sticker	t_sticker;
 typedef struct s_action		t_action;
 typedef struct s_condition	t_condition;
 typedef unsigned long long	t_binary;
@@ -155,9 +155,6 @@ t_move						arg_instruction(char arg[2]);
 void						read_instruction(char ***cube, int arg_count, t_move *instruction);
 
 t_turn						instruction_turn(char ***cube, t_side side);
-void						turn_multiple(t_turn turn, t_mod mod);
-void						turn_side(t_turn turn);
-
 /*
 ** utils.c
 */

@@ -42,23 +42,3 @@ void		print_ins(t_move *tab, size_t nb)
 		ft_putstr(" }\n");
 	}
 }
-
-t_binary	isolate(t_side side, t_binary binary)
-{
-	return (side != side_null ? (binary >> (9 * (5 - side)) & 511) : 0);
-}
-
-t_binary	stob(t_side *side, size_t nb_side, t_binary binary)
-{
-	size_t		i;
-	t_binary	ret;
-
-	i = -1;
-	ret = 0;
-	while (++i < nb_side)
-	{
-		ret = ret << 9;
-		ret += isolate(side[i], binary);
-	}
-	return (ret);
-}

@@ -12,7 +12,7 @@
 
 # include <rubik.h>
 
-void	tbin_tab_find_edge(t_binary edge_linked[3], t_sticker corner[3])
+void		tab_tbin_find_edge(t_binary edge_linked[3], t_sticker corner[3])
 {
 	t_sticker		sticker[2];
 
@@ -37,9 +37,35 @@ t_sticker	tsticker_find_edge(t_sticker edge[2])
 	found = false;
 	while (!found)
 	{
-		line = TLINE_TAB_AROUND(edge[0].side)[++i];
+		line = TAB_TLINE_AROUND(edge[0].side)[++i];
 		if (line.side == edge[1].side)
 			found = true;
 	}
 	return ((t_sticker){line.side, {line.coo[1][0], line.coo[1][1]}});
+}
+
+t_side		tside_find_biggest_weight(t_binary binary)
+{
+	t_side		side[2];
+	short		i[0];
+	bool		same;
+
+	TSIDE_SIDE = side_front;
+	TSIDE_SAVE = side_null;
+	NB_BYTE = -1;
+	same = false;
+	while (TSIDE_SIDE != side_null)
+	{
+		I = nb_byte_tbinary(TBIN_CONV_TSIDE(TSIDE_SIDE, binary), 9);
+		if (I > NB_BYTE)
+		{
+			same = false;
+			NB_BYTE = I;
+			TSIDE_SAVE = TSIDE_SIDE;
+		}
+		else if (I == NB_BYTE)
+			same = true;
+		++TSIDE_SIDE;
+	}
+	return (same ? side_null : TSIDE_SAVE);
 }

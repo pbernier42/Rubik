@@ -12,24 +12,6 @@
 
 #include <rubik.h>
 
-size_t	byte_counter(t_binary binary, size_t nb)
-{
-	size_t		i;
-	size_t		count;
-	t_binary	tmp;
-
-	i = -1;
-	count = 0;
-	tmp = 1;
-	while (++i < nb)
-	{
-		if (binary & tmp)
-			count++;
-		binary = binary >> 1;
-	}
-	return (count);
-}
-
 void	fill_enum(int tab[NB_ITER], int type, int nb, ...)
 {
 	int		i;

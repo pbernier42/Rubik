@@ -69,7 +69,7 @@ void	instructions(char ***cube, int arg_count, char *argv)
 	}
 	(void)cube;
 	//refine(instruction, arg_count);
-	//read_instruction(cube, arg_count, instruction);
+	read_tab_tmove(cube, arg_count, instruction);
 	// t_binary	b;
 	// t_binary	b2;
 	// t_side		tab[6];
@@ -97,101 +97,4 @@ t_move	arg_instruction(char arg[2])
 	while (ret.mod != mod_null && arg[1] != INITIALS_MOD[ret.mod])
 		++ret.mod;
 	return (ret);
-}
-
-void	read_instruction(char ***cube, int arg_count, t_move *instruction)
-{
-	int			count;
-	t_turn		turn;
-
-	count = 0;
-	while (count < arg_count)
-	{
-		turn = instruction_turn(cube, instruction[count].side);
-		turn_multiple(turn, instruction[count].mod);
-		++count;
-	}
-}
-
-void	init_line(char ***cube, char *data[3], t_line line)
-{
-	data[0] = (&cube[line.side][line.coo[0][0]][line.coo[0][1]]);
-	data[1] = (&cube[line.side][line.coo[1][0]][line.coo[1][1]]);
-	data[2] = (&cube[line.side][line.coo[2][0]][line.coo[2][1]]);
-}
-
-t_turn	init_turn(char ***cube, t_line line[4])
-{
-	t_turn		turn;
-
-	init_line(cube, turn.right, line[0]);
-	init_line(cube, turn.down, line[1]);
-	init_line(cube, turn.left, line[2]);
-	init_line(cube, turn.up, line[3]);
-	return (turn);
-}
-
-t_turn	instruction_turn(char ***cube, t_side side)
-{
-	t_turn	turn;
-
-	printf("side = [%d]\n", side);
-	turn = init_turn(cube, TLINE_TAB_AROUND(side));
-	turn.front = cube[side];
-	return (turn);
-}
-
-void	turn_multiple(t_turn turn, t_mod mod)
-{
-	printf("mod = [%d]\n\n", mod);
-	turn_side(turn);
-	if (mod != mod_null)
-		turn_side(turn);
-	if (mod == mod_reverse)
-		turn_side(turn);
-}
-
-void	turn_side(t_turn turn)
-{
-	char	swap;
-
-	// printf("    [%c][%c][%c]    \n", *(turn.up[0]), *(turn.up[1]), *(turn.up[2]));
-	// printf("[%c]            [%c]\n", *(turn.left[0]), *(turn.right[0]));
-	// printf("[%c]            [%c]\n", *(turn.left[1]), *(turn.right[1]));
-	// printf("[%c]            [%c]\n", *(turn.left[2]), *(turn.right[2]));
-	// printf("    [%c][%c][%c]    \n", *(turn.down[0]), *(turn.down[1]), *(turn.down[2]));
-
-
-
-	swap = turn.front[0][0];
-	turn.front[0][0] = turn.front[2][0];
-	turn.front[2][0] = turn.front[2][2];
-	turn.front[2][2] = turn.front[0][2];
-	turn.front[0][2] = swap;
-
-	swap = turn.front[0][1];
-	turn.front[0][1] = turn.front[1][0];
-	turn.front[1][0] = turn.front[2][1];
-	turn.front[2][1] = turn.front[1][2];
-	turn.front[1][2] = swap;
-
-	swap = *(turn.down[0]);
-	*(turn.down[0]) = *(turn.right[2]);
-	*(turn.right[2]) = *(turn.up[2]);
-	*(turn.up[2]) = *(turn.left[0]);
-	*(turn.left[0]) = swap;
-
-	swap = *(turn.down[1]);
-	*(turn.down[1]) = *(turn.right[1]);
-	*(turn.right[1]) = *(turn.up[1]);
-	*(turn.up[1]) = *(turn.left[1]);
-	*(turn.left[1]) = swap;
-
-	swap = *(turn.down[2]);
-	*(turn.down[2]) = *(turn.right[0]);
-	*(turn.right[0]) = *(turn.up[0]);
-	*(turn.up[0]) = *(turn.left[2]);
-	*(turn.left[2]) = swap;
-
-	return;
 }
