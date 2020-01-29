@@ -34,8 +34,6 @@ short	index_tab_tstickers(t_binary bin_cube, t_sticker (*tab_stickers)[3],
 	while (++i < size_tab)
 	{
 		tmp = tbin_conv_tstickers(tab_stickers[i]);
-		// if (size_tab == 12)
-		// 	bin (tmp);
 		if (tmp == (bin_cube & tmp))
 			return (i);
 	}

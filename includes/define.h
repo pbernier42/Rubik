@@ -71,13 +71,17 @@
 # define TAB_TLINE_AROUND_UP			((t_line[6]){TLINE(side_up, TAB_COO_DOWN), TLINE(side_up, TAB_COO_RIGHT), TLINE(side_back, TAB_COO_UP), TLINE(side_up, TAB_COO_UP), TLINE(side_up, TAB_COO_LEFT), TLINE(side_front, TAB_COO_DOWN)})
 # define TAB_TLINE_AROUND(tside)		((t_line[4]){TAB_TLINE_AROUND_RIGHT[tside], TAB_TLINE_AROUND_DOWN[tside], TAB_TLINE_AROUND_LEFT[tside], TAB_TLINE_AROUND_UP[tside]})
 
+# define TSIDE_AROUND(taround, tside)	TAB_TLINE_AROUND(tside)[taround].side
+
+
 # define TAB_BIN_EDGE_OPPOSITE			(edge[0])
 # define TAB_BIN_EDGE_NEAR				(edge[1])
 
 # define BIN_CUBE 						(binary[0])
 # define BIN_CORNER						(binary[1])
-# define BIN_EDGE						(binary[2])
-# define BIN_EDGE_EXTREMITY				(binary[3])
+# define BIN_CORNER_LESS				(binary[2])
+# define BIN_EDGE						(binary[3])
+# define BIN_EDGE_EXTREMITY				(binary[4])
 
 # define BIN_EDGES_NEAR					TAB_BIN_EDGE_NEAR[0] | TAB_BIN_EDGE_NEAR[2] | TAB_BIN_EDGE_NEAR[2]
 # define BIN_EDGES_OPPOSITE				TAB_BIN_EDGE_OPPOSITE[0] | TAB_BIN_EDGE_OPPOSITE[1] | TAB_BIN_EDGE_OPPOSITE[2]
@@ -86,6 +90,8 @@
 # define TAB_TSIDES_COLOR_TWO(tcolor)	(t_side[3]){(t_side)tcolor[0], (t_side)tcolor[1], side_null}
 
 # define I								i[0]
+# define J								i[1]
+
 # define NB_BYTE						i[1]
 # define NB_MOVE						i[1]
 

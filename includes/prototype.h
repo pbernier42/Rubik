@@ -36,8 +36,9 @@ void		resolve(char ***cube);
 void		two_two_bloc(char ***cube, t_color corner[3]);
 short		tab_tmove_edge_opposite(t_move move[NB_MOVE_MAX], t_binary bin_cube,
 				t_binary tab_bin_edge_opposite[3],  t_sticker corner[3]);
-short		tab_tmove_edge_middle(t_move move[NB_MOVE_MAX], short i,
+short		tab_tmove_edge_middle(t_move move[NB_MOVE_MAX], short index_edge,
 				t_binary bin_corner);
+//short		tab_tmove_edge_near(t_move move[NB_MOVE_MAX]);
 
 /*
 **	utils/find.c
