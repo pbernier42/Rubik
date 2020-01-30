@@ -93,15 +93,6 @@ void		bin(t_binary nbr)
 // 	}
 // }
 
-
-
-
-
-
-
-# define ROTATE_AROUND(around_side, nb)		((around_side + nb) % 3)
-# define ROTATE_DNUORA(around_side, nb)		((around_side - nb) % 3)
-
 // # define T_MOVE_NULL			{side_null, mod_null}
 // # define PAD_FIVE_MOVE			T_MOVE_NULL, T_MOVE_NULL, T_MOVE_NULL, T_MOVE_NULL, T_MOVE_NULL
 // # define RESET_MOVE(move)    	fill_move(move, t_move[NB_ITER]({PAD_FIVE_MOVE}))
@@ -126,52 +117,19 @@ void		two_two_bloc(char ***cube, t_color corner[3])
 	// 		++action.side;
 	// }
 
-	if ((stob((t_side[1]){action.side}, 1, BIN_CORNER_LESS | BIN_EDGE)))
-	{
-		action.binary = stob((t_side[1]){action.side}, 1, BIN_CORNER | BIN_EDGE);
-		RESET_MOVE(move);
-		if ((I = bin_comp_and_tab(action.binary, (t_binary[4]){
-			0b011000000, 0b100100000, 0b000000110, 0b000001001}) != -1)
-		{
-			// FRONT"F R U B L D"
-			// RIGHT"R U B L D F"
-			// {"UD2", "FRDL"}
-			// "UD2R2DRD"
-			// f(REVERSE_EDGE)
-			action.side = side_of(ROTATE_DNUORA(around_up, I);
-			move[0] = ((t_move){side_of(ROTATE_DNUORA(around_down, I), action.side), mod_reverse});
-			move[1] = ((t_move){side_of(ROTATE_DNUORA(around_right, I), action.side), mod_reverse});
-			move[2] = ((t_move){side_of(ROTATE_DNUORA(around_down, I), action.side), mod_null});
-			move[3] = ((t_move){side_of(ROTATE_DNUORA(around_right, I), action.side), mod_null});
-			move[4] = ((t_move){side_of(ROTATE_DNUORA(around_down,  I), action.side), mod_null});
-			move[5] = ((t_move){action.side, mod_null});
-		}
-		else if ((I = bin_comp_and_tab(action.binary, (t_binary[4]){
-			0b110000000, 0b000100100, 0b000000011, 0b001001000}) != -1))
-		{
-			action.side = side_of(ROTATE_DNUORA(around_up, I);
-			move[0] = ((t_move){side_of(ROTATE_DNUORA(around_down, I), action.side), mod_null});
-			move[1] = ((t_move){side_of(ROTATE_DNUORA(around_left, I), action.side), mod_null});
-			move[2] = ((t_move){side_of(ROTATE_DNUORA(around_down, I), action.side), mod_reverse});
-			move[3] = ((t_move){side_of(ROTATE_DNUORA(around_left, I), action.side), mod_reverse});
-			move[4] = ((t_move){side_of(ROTATE_DNUORA(around_down, I), action.side), mod_reverse});
-			move[5] = ((t_move){action.side, mod_reverse});
-		}
-		execute_move(cube, move);
-	}
 
 
-	I = -1;
-	found = false;
-	BIN_CUBE = bloc_binary(cube, (t_side*)corner);
-	while (!found && ++I < 8)
-	{
-		BIN_CORNER = coor_binary(TAB_BIN_CORNER[I]);
-		found = (BIN_CORNER == (BIN_CUBE & BIN_CORNER));
-	}
-	edge_corner(EDGE_NEAR, TAB_BIN_CORNER[I]);
-	BIN_CUBE = bloc_binary(cube, (t_side[3]){(t_side)corner[0], (t_side)corner[1], side_null});
-	BIN_CORNER_LESS = (BIN_CUBE & BIN_CORNER);
+	// I = -1;
+	// found = false;
+	// BIN_CUBE = bloc_binary(cube, (t_side*)corner);
+	// while (!found && ++I < 8)
+	// {
+	// 	BIN_CORNER = coor_binary(TAB_BIN_CORNER[I]);
+	// 	found = (BIN_CORNER == (BIN_CUBE & BIN_CORNER));
+	// }
+	// edge_corner(EDGE_NEAR, TAB_BIN_CORNER[I]);
+	// BIN_CUBE = bloc_binary(cube, (t_side[3]){(t_side)corner[0], (t_side)corner[1], side_null});
+	//BIN_CORNER_LESS = (BIN_CUBE & BIN_CORNER);
 
 	// J = -1;
 	// found = false;

@@ -40,29 +40,13 @@ short	index_tab_tstickers(t_binary bin_cube, t_sticker (*tab_stickers)[3],
 	return (-1);
 }
 
-short	copy_tab_tmove(t_move dest[NB_MOVE_MAX], t_move from[NB_MOVE_MAX])
-{
-	short	i[2];
-
-	I = -1;
-	NB_MOVE = 0;
-	while (++I < NB_MOVE_MAX)
-	{
-		if (from[I].side != side_null)
-			NB_MOVE = (I + 1);
-		dest[I].side = from[I].side;
-		dest[I].mod = from[I].mod;
-	}
-	return (NB_MOVE);
-}
-
 short	index_tab_tbin(t_binary binary, t_binary *tab_binary, short size_tab)
 {
 	short	i;
 
 	i = -1;
 	while (tab_binary && ++i < size_tab)
-		if (tab_binary[i] == (binary & tab_binary[i]))
+		if (!(binary ^ tab_binary[i]))
 			return (i);
 	return (-1);
 }
@@ -80,4 +64,36 @@ short	nb_byte_tbinary(t_binary binary, short spectrum)
 		binary = binary >> 1;
 	}
 	return (NB_BYTE);
+}
+
+short	copy_tab_tmove(t_move dest[NB_MOVE_MAX], t_move from[NB_MOVE_MAX])
+{
+	short	i[2];
+
+	//printf("?\n");
+	I = -1;
+	NB_MOVE = 0;
+	while (++I < NB_MOVE_MAX)
+	{
+		if (from[I].side != side_null)
+			NB_MOVE = (I + 1);
+		dest[I].side = from[I].side;
+		dest[I].mod = from[I].mod;
+	}
+	return (NB_MOVE);
+}
+
+short	copy_tab_tside(t_side dest[side_null], t_side from[side_null])
+{
+	short	i[2];
+
+	I = -1;
+	NB_SIDE = 0;
+	while (++I < side_null)
+	{
+		if (from[I] != side_null)
+			NB_SIDE = (I + 1);
+		dest[I] = from[I];
+	}
+	return (NB_SIDE);
 }

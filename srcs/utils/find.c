@@ -47,7 +47,7 @@ t_sticker	tsticker_find_edge(t_sticker edge[2])
 t_side		tside_find_biggest_weight(t_binary binary)
 {
 	t_side		side[2];
-	short		i[0];
+	short		i[2];
 	bool		same;
 
 	TSIDE_SIDE = side_front;
@@ -68,4 +68,20 @@ t_side		tside_find_biggest_weight(t_binary binary)
 		++TSIDE_SIDE;
 	}
 	return (same ? side_null : TSIDE_SAVE);
+}
+
+short	tab_tside_find_filled(t_side tab_side[side_null], t_binary binary)
+{
+	int			nb_side;
+	t_side		side;
+
+	nb_side = 0;
+	side = side_front;
+	while (side < side_null)
+	{
+		if ((TBIN_CONV_TSIDE(side, binary)))
+			tab_side[nb_side++] = side;
+		++side;
+	}
+	return (nb_side);
 }

@@ -56,12 +56,12 @@ enum						e_side
 
 enum						e_color
 {
-	color_red,
-	color_yellow,
-	color_blue,
-	color_orange,
-	color_white,
-	color_green,
+	color_red, 		//front //0
+	color_yellow, 	//right	//1
+	color_blue,		//up	//2
+	color_orange, 	//back	//3
+	color_white, 	//left	//4
+	color_green, 	//down	//5
 	color_null
 
 };

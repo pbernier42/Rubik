@@ -28,7 +28,7 @@ size_t	skip_space(size_t len, char *string)
 		++len;
 	return (len);
 }
-// 
+//
 // t_binary	combine_binary(t_binary *tab, short size_tab)
 // {
 // 	t_binary	ret;

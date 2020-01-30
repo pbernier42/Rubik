@@ -13,7 +13,7 @@
 #ifndef DEFINE_H
 # define DEFINE_H
 
-# define NB_MOVE_MAX					5
+# define NB_MOVE_MAX					6
 # define INITIALS_SIDE					((char[7]){"FRUBLD"})
 
 # define TSTICKER_NULL					{side_null, {-1, -1}}
@@ -63,16 +63,19 @@
 # define TAB_COO_RIGHT					{{0, 2}, {1, 2}, {2, 2}}
 # define TAB_COO_DOWN					{{2, 0}, {2, 1}, {2, 2}}
 
-# define TLINE(l_s, l_c)				((t_line){l_s, l_c})
+# define TAB_COO_UP_INVERTED			{{0, 2}, {0, 1}, {0, 0}}
+# define TAB_COO_DOWN_INVERTED			{{2, 2}, {2, 1}, {2, 0}}
+
+
+# define TLINE(l_side, l_coo)			((t_line){l_side, l_coo})
 
 # define TAB_TLINE_AROUND_RIGHT			((t_line[6]){TLINE(side_right, TAB_COO_LEFT), TLINE(side_back, TAB_COO_LEFT), TLINE(side_right, TAB_COO_UP), TLINE(side_left, TAB_COO_LEFT), TLINE(side_front, TAB_COO_LEFT), TLINE(side_right, TAB_COO_DOWN)})
-# define TAB_TLINE_AROUND_DOWN			((t_line[6]){TLINE(side_down, TAB_COO_UP), TLINE(side_down, TAB_COO_RIGHT), TLINE(side_front, TAB_COO_UP), TLINE(side_down, TAB_COO_DOWN), TLINE(side_down, TAB_COO_LEFT), TLINE(side_back, TAB_COO_DOWN)})
-# define TAB_TLINE_AROUND_LEFT			((t_line[6]){TLINE(side_left, TAB_COO_RIGHT), TLINE(side_front, TAB_COO_RIGHT), TLINE(side_left, TAB_COO_UP), TLINE(side_right, TAB_COO_RIGHT), TLINE(side_back, TAB_COO_RIGHT), TLINE(side_left, TAB_COO_DOWN)})
-# define TAB_TLINE_AROUND_UP			((t_line[6]){TLINE(side_up, TAB_COO_DOWN), TLINE(side_up, TAB_COO_RIGHT), TLINE(side_back, TAB_COO_UP), TLINE(side_up, TAB_COO_UP), TLINE(side_up, TAB_COO_LEFT), TLINE(side_front, TAB_COO_DOWN)})
+# define TAB_TLINE_AROUND_DOWN			((t_line[6]){TLINE(side_down, TAB_COO_UP), TLINE(side_down, TAB_COO_RIGHT), TLINE(side_front, TAB_COO_UP), 	 TLINE(side_down, TAB_COO_DOWN_INVERTED), TLINE(side_down, TAB_COO_LEFT), TLINE(side_back, TAB_COO_DOWN)})
+# define TAB_TLINE_AROUND_LEFT			((t_line[6]){TLINE(side_left, TAB_COO_RIGHT), TLINE(side_front, TAB_COO_RIGHT), TLINE(side_left, TAB_COO_UP),TLINE(side_right, TAB_COO_RIGHT), TLINE(side_back, TAB_COO_RIGHT), TLINE(side_left, TAB_COO_DOWN)})
+# define TAB_TLINE_AROUND_UP			((t_line[6]){TLINE(side_up, TAB_COO_DOWN), TLINE(side_up, TAB_COO_RIGHT), TLINE(side_back, TAB_COO_UP),      TLINE(side_up, TAB_COO_UP_INVERTED), TLINE(side_up, TAB_COO_LEFT), TLINE(side_front, TAB_COO_DOWN)})
 # define TAB_TLINE_AROUND(tside)		((t_line[4]){TAB_TLINE_AROUND_RIGHT[tside], TAB_TLINE_AROUND_DOWN[tside], TAB_TLINE_AROUND_LEFT[tside], TAB_TLINE_AROUND_UP[tside]})
 
 # define TSIDE_AROUND(taround, tside)	TAB_TLINE_AROUND(tside)[taround].side
-
 
 # define TAB_BIN_EDGE_OPPOSITE			(edge[0])
 # define TAB_BIN_EDGE_NEAR				(edge[1])
@@ -88,21 +91,32 @@
 
 # define TAB_TSIDES_COLOR_ALL(tcolor)	(t_side*)tcolor
 # define TAB_TSIDES_COLOR_TWO(tcolor)	(t_side[3]){(t_side)tcolor[0], (t_side)tcolor[1], side_null}
+# define TAB_TSIDES_COLOR_ONE(tcolor)	(t_side[3]){(t_side)tcolor[0], side_null , side_null}
 
 # define I								i[0]
 # define J								i[1]
 
 # define NB_BYTE						i[1]
 # define NB_MOVE						i[1]
+# define NB_SIDE						i[1]
 
 # define TMOVE_NULL						{side_null, mod_null}
-# define TMOVE_PAD_FOUR					TMOVE_NULL, TMOVE_NULL, TMOVE_NULL, TMOVE_NULL
-# define TAB_TMOVE_ONE(tmove)			((t_move[NB_MOVE_MAX]){tmove, TMOVE_PAD_FOUR})
+# define TMOVE_PAD_TREE					TMOVE_NULL, TMOVE_NULL, TMOVE_NULL
+# define TMOVE_PAD_FIVE					TMOVE_NULL, TMOVE_NULL, TMOVE_NULL, TMOVE_NULL, TMOVE_NULL
+# define TAB_TMOVE_ONE(tmove)			((t_move[NB_MOVE_MAX]){tmove, TMOVE_PAD_FIVE})
 
 # define NB_TURN(tmod)					((int[3]){2, 3, 1})[tmod]
 
-# define TSIDE_SIDE	side[0]
-# define TSIDE_SAVE	side[1]
+# define TSIDE_SIDE						side[0]
+# define TSIDE_SAVE						side[1]
 
 # define TBIN_CONV_TSIDE(tside, tbin)	tbin_conv_tab_tsides(((t_side[1]){tside}), 1, tbin)
+
+# define SHORT_ABSOLUTE(number)			((number < 0) ? (number * -1) : (number))
+# define TAROUND_ROTATE(taround, nb)	((taround + nb) % 3)
+# define TAROUND_ETATOR(taround, nb)	(SHORT_ABSOLUTE(taround - nb) % 3)
+
+# define TSIDE_PAD_SIX					side_null, side_null, side_null, side_null, side_null, side_null
+# define TAB_TSIDE_NULL(tab_tside)		copy_tab_tside(tab_tside, ((t_side[side_null]){TSIDE_PAD_SIX}))
+
 #endif

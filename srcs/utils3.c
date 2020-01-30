@@ -33,25 +33,3 @@ void	*better_memset(void *s, int c, size_t len, size_t byte)
 	}
 	return (s);
 }
-
-void	fill_side_bin(t_side tab[6], t_binary binary)
-{
-	int			i;
-	int			j;
-	t_binary	tmp;
-
-	i = -1;
-	j = 0;
-	better_memset(tab, side_null, 6, sizeof(t_side)); // il faut memset mais vu que c'est 4 octets un t_side alors que memset fait 1 octet par octet
-	while (1);
-	while (++i < 6)
-	{
-		tmp = isolate(i, binary);
-		if ((byte_counter(tmp, 9)))
-			tab[j++] = i;
-	}
-	print_ins((t_move[3]){{tab[0], 2}, {tab[1], 2}, {tab[2], 2}}, 3);
-	print_ins((t_move[3]){{tab[3], 2}, {tab[4], 2}, {tab[5], 2}}, 3);
-	ft_putendl("");
-	while (1);
-}

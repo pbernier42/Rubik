@@ -4,7 +4,7 @@ NAME			=	rubik
 NO_TO_BE		=	ON
 
 CC				=	gcc
-FLAGS			=	-Wall -Werror -Wextra
+FLAGS			=	-Wall -Werror -Wextra $(DFLAGS)
 DFLAGS			=	-g -fsanitize=address
 
 # DIR_LIB			=	lib/
@@ -34,7 +34,7 @@ SRC_FIlE		=	main.c \
 					utils/converter.c \
 					utils/parsing.c \
 					turn.c
-					
+
 INC				=	$(addprefix $(DIR_INC),$(SRC_INCLUDE)) \
 					lib/libft/includes/libft.h
 SRC				=	$(addprefix $(DIR_SRC),$(SRC_FIlE))

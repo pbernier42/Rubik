@@ -38,7 +38,7 @@ short		tab_tmove_edge_opposite(t_move move[NB_MOVE_MAX], t_binary bin_cube,
 				t_binary tab_bin_edge_opposite[3],  t_sticker corner[3]);
 short		tab_tmove_edge_middle(t_move move[NB_MOVE_MAX], short index_edge,
 				t_binary bin_corner);
-//short		tab_tmove_edge_near(t_move move[NB_MOVE_MAX]);
+short		tab_tmove_edge_near(t_move move[NB_MOVE_MAX], t_binary binary[5]);
 
 /*
 **	utils/find.c
@@ -47,6 +47,7 @@ short		tab_tmove_edge_middle(t_move move[NB_MOVE_MAX], short index_edge,
 void		tab_tbin_find_edge(t_binary edge_linked[3], t_sticker corner[3]);
 t_sticker	tsticker_find_edge(t_sticker edge[2]);
 t_side		tside_find_biggest_weight(t_binary binary);
+short		tab_tside_find_filled(t_side tab_side[side_null], t_binary binary);
 
 /*
 **	utils/converter.c
@@ -64,9 +65,10 @@ t_binary	tbin_conv_tab_tsides(t_side *side, short nb_side, t_binary binary);
 short		index_tab_tside(t_side side, t_side *tab_side, short size_tab);
 short		index_tab_tstickers(t_binary bin_cube,
 				t_sticker (*tab_stickers)[3], short size_tab);
-short		copy_tab_tmove(t_move dest[NB_MOVE_MAX], t_move from[NB_MOVE_MAX]);
 short		index_tab_tbin(t_binary binary, t_binary *tab_binary, short size_tab);
 short		nb_byte_tbinary(t_binary binary, short spectrum);
+short		copy_tab_tside(t_side dest[side_null], t_side from[side_null]);
+short		copy_tab_tmove(t_move dest[NB_MOVE_MAX], t_move from[NB_MOVE_MAX]);
 
 
 #endif

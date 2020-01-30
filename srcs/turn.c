@@ -30,12 +30,23 @@ t_turn	tturn_conv_tside(char ***cube, t_side side)
 {
 	t_turn		turn;
 
-	printf("side = [%d]\n", side);
+	//printf("side = [%d]\n", side);
 	tab_char_find_around(turn.right, cube, TAB_TLINE_AROUND(side)[around_right]);
 	tab_char_find_around(turn.down, cube, TAB_TLINE_AROUND(side)[around_down]);
 	tab_char_find_around(turn.left, cube, TAB_TLINE_AROUND(side)[around_left]);
 	tab_char_find_around(turn.up, cube, TAB_TLINE_AROUND(side)[around_up]);
 	turn.front = cube[side];
+	// printf("- side = %d\n", side);
+	// printf("- cube[b] =	%p\n", cube[6][side * 3]);
+	// printf("- cube[b] =	%p\n", cube[side][0]);
+	//
+	// printf("   [%c][%c][%c]\n", *turn.up[0], *turn.up[1], *turn.up[2]);
+	// printf("[%c]          [%c]\n", *turn.left[0], *turn.right[0]);
+	// printf("[%c]          [%c]\n", *turn.left[1], *turn.right[1]);
+	// printf("[%c]          [%c]\n", *turn.left[2], *turn.right[2]);
+	// printf("   [%c][%c][%c]\n", *turn.down[0], *turn.down[1], *turn.down[2]);
+	//
+	// ungly_display(cube);
 	return (turn);
 }
 
@@ -51,7 +62,7 @@ void	turn_modifier(t_turn turn, t_mod mod)
 	short	i;
 
 	i = -1;
-	printf("mod  = [%d]\n\n", mod);
+	//printf("mod  = [%d]\n\n", mod);
 	while (++i < NB_TURN(mod))
 		turn_once(turn);
 }
