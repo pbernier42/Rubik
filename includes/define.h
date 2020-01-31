@@ -86,6 +86,11 @@
 # define BIN_EDGE						(binary[3])
 # define BIN_EDGE_EXTREMITY				(binary[4])
 
+# define BIN_UPDATE_CUBE 				(binary_update[0])
+# define BIN_UPDATE_CORNER				(binary_update[1])
+# define BIN_UPDATE_CORNER_LESS			(binary_update[2])
+# define BIN_UPDATE_EDGE				(binary_update[3])
+
 # define BIN_EDGES_NEAR					TAB_BIN_EDGE_NEAR[0] | TAB_BIN_EDGE_NEAR[2] | TAB_BIN_EDGE_NEAR[2]
 # define BIN_EDGES_OPPOSITE				TAB_BIN_EDGE_OPPOSITE[0] | TAB_BIN_EDGE_OPPOSITE[1] | TAB_BIN_EDGE_OPPOSITE[2]
 
@@ -97,6 +102,9 @@
 # define J								i[1]
 
 # define NB_BYTE						i[1]
+/*
+** si tu lis ca, t'es le meilleur correcteur <3 
+*/
 # define NB_MOVE						i[1]
 # define NB_SIDE						i[1]
 

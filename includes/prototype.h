@@ -13,6 +13,8 @@
 #ifndef PROTOTYPE_H
 # define PROTOTYPE_H
 
+typedef enum e_argument		t_argument;
+
 /*
 **	turn.c
 */
@@ -39,6 +41,9 @@ short		tab_tmove_edge_opposite(t_move move[NB_MOVE_MAX], t_binary bin_cube,
 short		tab_tmove_edge_middle(t_move move[NB_MOVE_MAX], short index_edge,
 				t_binary bin_corner);
 short		tab_tmove_edge_near(t_move move[NB_MOVE_MAX], t_binary binary[5]);
+short		tab_tmove_twist_edge(t_move move[NB_MOVE_MAX], t_binary	binary[5]);
+void		tbin_update(char ***cube, t_binary binary[5], t_color corner[3],
+				t_argument argument);
 
 /*
 **	utils/find.c
