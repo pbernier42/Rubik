@@ -6,17 +6,35 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 17:22:23 by pbernier          #+#    #+#             */
-/*   Updated: 2020/01/28 17:22:24 by pbernier         ###   ########.fr       */
+/*   Updated: 2020/02/03 20:50:55 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PROTOTYPE_H
 # define PROTOTYPE_H
 
+# include "rubik.h"
+
+typedef struct s_env		t_env;
+typedef struct s_move		t_move;
+typedef struct s_turn		t_turn;
+typedef struct s_line		t_line;
+typedef struct s_sticker	t_sticker;
+typedef struct s_action		t_action;
+typedef struct s_condition	t_condition;
+typedef unsigned long long	t_binary;
+
 typedef enum e_argument		t_argument;
+typedef enum e_group		t_group;
+typedef enum e_color		t_color;
+typedef enum e_side			t_side;
+typedef enum e_mod			t_mod;
+typedef enum e_around		t_around;
+
+extern t_env				g_env;
 
 /*
-**	turn.c
+** turn.c
 */
 
 short		read_tab_tmove(char ***cube, int nb_move, t_move *move);
@@ -26,13 +44,13 @@ void		turn_modifier(t_turn turn, t_mod mod);
 void		turn_once(t_turn turn);
 
 /*
-**	resolve/resolve.c
+** resolve/resolve.c
 */
 
 void		resolve(char ***cube);
 
 /*
-**	resolve/two_two_bloc.c
+** resolve/two_two_bloc.c
 */
 
 void		two_two_bloc(char ***cube, t_color corner[3]);
@@ -46,7 +64,7 @@ void		tbin_update(char ***cube, t_binary binary[5], t_color corner[3],
 				t_argument argument);
 
 /*
-**	utils/find.c
+** utils/find.c
 */
 
 void		tab_tbin_find_edge(t_binary edge_linked[3], t_sticker corner[3]);
@@ -55,7 +73,7 @@ t_side		tside_find_biggest_weight(t_binary binary);
 short		tab_tside_find_filled(t_side tab_side[side_null], t_binary binary);
 
 /*
-**	utils/converter.c
+** utils/converter.c
 */
 
 t_binary	tbin_conv_tstickers(t_sticker bloc[3]);
@@ -64,7 +82,7 @@ t_binary	tbin_conv_char(char **cube_side, t_side side);
 t_binary	tbin_conv_tab_tsides(t_side *side, short nb_side, t_binary binary);
 
 /*
-**	utils/parsing.c
+** utils/parsing.c
 */
 
 short		index_tab_tside(t_side side, t_side *tab_side, short size_tab);
@@ -75,5 +93,73 @@ short		nb_byte_tbinary(t_binary binary, short spectrum);
 short		copy_tab_tside(t_side dest[side_null], t_side from[side_null]);
 short		copy_tab_tmove(t_move dest[NB_MOVE_MAX], t_move from[NB_MOVE_MAX]);
 
+/*
+** error.c
+*/
+
+void						error(int typecode, char *str);
+
+/*
+** display.c
+*/
+
+void						display(char ***tab, int face, int cel[12]);
+
+/*
+** init.c
+*/
+
+char						***init_tab(void);
+
+/*
+** refine.c
+*/
+
+void						refine(t_move *tab, size_t nb);
+
+/*
+** main.c
+*/
+
+int							arg_count(char *argv);
+void						instructions(char ***cube, int arg_count, char *argv);
+t_move						arg_instruction(char arg[2]);
+void						read_instruction(char ***cube, int arg_count, t_move *instruction);
+t_turn						instruction_turn(char ***cube, t_side side);
+
+/*
+** utils.c
+*/
+
+bool						in_string(char lettre, char *string);
+size_t						skip_space(size_t len, char *string);
+void						ungly_display(char ***cube);
+t_binary					combine_binary(t_binary *tab, short size_tab);
+
+/*
+** utils2.c
+*/
+
+void						print_ins(t_move *tab, size_t nb);
+int							pdebug(void);
+int							mod_range(int a, int b, int n);
+t_binary					isolate(t_side side, t_binary binary);
+t_binary					stob(t_side *side, size_t nb_side, t_binary binary);
+
+/*
+** utils3.c
+*/
+
+size_t						byte_counter(t_binary binary, size_t nb);
+void						fill_enum(int tab[NB_ITER], int type, int nb, ...);
+void						fill_side_bin(t_side tab[6], t_binary binary);
+
+/*
+** resolve.c
+*/
+
+void		resolve(char ***cube);
+void		bin(t_binary nbr);
+t_binary	bloc_binary(char ***cube, t_side side[3]);
 
 #endif

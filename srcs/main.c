@@ -6,23 +6,27 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:04:51 by pbernier          #+#    #+#             */
-/*   Updated: 2020/01/27 22:27:49 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/02/03 21:28:24 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <rubik.h>
 
+t_env	g;
+
 int		main(int argc, char **argv)
 {
 	int			arg_number;
 	char		***cube;
-	//t_move		*args;
 
+	env.i = 0;
+	env.buff = NULL;
 	arg_number = 0;
 	if (argc != 2 || !(arg_number = arg_count(argv[1])))
 		error(-1, "error");
 	cube = init_tab();
 	instructions(cube, arg_number, argv[1]);
+	read_tab_tmove(cube, arg_count, env.buff);
 	resolve(cube);
 	//ungly_display(cube);
 	//refine(args, arg_number);
@@ -69,7 +73,6 @@ void	instructions(char ***cube, int arg_count, char *argv)
 	}
 	(void)cube;
 	//refine(instruction, arg_count);
-	read_tab_tmove(cube, arg_count, instruction);
 	// t_binary	b;
 	// t_binary	b2;
 	// t_side		tab[6];

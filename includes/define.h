@@ -6,15 +6,28 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 18:06:51 by pbernier          #+#    #+#             */
-/*   Updated: 2020/01/28 18:06:52 by pbernier         ###   ########.fr       */
+/*   Updated: 2020/02/03 20:36:22 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINE_H
 # define DEFINE_H
 
+# include "rubik.h"
+
 # define NB_MOVE_MAX					6
 # define INITIALS_SIDE					((char[7]){"FRUBLD"})
+# define INITIALS_MOD					((char[3]){"2'"})
+
+# define WITH_LETTER					1
+# define NB_ITER						5
+
+# define DISPLAY(cube, side_null)		display(cube, side_null, (int[12]){7, 4, 7, 7, 3, 7, 5, 1, 2, 7, 6, 7})
+
+# define INITIALS_SPACE					((char[6]){" \t\r\v\f\0"})
+# define IS_SPACE(space)				in_string(space, INITIALS_SPACE)
+# define IS_SIDE(side)					in_string(side, INITIALS_SIDE)
+# define IS_MOD(mod)					in_string(mod, INITIALS_MOD)
 
 # define TSTICKER_NULL					{side_null, {-1, -1}}
 
@@ -126,5 +139,18 @@
 
 # define TSIDE_PAD_SIX					side_null, side_null, side_null, side_null, side_null, side_null
 # define TAB_TSIDE_NULL(tab_tside)		copy_tab_tside(tab_tside, ((t_side[side_null]){TSIDE_PAD_SIX}))
+
+/*
+** GROUPS
+*/
+
+# define TAB_STR_GROUPS(i)					(char[grp_null][10]) \
+											{ \
+												ROTATE_CORNER_TO_EDGE, \
+												ROTATE_EDGE \
+											}[i]
+
+# define ROTATE_CORNER_TO_EDGE			"F' L B"
+# define ROTATE_EDGE					"R' F D' F'"
 
 #endif
