@@ -12,6 +12,26 @@
 
 #include <rubik.h>
 
+// short		tab_tmove_edge_two(char ***cube, t_move move[NB_MOVE_MAX],
+// 				t_binary binary[5], t_side color[3])
+// {
+// 	short		index_edge;
+// 	t_binary	edge_two;
+// 	t_binary	edge_near[3];
+//
+//
+// 	BIN_CUBE = tbin_conv_tsides(cube, TAB_TSIDES_COLOR_TWO(color[0], color[1]));
+// 	index_edge = index_tab_tstickers(BIN_CUBE, TAB_TSTICKERS_EDGE, 12);
+// 	edge_two = tbin_conv_tstickers(TAB_TSTICKERS_EDGE[index_edge]);
+// 	bin(edge_two);
+// 	bin(BIN_CORNER_LESS | BIN_EDGE);
+//
+// 	return (0);
+// 	(void)cube;
+// 	(void)move;
+// 	(void)binary;
+// }
+
 void		two_two_bloc(char ***cube, t_color corner[3])
 {
 	short		i[2];
@@ -33,20 +53,33 @@ void		two_two_bloc(char ***cube, t_color corner[3])
 	tbin_update(cube, binary, corner,
 		(arg_corner | arg_corner_less | arg_edge));
 	NB_MOVE = tab_tmove_edge_near(move, binary);
-	if ((read_tab_tmove(cube, NB_MOVE, move)))
-		tbin_update(cube, binary, corner,
-			(arg_edge | arg_corner_less | arg_corner));
+	read_tab_tmove(cube, NB_MOVE, move);
+	tbin_update(cube, binary, corner,
+		(arg_edge | arg_corner_less));
 	BIN_CUBE = tbin_conv_tsides(cube, TAB_TSIDES_COLOR_ONE(corner[0]));
 	tab_tmove_twist_edge(move, binary);
-	if ((read_tab_tmove(cube, NB_MOVE, move)))
-		tbin_update(cube, binary, corner,
-			(arg_corner | arg_edge | arg_corner));
-
-	bin(BIN_CORNER | BIN_EDGE);
+	read_tab_tmove(cube, NB_MOVE, move);
 	BIN_CUBE = tbin_conv_tsides(cube, TAB_TSIDES_COLOR_ALL(corner));
 	I = index_tab_tstickers(BIN_CUBE, TAB_TSTICKERS_CORNER, 8);
 	bring_edge_opposite(cube, TAB_TSIDES_COLOR_TWO(corner[0], corner[2]), edge, I);
+	tbin_update(cube, binary, corner,
+		(arg_corner | arg_corner_less | arg_edge));
+	//NB_MOVE = tab_tmove_edge_two(cube, move, binary, TAB_TSIDES_COLOR_TWO(corner[0], corner[2]));
 
+
+	t_binary tmp;
+
+	tmp = TBIN_CONV_TSIDE(TAB_TSTICKERS_CORNER[I][0].side, (BIN_CORNER | BIN_EDGE));
+
+	BIN_CUBE = tbin_conv_tsides(cube, TAB_TSIDES_COLOR_ALL(corner));
+	I = index_tab_tstickers(BIN_CUBE, TAB_TSTICKERS_CORNER, 8);
+	if (nb_byte_tbinary(tmp, 9) == 1)
+		printf("kk\n");
+	printf("%d\n", TAB_TSTICKERS_CORNER[I][0].side);
+	printf("%d\n", TAB_TSTICKERS_CORNER[I][1].side);
+	printf("%d\n", TAB_TSTICKERS_CORNER[I][2].side);
+	//bin(BIN_CORNER_LESS | BIN_EDGE);
+	bin(BIN_CORNER | BIN_EDGE);
 
 	// tbin_update(cube, binary, corner,
 	// 	(arg_corner | arg_edge));
@@ -67,9 +100,6 @@ short		bring_edge_opposite(char ***cube, t_side color[3],
 	nb_move = tab_tmove_edge_opposite(move, BIN_CUBE, TAB_BIN_EDGE_OPPOSITE,
 	 	TAB_TSTICKERS_CORNER[(index_corner + 4) % 8]);
 	return (read_tab_tmove(cube, nb_move, move));
-	// (void)edge;
-	// (void)nb_move;
-	// (void)move;
 }
 
 void		tbin_update(char ***cube, t_binary binary[5], t_color corner[3],
