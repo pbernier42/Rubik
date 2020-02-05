@@ -13,11 +13,19 @@
 #ifndef VARIABLE_H
 # define VARIABLE_H
 
-# include "rubik.h"
+typedef unsigned long long	t_binary;
 
 /*
 ** enums
 */
+
+typedef enum e_argument		t_argument;
+typedef enum e_group		t_group;
+typedef enum e_side			t_side;
+typedef enum e_color		t_color;
+typedef enum e_mod			t_mod;
+typedef enum e_around		t_around;
+
 
 enum						e_argument
 {
@@ -78,10 +86,18 @@ enum						e_around
 ** structs
 */
 
+typedef struct s_env		t_env;
+extern t_env				g_env;
+
+typedef struct s_line		t_line;
+typedef struct s_move		t_move;
+typedef struct s_turn		t_turn;
+typedef struct s_sticker	t_sticker;
+
 struct						s_env
 {
-	int						i;
-	t_move					(*buff)[10];
+	int						nb_move;
+	t_move					*(move_all[10]);
 };
 
 struct						s_line
@@ -110,17 +126,4 @@ struct						s_sticker
 	t_side					side;
 	short					coo[2];
 };
-
-struct						s_action
-{
-	t_side					side;
-	t_binary				binary;
-};
-
-struct						s_condition
-{
-	t_binary				binary;
-	t_move					move[NB_ITER];
-};
-
 #endif

@@ -36,9 +36,9 @@ void		print_ins(t_move *tab, size_t nb)
 		ft_putstr("tab[");
 		ft_putnbr(i);
 		ft_putstr("] = { ");
-		ft_putchar(INITIALS_SIDE[tab[i].side]);
+		ft_putchar(STRING_INITIALS_SIDE[tab[i].side]);
 		ft_putstr(", ");
-		ft_putchar(INITIALS_MOD[tab[i].mod]);
+		ft_putchar(STRING_INITIALS_MOD[tab[i].mod]);
 		ft_putstr(" }\n");
 	}
 }

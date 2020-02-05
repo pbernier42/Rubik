@@ -12,34 +12,15 @@
 
 #include <rubik.h>
 
-bool	in_string(char c, char *string)
-{
-	short	len;
 
-	len = 0;
-	while (string && string[len] && c != string[len])
-		++len;
-	return ((string[len]));
-}
 
 size_t	skip_space(size_t len, char *string)
 {
-	while (string && IS_SPACE(string[len]))
+	while (string && SHORT_IS_SPACE(string[len]) != -1)
 		++len;
 	return (len);
 }
-//
-// t_binary	combine_binary(t_binary *tab, short size_tab)
-// {
-// 	t_binary	ret;
-// 	short		len_tab;
-//
-// 	ret = 0;
-// 	len_tab = -1;
-// 	while (tab && ++len_tab < size_tab)
-// 		ret += tab[len_tab];
-// 	return (ret);
-// }
+
 
 void 	ungly_display(char ***cube)
 {

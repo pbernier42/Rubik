@@ -51,6 +51,16 @@ short	index_tab_tbin(t_binary binary, t_binary *tab_binary, short size_tab)
 	return (-1);
 }
 
+short	index_string(char c, char *string)
+{
+	short	len;
+
+	len = 0;
+	while (string && string[len] && c != string[len])
+		++len;
+	return ((string[len]) ? len : -1);
+}
+
 short	nb_byte_tbinary(t_binary binary, short spectrum)
 {
 	short		i[2];

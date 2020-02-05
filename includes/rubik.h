@@ -21,8 +21,8 @@
 
 # include "../lib/libft/includes/libft.h"
 
-# include "prototype.h"
 # include "define.h"
 # include "variable.h"
+# include "prototype.h"
 
 #endif

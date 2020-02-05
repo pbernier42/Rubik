@@ -69,7 +69,7 @@ t_binary	tbin_conv_char(char **cube_side, t_side side)
 		while (++COO_X != 3)
 		{
 			binary = binary << 1;
-			if (cube_side[COO_Y][COO_X] == INITIALS_SIDE[side])
+			if (cube_side[COO_Y][COO_X] == STRING_INITIALS_SIDE[side])
 				++binary;
 		}
 	}

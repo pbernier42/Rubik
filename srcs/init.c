@@ -30,9 +30,9 @@ char	***init_tab(void)
 	while (++i < 18)
 	{
 		ret[6][i] = ft_strnew(3);
-		ret[6][i][0] = INITIALS_SIDE[j];
-		ret[6][i][1] = INITIALS_SIDE[j];
-		ret[6][i][2] = INITIALS_SIDE[j];
+		ret[6][i][0] = STRING_INITIALS_SIDE[j];
+		ret[6][i][1] = STRING_INITIALS_SIDE[j];
+		ret[6][i][2] = STRING_INITIALS_SIDE[j];
 		if (!(i % 3))
 			ret[j] = &(ret[6][i]);
 		else if (!((i + 1) % 3) && j < 5)

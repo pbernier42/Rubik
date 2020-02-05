@@ -12,27 +12,8 @@
 
 #ifndef PROTOTYPE_H
 # define PROTOTYPE_H
-
-# include "rubik.h"
-
-typedef struct s_env		t_env;
-typedef struct s_move		t_move;
-typedef struct s_turn		t_turn;
-typedef struct s_line		t_line;
-typedef struct s_sticker	t_sticker;
-typedef struct s_action		t_action;
-typedef struct s_condition	t_condition;
-typedef unsigned long long	t_binary;
-
-typedef enum e_argument		t_argument;
-typedef enum e_group		t_group;
-typedef enum e_color		t_color;
-typedef enum e_side			t_side;
-typedef enum e_mod			t_mod;
-typedef enum e_around		t_around;
-
-extern t_env				g_env;
-
+//type
+//
 /*
 ** turn.c
 */
@@ -54,6 +35,8 @@ void		resolve(char ***cube);
 */
 
 void		two_two_bloc(char ***cube, t_color corner[3]);
+short		bring_edge_opposite(char ***cube, t_side color[3],
+				t_binary edge[2][3], short index_corner);
 short		tab_tmove_edge_opposite(t_move move[NB_MOVE_MAX], t_binary bin_cube,
 				t_binary tab_bin_edge_opposite[3],  t_sticker corner[3]);
 short		tab_tmove_edge_middle(t_move move[NB_MOVE_MAX], short index_edge,
@@ -88,6 +71,7 @@ t_binary	tbin_conv_tab_tsides(t_side *side, short nb_side, t_binary binary);
 short		index_tab_tside(t_side side, t_side *tab_side, short size_tab);
 short		index_tab_tstickers(t_binary bin_cube,
 				t_sticker (*tab_stickers)[3], short size_tab);
+short		index_string(char c, char *string);
 short		index_tab_tbin(t_binary binary, t_binary *tab_binary, short size_tab);
 short		nb_byte_tbinary(t_binary binary, short spectrum);
 short		copy_tab_tside(t_side dest[side_null], t_side from[side_null]);
@@ -131,7 +115,6 @@ t_turn						instruction_turn(char ***cube, t_side side);
 ** utils.c
 */
 
-bool						in_string(char lettre, char *string);
 size_t						skip_space(size_t len, char *string);
 void						ungly_display(char ***cube);
 t_binary					combine_binary(t_binary *tab, short size_tab);

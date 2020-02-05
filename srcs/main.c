@@ -12,21 +12,21 @@
 
 #include <rubik.h>
 
-t_env	g;
+t_env	env;
 
 int		main(int argc, char **argv)
 {
 	int			arg_number;
 	char		***cube;
 
-	env.i = 0;
-	env.buff = NULL;
+	env.nb_move = 0;
+	env.move_all[0] = NULL;
 	arg_number = 0;
 	if (argc != 2 || !(arg_number = arg_count(argv[1])))
 		error(-1, "error");
 	cube = init_tab();
 	instructions(cube, arg_number, argv[1]);
-	read_tab_tmove(cube, arg_count, env.buff);
+	//read_tab_tmove(cube, arg_count, env.buff);
 	resolve(cube);
 	//ungly_display(cube);
 	//refine(args, arg_number);
@@ -43,11 +43,11 @@ int		arg_count(char *argv)
 	count = 0;
 	while (argv[len])
 	{
-		if (!IS_SIDE(argv[len]))
+		if (SHORT_IS_SIDE(argv[len]) == -1)
 			return (0);
 		if (!argv[++len])
 			return (++count);
-		if (!IS_MOD(argv[len]) && !IS_SPACE(argv[len]))
+		if (SHORT_IS_MOD(argv[len]) == -1 && SHORT_IS_SPACE(argv[len]) == -1)
 			return (0);
 		len = skip_space(++len, argv);
 		++count;
@@ -71,6 +71,7 @@ void	instructions(char ***cube, int arg_count, char *argv)
 		len = skip_space(len, argv);
 		//printf("[%d] - [%d]\n", instruction[count - 1].side, instruction[count - 1].mod);
 	}
+	read_tab_tmove(cube, count, instruction);
 	(void)cube;
 	//refine(instruction, arg_count);
 	// t_binary	b;
@@ -92,12 +93,12 @@ t_move	arg_instruction(char arg[2])
 	t_move	ret;
 
 	ret.side = side_front;
-	while (ret.side != side_null && arg[0] != INITIALS_SIDE[ret.side])
+	while (ret.side != side_null && arg[0] != STRING_INITIALS_SIDE[ret.side])
 		++ret.side;
-	if (!arg[1] || IS_SPACE(arg[1]))
+	if (!arg[1] || SHORT_IS_SPACE(arg[1]) != -1)
 		return ((t_move){ret.side, mod_null});
 	ret.mod = mod_twice;
-	while (ret.mod != mod_null && arg[1] != INITIALS_MOD[ret.mod])
+	while (ret.mod != mod_null && arg[1] != STRING_INITIALS_MOD[ret.mod])
 		++ret.mod;
 	return (ret);
 }

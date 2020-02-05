@@ -15,19 +15,49 @@
 
 # include "rubik.h"
 
-# define NB_MOVE_MAX					6
-# define INITIALS_SIDE					((char[7]){"FRUBLD"})
-# define INITIALS_MOD					((char[3]){"2'"})
+/*
+** ???
+*/
 
 # define WITH_LETTER					1
 # define NB_ITER						5
-
 # define DISPLAY(cube, side_null)		display(cube, side_null, (int[12]){7, 4, 7, 7, 3, 7, 5, 1, 2, 7, 6, 7})
 
-# define INITIALS_SPACE					((char[6]){" \t\r\v\f\0"})
-# define IS_SPACE(space)				in_string(space, INITIALS_SPACE)
-# define IS_SIDE(side)					in_string(side, INITIALS_SIDE)
-# define IS_MOD(mod)					in_string(mod, INITIALS_MOD)
+/*
+** NUMBER
+*/
+
+# define NB_MOVE_MAX					6
+
+# define I								i[0]
+# define J								i[1]
+
+# define NB_BYTE						i[1]
+# define NB_MOVE						i[1]
+# define NB_SIDE						i[1]
+
+# define NB_TURN(tmod)					((int[3]){2, 3, 1})[tmod]
+
+/*
+** STRING
+*/
+
+# define STRING_INITIALS_SIDE			((char[7]){"FRUBLD"})
+# define STRING_INITIALS_MOD			((char[3]){"2'"})
+# define STRING_INITIALS_SPACE			((char[6]){" \t\r\v\f\0"})
+
+/*
+** SHORT
+*/
+
+# define SHORT_IS_SPACE(space)			index_string(space, STRING_INITIALS_SPACE)
+# define SHORT_IS_SIDE(side)			index_string(side, STRING_INITIALS_SIDE)
+# define SHORT_IS_MOD(mod)				index_string(mod, STRING_INITIALS_MOD)
+# define SHORT_ABSOLUTE(number)			((number < 0) ? (number * -1) : (number))
+
+/*
+** TSTICKER
+*/
 
 # define TSTICKER_NULL					{side_null, {-1, -1}}
 
@@ -40,10 +70,6 @@
 # define TSTICKERS_BACK_UP_LEFT			{{side_back, {0, 2}}, {side_up, {0, 0}}, {side_left, {0, 0}}}
 # define TSTICKERS_BACK_UP_RIGHT		{{side_back, {0, 0}}, {side_up, {0, 2}}, {side_right, {0, 2}}}
 
-# define TAB_TSTICKERS_FRONT_CORNER		TSTICKERS_FRONT_UP_LEFT, TSTICKERS_FRONT_UP_RIGHT, TSTICKERS_FRONT_DOWN_RIGHT, TSTICKERS_FRONT_DOWN_LEFT
-# define TAB_TSTICKERS_BACK_CORNER		TSTICKERS_BACK_DOWN_RIGHT, TSTICKERS_BACK_DOWN_LEFT, TSTICKERS_BACK_UP_LEFT, TSTICKERS_BACK_UP_RIGHT
-
-# define TAB_TSTICKERS_CORNER			((t_sticker[8][3]){TAB_TSTICKERS_FRONT_CORNER, TAB_TSTICKERS_BACK_CORNER})
 
 # define TSTICKER_FRONT_UP				{{side_front, {0, 1}}, {side_up, {2, 1}}, TSTICKER_NULL}
 # define TSTICKER_FRONT_RIGHT			{{side_front, {1, 2}}, {side_right, {1, 0}}, TSTICKER_NULL}
@@ -61,12 +87,26 @@
 # define TSTICKER_RIGHT_DOWN			{{side_right, {0, 1}}, {side_down, {1, 2}}, TSTICKER_NULL}
 # define TSTICKER_LEFT_DOWN				{{side_left, {2, 1}}, {side_down, {1, 0}}, TSTICKER_NULL}
 
-# define TAB_TSTICKER_FRONT_EDGE		TSTICKER_FRONT_UP, TSTICKER_FRONT_RIGHT, TSTICKER_FRONT_DOWN, TSTICKER_FRONT_LEFT
+# define TAB_TSTICKERS_FRONT_CORNER		TSTICKERS_FRONT_UP_LEFT, TSTICKERS_FRONT_UP_RIGHT, \
+											TSTICKERS_FRONT_DOWN_RIGHT, TSTICKERS_FRONT_DOWN_LEFT
+# define TAB_TSTICKERS_BACK_CORNER		TSTICKERS_BACK_DOWN_RIGHT, TSTICKERS_BACK_DOWN_LEFT, \
+											TSTICKERS_BACK_UP_LEFT, TSTICKERS_BACK_UP_RIGHT
+
+# define TAB_TSTICKER_FRONT_EDGE		TSTICKER_FRONT_UP, TSTICKER_FRONT_RIGHT, \
+											TSTICKER_FRONT_DOWN, TSTICKER_FRONT_LEFT
 # define TAB_TSTICKER_TOP_EDGE			TSTICKER_LEFT_UP, TSTICKER_RIGHT_UP
-# define TAB_TSTICKER_BACK_EDGE			TSTICKER_BACK_DOWN, TSTICKER_BACK_LEFT, TSTICKER_BACK_UP, TSTICKER_BACK_RIGHT
+# define TAB_TSTICKER_BACK_EDGE			TSTICKER_BACK_DOWN, TSTICKER_BACK_LEFT, \
+											TSTICKER_BACK_UP, TSTICKER_BACK_RIGHT
 # define TAB_TSTICKER_DOWN_EDGE			TSTICKER_RIGHT_DOWN, TSTICKER_LEFT_DOWN
 
-# define TAB_TSTICKERS_EDGE				((t_sticker[12][3]){TAB_TSTICKER_FRONT_EDGE, TAB_TSTICKER_TOP_EDGE, TAB_TSTICKER_BACK_EDGE, TAB_TSTICKER_DOWN_EDGE})
+# define TAB_TSTICKERS_CORNER			((t_sticker[8][3]){TAB_TSTICKERS_FRONT_CORNER, \
+											TAB_TSTICKERS_BACK_CORNER})
+# define TAB_TSTICKERS_EDGE				((t_sticker[12][3]){TAB_TSTICKER_FRONT_EDGE, TAB_TSTICKER_TOP_EDGE, \
+											TAB_TSTICKER_BACK_EDGE, TAB_TSTICKER_DOWN_EDGE})
+
+/*
+** COORDINATE
+*/
 
 # define COO_Y							coo[0]
 # define COO_X							coo[1]
@@ -79,19 +119,44 @@
 # define TAB_COO_UP_INVERTED			{{0, 2}, {0, 1}, {0, 0}}
 # define TAB_COO_DOWN_INVERTED			{{2, 2}, {2, 1}, {2, 0}}
 
+/*
+** TLINE
+*/
 
 # define TLINE(l_side, l_coo)			((t_line){l_side, l_coo})
 
-# define TAB_TLINE_AROUND_RIGHT			((t_line[6]){TLINE(side_right, TAB_COO_LEFT), TLINE(side_back, TAB_COO_LEFT), TLINE(side_right, TAB_COO_UP), TLINE(side_left, TAB_COO_LEFT), TLINE(side_front, TAB_COO_LEFT), TLINE(side_right, TAB_COO_DOWN)})
-# define TAB_TLINE_AROUND_DOWN			((t_line[6]){TLINE(side_down, TAB_COO_UP), TLINE(side_down, TAB_COO_RIGHT), TLINE(side_front, TAB_COO_UP), 	 TLINE(side_down, TAB_COO_DOWN_INVERTED), TLINE(side_down, TAB_COO_LEFT), TLINE(side_back, TAB_COO_DOWN)})
-# define TAB_TLINE_AROUND_LEFT			((t_line[6]){TLINE(side_left, TAB_COO_RIGHT), TLINE(side_front, TAB_COO_RIGHT), TLINE(side_left, TAB_COO_UP),TLINE(side_right, TAB_COO_RIGHT), TLINE(side_back, TAB_COO_RIGHT), TLINE(side_left, TAB_COO_DOWN)})
-# define TAB_TLINE_AROUND_UP			((t_line[6]){TLINE(side_up, TAB_COO_DOWN), TLINE(side_up, TAB_COO_RIGHT), TLINE(side_back, TAB_COO_UP),      TLINE(side_up, TAB_COO_UP_INVERTED), TLINE(side_up, TAB_COO_LEFT), TLINE(side_front, TAB_COO_DOWN)})
-# define TAB_TLINE_AROUND(tside)		((t_line[4]){TAB_TLINE_AROUND_RIGHT[tside], TAB_TLINE_AROUND_DOWN[tside], TAB_TLINE_AROUND_LEFT[tside], TAB_TLINE_AROUND_UP[tside]})
+# define TAB_TLINE_AROUND_RIGHT			((t_line[6]){TLINE(side_right, TAB_COO_LEFT), TLINE(side_back, TAB_COO_LEFT), TLINE(side_right, TAB_COO_UP), \
+											TLINE(side_left, TAB_COO_LEFT), TLINE(side_front, TAB_COO_LEFT), TLINE(side_right, TAB_COO_DOWN)})
+# define TAB_TLINE_AROUND_DOWN			((t_line[6]){TLINE(side_down, TAB_COO_UP), TLINE(side_down, TAB_COO_RIGHT), TLINE(side_front, TAB_COO_UP), \
+											TLINE(side_down, TAB_COO_DOWN_INVERTED), TLINE(side_down, TAB_COO_LEFT), TLINE(side_back, TAB_COO_DOWN)})
+# define TAB_TLINE_AROUND_LEFT			((t_line[6]){TLINE(side_left, TAB_COO_RIGHT), TLINE(side_front, TAB_COO_RIGHT), TLINE(side_left, TAB_COO_UP), \
+											TLINE(side_right, TAB_COO_RIGHT), TLINE(side_back, TAB_COO_RIGHT), TLINE(side_left, TAB_COO_DOWN)})
+# define TAB_TLINE_AROUND_UP			((t_line[6]){TLINE(side_up, TAB_COO_DOWN), TLINE(side_up, TAB_COO_RIGHT), TLINE(side_back, TAB_COO_UP), \
+											TLINE(side_up, TAB_COO_UP_INVERTED), TLINE(side_up, TAB_COO_LEFT), TLINE(side_front, TAB_COO_DOWN)})
+
+# define TAB_TLINE_AROUND(tside)		((t_line[4]){TAB_TLINE_AROUND_RIGHT[tside], TAB_TLINE_AROUND_DOWN[tside], \
+											TAB_TLINE_AROUND_LEFT[tside], TAB_TLINE_AROUND_UP[tside]})
+
+/*
+** TSIDE
+*/
 
 # define TSIDE_AROUND(taround, tside)	TAB_TLINE_AROUND(tside)[taround].side
 
-# define TAB_BIN_EDGE_OPPOSITE			(edge[0])
-# define TAB_BIN_EDGE_NEAR				(edge[1])
+# define TSIDE_SIDE						side[0]
+# define TSIDE_SAVE						side[1]
+
+# define TSIDE_PAD_SIX					side_null, side_null, side_null, side_null, side_null, side_null
+
+# define TAB_TSIDE_NULL(tab_tside)		copy_tab_tside(tab_tside, ((t_side[side_null]){TSIDE_PAD_SIX}))
+
+# define TAB_TSIDES_COLOR_ONE(tcolor_one) 				(t_side[3]){(t_side)tcolor_one, side_null , side_null}
+# define TAB_TSIDES_COLOR_TWO(tcolor_one, tcolor_two)	(t_side[3]){(t_side)tcolor_one, (t_side)tcolor_two, side_null}
+# define TAB_TSIDES_COLOR_ALL(tcolor)					(t_side*)tcolor
+
+/*
+** TBIN
+*/
 
 # define BIN_CUBE 						(binary[0])
 # define BIN_CORNER						(binary[1])
@@ -104,53 +169,42 @@
 # define BIN_UPDATE_CORNER_LESS			(binary_update[2])
 # define BIN_UPDATE_EDGE				(binary_update[3])
 
-# define BIN_EDGES_NEAR					TAB_BIN_EDGE_NEAR[0] | TAB_BIN_EDGE_NEAR[2] | TAB_BIN_EDGE_NEAR[2]
+# define TAB_BIN_EDGE_OPPOSITE			(edge[0])
+# define TAB_BIN_EDGE_NEAR				(edge[1])
+
+# define BIN_EDGES_NEAR					TAB_BIN_EDGE_NEAR[0] | TAB_BIN_EDGE_NEAR[1] | TAB_BIN_EDGE_NEAR[2]
 # define BIN_EDGES_OPPOSITE				TAB_BIN_EDGE_OPPOSITE[0] | TAB_BIN_EDGE_OPPOSITE[1] | TAB_BIN_EDGE_OPPOSITE[2]
 
-# define TAB_TSIDES_COLOR_ALL(tcolor)	(t_side*)tcolor
-# define TAB_TSIDES_COLOR_TWO(tcolor)	(t_side[3]){(t_side)tcolor[0], (t_side)tcolor[1], side_null}
-# define TAB_TSIDES_COLOR_ONE(tcolor)	(t_side[3]){(t_side)tcolor[0], side_null , side_null}
+# define TBIN_CONV_TSIDE(tside, tbin)	tbin_conv_tab_tsides(((t_side[1]){tside}), 1, tbin)
 
-# define I								i[0]
-# define J								i[1]
-
-# define NB_BYTE						i[1]
 /*
-** si tu lis ca, t'es le meilleur correcteur <3 
+** TMOVE
 */
-# define NB_MOVE						i[1]
-# define NB_SIDE						i[1]
 
 # define TMOVE_NULL						{side_null, mod_null}
 # define TMOVE_PAD_TREE					TMOVE_NULL, TMOVE_NULL, TMOVE_NULL
 # define TMOVE_PAD_FIVE					TMOVE_NULL, TMOVE_NULL, TMOVE_NULL, TMOVE_NULL, TMOVE_NULL
+
 # define TAB_TMOVE_ONE(tmove)			((t_move[NB_MOVE_MAX]){tmove, TMOVE_PAD_FIVE})
 
-# define NB_TURN(tmod)					((int[3]){2, 3, 1})[tmod]
+/*
+** TAROUND
+*/
 
-# define TSIDE_SIDE						side[0]
-# define TSIDE_SAVE						side[1]
-
-# define TBIN_CONV_TSIDE(tside, tbin)	tbin_conv_tab_tsides(((t_side[1]){tside}), 1, tbin)
-
-# define SHORT_ABSOLUTE(number)			((number < 0) ? (number * -1) : (number))
 # define TAROUND_ROTATE(taround, nb)	((taround + nb) % 3)
 # define TAROUND_ETATOR(taround, nb)	(SHORT_ABSOLUTE(taround - nb) % 3)
-
-# define TSIDE_PAD_SIX					side_null, side_null, side_null, side_null, side_null, side_null
-# define TAB_TSIDE_NULL(tab_tside)		copy_tab_tside(tab_tside, ((t_side[side_null]){TSIDE_PAD_SIX}))
 
 /*
 ** GROUPS
 */
 
-# define TAB_STR_GROUPS(i)					(char[grp_null][10]) \
+# define ROTATE_CORNER_TO_EDGE			"F' L B"
+# define ROTATE_EDGE					"R' F D' F'"
+
+# define TAB_STRING_GROUPS(i)				(char[grp_null][10]) \
 											{ \
 												ROTATE_CORNER_TO_EDGE, \
 												ROTATE_EDGE \
 											}[i]
-
-# define ROTATE_CORNER_TO_EDGE			"F' L B"
-# define ROTATE_EDGE					"R' F D' F'"
 
 #endif
