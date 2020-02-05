@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 18:22:17 by pbernier          #+#    #+#             */
-/*   Updated: 2020/01/28 18:22:18 by pbernier         ###   ########.fr       */
+/*   Updated: 2020/02/05 22:24:31 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,4 +89,20 @@ t_binary	tbin_conv_tab_tsides(t_side *side, short nb_side, t_binary binary)
 		ret += (side[i] != side_null ? (binary >> (9 * (5 - side[i])) & 511) : 0);
 	}
 	return (ret);
+}
+
+void	tab_tmove_conv_str(t_move *dst, int nb_move, char *str)
+{
+	size_t		len;
+	int			count;
+
+	len = skip_space(0, str);
+	count = 0;
+	while (count < nb_move)
+	{
+		dst[count++] = arg_instruction((char[2]){str[len], str[len + 1]});
+		len += 2;
+		len = skip_space(len, str);
+		//printf("[%d] - [%d]\n", instruction[count - 1].side, instruction[count - 1].mod);
+	}
 }

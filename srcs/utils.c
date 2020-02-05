@@ -6,13 +6,11 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 17:49:33 by pbernier          #+#    #+#             */
-/*   Updated: 2020/01/23 20:41:34 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/02/05 22:19:14 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <rubik.h>
-
-
 
 size_t	skip_space(size_t len, char *string)
 {
@@ -20,7 +18,6 @@ size_t	skip_space(size_t len, char *string)
 		++len;
 	return (len);
 }
-
 
 void 	ungly_display(char ***cube)
 {

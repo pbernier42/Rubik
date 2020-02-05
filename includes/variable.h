@@ -6,18 +6,22 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 18:05:25 by pbernier          #+#    #+#             */
-/*   Updated: 2020/02/03 20:50:18 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/02/05 22:41:35 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VARIABLE_H
 # define VARIABLE_H
 
-typedef unsigned long long	t_binary;
+# include "rubik.h"
 
-/*
-** enums
-*/
+
+typedef struct s_line		t_line;
+typedef struct s_move		t_move;
+typedef struct s_turn		t_turn;
+typedef struct s_sticker	t_sticker;
+
+typedef unsigned long long	t_binary;
 
 typedef enum e_argument		t_argument;
 typedef enum e_group		t_group;
@@ -26,6 +30,9 @@ typedef enum e_color		t_color;
 typedef enum e_mod			t_mod;
 typedef enum e_around		t_around;
 
+/*
+** enums
+*/
 
 enum						e_argument
 {
@@ -86,20 +93,6 @@ enum						e_around
 ** structs
 */
 
-typedef struct s_env		t_env;
-extern t_env				g_env;
-
-typedef struct s_line		t_line;
-typedef struct s_move		t_move;
-typedef struct s_turn		t_turn;
-typedef struct s_sticker	t_sticker;
-
-struct						s_env
-{
-	int						nb_move;
-	t_move					*(move_all[10]);
-};
-
 struct						s_line
 {
 	t_side					side;
@@ -110,6 +103,13 @@ struct						s_move
 {
 	t_side					side;
 	t_mod					mod;
+};
+
+struct						s_env
+{
+	int						nb_move;
+	t_move					move_all[BUFF_MOVE];
+	t_env					*next;
 };
 
 struct						s_turn

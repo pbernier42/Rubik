@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:06:32 by pbernier          #+#    #+#             */
-/*   Updated: 2020/02/03 20:36:37 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/02/05 22:41:29 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 # include <stdarg.h>
 
 # include "../lib/libft/includes/libft.h"
+
+typedef struct s_env		t_env;
+extern t_env				env;
 
 # include "define.h"
 # include "variable.h"

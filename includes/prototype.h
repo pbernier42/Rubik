@@ -6,12 +6,15 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 17:22:23 by pbernier          #+#    #+#             */
-/*   Updated: 2020/02/03 20:50:55 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/02/05 22:41:33 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PROTOTYPE_H
 # define PROTOTYPE_H
+
+# include "rubik.h"
+
 //type
 //
 /*
@@ -63,6 +66,7 @@ t_binary	tbin_conv_tstickers(t_sticker bloc[3]);
 t_binary	tbin_conv_tsides(char ***cube, t_side side[3]);
 t_binary	tbin_conv_char(char **cube_side, t_side side);
 t_binary	tbin_conv_tab_tsides(t_side *side, short nb_side, t_binary binary);
+void		tab_tmove_conv_str(t_move *dst, int nb_move, char *str);
 
 /*
 ** utils/parsing.c
@@ -136,6 +140,7 @@ t_binary					stob(t_side *side, size_t nb_side, t_binary binary);
 size_t						byte_counter(t_binary binary, size_t nb);
 void						fill_enum(int tab[NB_ITER], int type, int nb, ...);
 void						fill_side_bin(t_side tab[6], t_binary binary);
+void						add_env(t_move *move, int nb_move);
 
 /*
 ** resolve.c
