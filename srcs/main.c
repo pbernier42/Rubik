@@ -31,10 +31,11 @@ int		main(int argc, char **argv)
 	add_env(moves, arg_number);
 	add_env(moves, arg_number);
 	ft_putendl("");
+
 	print_ins(env.move_all, env.nb_move);
 
 	//read_tab_tmove(cube, arg_number, moves);
-	while (1);
+	//while (1);
 	//instructions(cube, arg_number, argv[1]);
 	//read_tab_tmove(cube, arg_count, env.buff);
 	resolve(cube);

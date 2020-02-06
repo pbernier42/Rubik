@@ -63,6 +63,14 @@
 # define SHORT_IS_MOD(mod)				index_string(mod, STRING_INITIALS_MOD)
 # define SHORT_ABSOLUTE(number)			((number < 0) ? (number * -1) : (number))
 
+# define INDEX_CORNER(tcolor)				index_tab_tstickers(\
+												tbin_conv_tsides(cube, TAB_TSIDES_COLOR_ALL(tcolor)),\
+												TAB_TSTICKERS_CORNER, 8)
+# define INDEX_EDGE(tcolor_one, tcolor_two)	index_tab_tstickers(\
+												tbin_conv_tsides(cube, TAB_TSIDES_COLOR_TWO(tcolor_one, tcolor_two)),\
+												TAB_TSTICKERS_EDGE, 8)
+
+
 /*
 ** TSTICKER
 */
@@ -151,6 +159,7 @@
 
 # define TSIDE_AROUND(taround, tside)	TAB_TLINE_AROUND(tside)[taround].side
 
+# define TSIDE_CORNER(index, i)			TAB_TSTICKERS_CORNER[index][i].side
 # define TSIDE_SIDE						side[0]
 # define TSIDE_SAVE						side[1]
 
@@ -170,12 +179,8 @@
 # define BIN_CORNER						(binary[1])
 # define BIN_CORNER_LESS				(binary[2])
 # define BIN_EDGE						(binary[3])
-# define BIN_EDGE_EXTREMITY				(binary[4])
-
-# define BIN_UPDATE_CUBE 				(binary_update[0])
-# define BIN_UPDATE_CORNER				(binary_update[1])
-# define BIN_UPDATE_CORNER_LESS			(binary_update[2])
-# define BIN_UPDATE_EDGE				(binary_update[3])
+# define BIN_EDGE_PRIM					(binary[4])
+# define BIN_EDGE_EXTREMITY				(binary[5])
 
 # define TAB_BIN_EDGE_OPPOSITE			(edge[0])
 # define TAB_BIN_EDGE_NEAR				(edge[1])
