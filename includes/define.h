@@ -24,6 +24,13 @@
 # define DISPLAY(cube, side_null)		display(cube, side_null, (int[12]){7, 4, 7, 7, 3, 7, 5, 1, 2, 7, 6, 7})
 # define BUFF_MOVE						15
 
+# define STRING_SIDE(i)					((char*[side_null + 1]){\
+											"front", "right", "up", "back", "left", "down", "null"})[i]
+# define STRING_MOD(i)					((char*[mod_null + 1]){\
+											"twice", "reverse", "null"})[i]
+# define STRING_AROUND(i)				((char*[around_null + 1]){\
+											"right", "down", "left", "up", "null"})[i]
+
 /*
 ** NUMBER
 */
@@ -192,8 +199,8 @@
 ** TAROUND
 */
 
-# define TAROUND_ROTATE(taround, nb)	((taround + nb) % 3)
-# define TAROUND_ETATOR(taround, nb)	(SHORT_ABSOLUTE(taround - nb) % 3)
+# define TAROUND_ROTATE(taround, nb)	((taround + nb) % 4)
+# define TAROUND_ETATOR(taround, nb)	(SHORT_ABSOLUTE(taround - nb) % 4)
 
 /*
 ** GROUPS

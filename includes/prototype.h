@@ -15,8 +15,6 @@
 
 # include "rubik.h"
 
-//type
-//
 /*
 ** turn.c
 */
