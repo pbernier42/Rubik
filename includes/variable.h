@@ -15,7 +15,6 @@
 
 # include "rubik.h"
 
-
 typedef struct s_line		t_line;
 typedef struct s_move		t_move;
 typedef struct s_turn		t_turn;
