@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:04:51 by pbernier          #+#    #+#             */
-/*   Updated: 2020/02/06 16:58:37 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/02/06 19:56:09 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int		main(int argc, char **argv)
 {
 	int			arg_number;
 	char		***cube;
+	t_move		*tmp;
 	t_move		moves[BUFF_MOVE];
 
 	env.nb_move = 0;
@@ -27,17 +28,18 @@ int		main(int argc, char **argv)
 		error(-1, "error");
 	cube = init_tab();
 	tab_tmove_conv_str(moves, arg_number, argv[1]);
-
-	print_ins(moves, arg_number);
 	add_env(moves, arg_number);
-	add_env(moves, arg_number);
-	ft_putendl("");
+	tmp = tab_tmove_conv_env();
 	print_env();
-
+	erase_env();
+	printf("\n\n\n\n");
+	print_ins(tmp, env.nb_move);
+	env.nb_move = refine(tmp, env.nb_move);
+	print_ins(tmp, env.nb_move);
 	//read_tab_tmove(cube, arg_number, moves);
 	//instructions(cube, arg_number, argv[1]);
 	//read_tab_tmove(cube, arg_count, env.buff);
-	resolve(cube);
+	//resolve(cube);
 	//ungly_display(cube);
 	//refine(args, arg_number);
 	//DISPLAY(cube, side_null);

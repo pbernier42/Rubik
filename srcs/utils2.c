@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 20:41:21 by rlecart           #+#    #+#             */
-/*   Updated: 2020/02/06 17:06:37 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/02/06 19:52:40 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int			pdebug(void)
 
 void		print_env(void)
 {
-	int		i;
-	int		j;
+	size_t	i;
+	size_t	j;
 	t_env	*h;
 
 	i = 0;
@@ -41,10 +41,12 @@ void		print_env(void)
 			h = h->next;
 		ft_putchar(STRING_INITIALS_SIDE[h->move_all[j].side]);
 		ft_putchar(STRING_INITIALS_MOD[h->move_all[j].mod]);
-		ft_putstr(" ");
+		if (i + 1 != env.nb_move)
+			ft_putchar(' ');
 		i++;
 		j++;
 	}
+	ft_putchar('\n');
 }
 
 void		print_ins(t_move *tab, size_t nb)
@@ -58,6 +60,8 @@ void		print_ins(t_move *tab, size_t nb)
 	{
 		ft_putchar(STRING_INITIALS_SIDE[tab[i].side]);
 		ft_putchar(STRING_INITIALS_MOD[tab[i].mod]);
-		ft_putstr(" ");
+		if (i + 1 != nb)
+		ft_putchar(' ');
 	}
+	ft_putchar('\n');
 }

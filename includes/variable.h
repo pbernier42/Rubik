@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 18:05:25 by pbernier          #+#    #+#             */
-/*   Updated: 2020/02/06 16:20:18 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/02/06 17:30:16 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ struct						s_move
 
 struct						s_env
 {
-	int						nb_move;
+	size_t					nb_move;
 	t_move					move_all[BUFF_MOVE];
 	t_env					*next;
 };
