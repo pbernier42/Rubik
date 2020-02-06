@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 17:22:23 by pbernier          #+#    #+#             */
-/*   Updated: 2020/02/05 22:41:33 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/02/06 16:56:07 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ t_binary					combine_binary(t_binary *tab, short size_tab);
 */
 
 void						print_ins(t_move *tab, size_t nb);
+void						print_env(void);
 int							pdebug(void);
 int							mod_range(int a, int b, int n);
 t_binary					isolate(t_side side, t_binary binary);

@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:04:51 by pbernier          #+#    #+#             */
-/*   Updated: 2020/02/05 22:44:09 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/02/06 16:58:37 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int		main(int argc, char **argv)
 	t_move		moves[BUFF_MOVE];
 
 	env.nb_move = 0;
+	env.next = NULL;
 	arg_number = 0;
 	if (argc != 2 || !(arg_number = arg_count(argv[1])) || arg_number > BUFF_MOVE)
 		error(-1, "error");
@@ -31,10 +32,9 @@ int		main(int argc, char **argv)
 	add_env(moves, arg_number);
 	add_env(moves, arg_number);
 	ft_putendl("");
-	print_ins(env.move_all, env.nb_move);
+	print_env();
 
 	//read_tab_tmove(cube, arg_number, moves);
-	while (1);
 	//instructions(cube, arg_number, argv[1]);
 	//read_tab_tmove(cube, arg_count, env.buff);
 	resolve(cube);
