@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 20:41:21 by rlecart           #+#    #+#             */
-/*   Updated: 2020/02/05 22:22:40 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/02/06 17:06:37 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,38 @@ int			pdebug(void)
 	return (1);
 }
 
+void		print_env(void)
+{
+	int		i;
+	int		j;
+	t_env	*h;
+
+	i = 0;
+	j = 0;
+	h = &env;
+	while (i < env.nb_move)
+	{
+		if (!(i % BUFF_MOVE) && i && !(j = 0))
+			h = h->next;
+		ft_putchar(STRING_INITIALS_SIDE[h->move_all[j].side]);
+		ft_putchar(STRING_INITIALS_MOD[h->move_all[j].mod]);
+		ft_putstr(" ");
+		i++;
+		j++;
+	}
+}
+
 void		print_ins(t_move *tab, size_t nb)
 {
 	size_t	i;
+	size_t	j;
 
 	i = -1;
+	j = 0;
 	while (++i < nb)
 	{
-		ft_putstr("tab[");
-		ft_putnbr(i);
-		ft_putstr("] = { ");
 		ft_putchar(STRING_INITIALS_SIDE[tab[i].side]);
-		ft_putstr(", ");
 		ft_putchar(STRING_INITIALS_MOD[tab[i].mod]);
-		ft_putstr(" }\n");
+		ft_putstr(" ");
 	}
 }

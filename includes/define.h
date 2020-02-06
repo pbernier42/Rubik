@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 18:06:51 by pbernier          #+#    #+#             */
-/*   Updated: 2020/02/05 22:27:59 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/02/06 16:18:18 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # define WITH_LETTER					1
 # define NB_ITER						5
 # define DISPLAY(cube, side_null)		display(cube, side_null, (int[12]){7, 4, 7, 7, 3, 7, 5, 1, 2, 7, 6, 7})
-# define BUFF_MOVE						10
+# define BUFF_MOVE						15
 
 # define STRING_SIDE(i)					((char*[side_null + 1]){\
 											"front", "right", "up", "back", "left", "down", "null"})[i]
