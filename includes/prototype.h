@@ -45,7 +45,7 @@ short		tab_tmove_edge_opposite(t_move move[NB_MOVE_MAX], t_binary bin_cube,
 short		tab_tmove_edge_middle(t_move move[NB_MOVE_MAX], short index_edge,
 				t_binary bin_corner);
 short		tab_tmove_edge_near(t_move move[NB_MOVE_MAX], t_binary binary[6]);
-short		tab_tmove_twist_edge(t_move move[NB_MOVE_MAX], t_binary	binary[6], t_binary edge);
+short		tab_tmove_twist_edge(t_move move[NB_MOVE_MAX], t_binary	binary[6], t_binary *edge);
 short		tab_tmove_edge_two(t_move move[NB_MOVE_MAX], t_binary binary[6],
 				short index_corner);
 

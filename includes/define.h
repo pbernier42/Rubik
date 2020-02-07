@@ -39,6 +39,7 @@
 
 # define I								i[0]
 # define J								i[1]
+# define K								i[2]
 
 # define NB_BYTE						i[1]
 # define NB_MOVE						i[1]
@@ -185,8 +186,10 @@
 # define TAB_BIN_EDGE_OPPOSITE			(edge[0])
 # define TAB_BIN_EDGE_NEAR				(edge[1])
 
-# define BIN_EDGES_NEAR					TAB_BIN_EDGE_NEAR[0] | TAB_BIN_EDGE_NEAR[1] | TAB_BIN_EDGE_NEAR[2]
-# define BIN_EDGES_OPPOSITE				TAB_BIN_EDGE_OPPOSITE[0] | TAB_BIN_EDGE_OPPOSITE[1] | TAB_BIN_EDGE_OPPOSITE[2]
+# define BIN_EDGES_NEAR					(TAB_BIN_EDGE_NEAR[0] | TAB_BIN_EDGE_NEAR[1] | TAB_BIN_EDGE_NEAR[2])
+# define BIN_EDGES_OPPOSITE				(TAB_BIN_EDGE_OPPOSITE[0] | TAB_BIN_EDGE_OPPOSITE[1] | TAB_BIN_EDGE_OPPOSITE[2])
+
+# define BIN_RIGHT_ANGLE				(BIN_CORNER | BIN_EDGE | BIN_EDGE_PRIM)
 
 # define TBIN_CONV_TSIDE(tside, tbin)	tbin_conv_tab_tsides(((t_side[1]){tside}), 1, tbin)
 
@@ -211,9 +214,11 @@
 ** GROUPS
 */
 
+
 # define ROTATE_CORNER_TO_EDGE			"F' L B"
 # define ROTATE_EDGE					"R' F D' F'"
 
+FT(GRP, side, rotate)
 # define TAB_STRING_GROUPS(i)				(char[grp_null][10]) \
 											{ \
 												ROTATE_CORNER_TO_EDGE, \

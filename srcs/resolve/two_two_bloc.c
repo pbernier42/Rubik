@@ -12,6 +12,47 @@
 
 #include <rubik.h>
 
+short		tab_tmove_right_angle(t_move move[NB_MOVE_MAX], t_binary binary[6],
+				t_side side_destination)
+{
+	short		i;
+	t_around	rotate;
+	t_side 		tab_side_edge[6];
+	t_binary	bin_origin;
+
+
+	bin(BIN_RIGHT_ANGLE);
+	TAB_TSIDE_NULL(tab_side_edge);
+	tab_tside_find_filled(tab_side_edge, BIN_RIGHT_ANGLE);
+	if (tab_side_edge[0] == side_destination)
+	 	return (0);
+
+	// bin_origin = TBIN_CONV_TSIDE(tab_side_edge[0], BIN_RIGHT_ANGLE);
+	// i = index_tab_tbin(bin_origin,
+	// 	(t_binary[4]){0b000001011, 0b000100110, 0b110100000, 0b011100000}, 4);
+	// rotate = around_right;
+	// while (rotate != around_null
+	// 	&& TSIDE_AROUND(rotate, tab_side_edge[0]) != side_destination)
+	// 	++rotate;
+	// if (rotate == around_null)
+	// 	return (copy_tab_tmove(move, (t_move[4]){
+	// 		{TSIDE_AROUND(TAROUND_ETATOR(around_down, i), side_reference), mod_reverse},
+	// 	{TSIDE_AROUND(TAROUND_ETATOR(around_right, i), side_reference), mod_reverse},
+	// 	{TSIDE_AROUND(TAROUND_ETATOR(around_down, i), side_reference), mod_null},
+	// 	{TSIDE_AROUND(TAROUND_ETATOR(around_right, i), side_reference), mod_null},
+	// 	{TSIDE_AROUND(TAROUND_ETATOR(around_down,  i), side_reference), mod_null});
+
+
+
+
+	bin(bin_origin);
+
+	return (0);
+	(void)move;
+	(void)binary;
+	(void)side_destination;
+}
+
 void		two_two_bloc(char ***cube, t_color corner[3])
 {
 	short		i[2];
@@ -35,7 +76,7 @@ void		two_two_bloc(char ***cube, t_color corner[3])
 	read_tab_tmove(cube, NB_MOVE, move);
 	tbin_update(cube, binary, corner,
 		(arg_edge | arg_corner_less | arg_cube_one));
-	tab_tmove_twist_edge(move, binary, BIN_EDGE);
+	tab_tmove_twist_edge(move, binary, &BIN_EDGE);
 	read_tab_tmove(cube, NB_MOVE, move);
 	I = INDEX_CORNER(corner);
 	bring_edge_opposite(cube, TAB_TSIDES_COLOR_TWO(corner[0], corner[2]), edge, I);
@@ -43,31 +84,17 @@ void		two_two_bloc(char ***cube, t_color corner[3])
 		(arg_corner | arg_edge | arg_edge_prim));
 	I = INDEX_CORNER(corner);
 	NB_MOVE = tab_tmove_edge_two(move, binary, I);
+	read_tab_tmove(cube, NB_MOVE, move);
 	tbin_update(cube, binary, corner,
 		(arg_corner_less | arg_edge_prim | arg_cube_one));
-	NB_MOVE = tab_tmove_twist_edge(move, binary, BIN_EDGE_PRIM);
+	NB_MOVE = tab_tmove_twist_edge(move, binary, &BIN_EDGE_PRIM);
+	read_tab_tmove(cube, NB_MOVE, move);
+	tbin_update(cube, binary, corner,
+		(arg_corner | arg_edge_prim | arg_edge | arg_cube_one));
 
-	//
-	// short		i;
-	// t_side 		tab_side_edge[6];
-	// t_binary	bin_problem;
-	bin((BIN_EDGE_PRIM | BIN_CORNER_LESS) & BIN_CUBE);
-	bin((BIN_EDGE | BIN_CORNER_LESS) & BIN_CUBE);
+	NB_MOVE = tab_tmove_right_angle(move, binary, (t_side)corner[0]);
 
-	if ((tside_find_biggest_weight((BIN_EDGE_PRIM | BIN_CORNER_LESS) & BIN_CUBE)) != side_null)
-		return ;
-	// bin((BIN_EDGE | BIN_CORNER_LESS) & BIN_CUBE);
-	// TAB_TSIDE_NULL(tab_side_edge);
-	// tab_tside_find_filled(tab_side_edge, (BIN_EDGE | BIN_CORNER_LESS) & BIN_CUBE);
-	// bin_problem = TBIN_CONV_TSIDE(tab_side_edge[0], (BIN_EDGE | BIN_CORNER_LESS) & BIN_CUBE);
-	// bin(bin_problem);
-	// i = index_tab_tbin(bin_problem, (t_binary[4]){0b000001000, 0b000000010, 0b000100000, 0b010000000}, 4);
-	// return (
-	// 	copy_tab_tmove(move, (t_move[NB_MOVE_MAX]){
-	// 		{TSIDE_AROUND(TAROUND_ETATOR(around_right, i), tab_side_edge[0]), mod_reverse},
-	// 		{tab_side_edge[0], mod_null},
-	// 		{TSIDE_AROUND(TAROUND_ETATOR(around_down, i), tab_side_edge[0]), mod_reverse},
-	// 		TMOVE_PAD_TREE}));
+
 }
 
 short		bring_edge_opposite(char ***cube, t_side color[3],
@@ -198,28 +225,37 @@ short		tab_tmove_edge_near(t_move move[NB_MOVE_MAX], t_binary binary[5])
 	return (6);
 }
 
-short		tab_tmove_twist_edge(t_move move[NB_MOVE_MAX], t_binary	binary[5], t_binary edge)
+short		tab_tmove_twist_edge(t_move move[NB_MOVE_MAX], t_binary	binary[5], t_binary *edge)
 {
-	short		i;
+	short		i[3];
 	t_side 		tab_side_edge[6];
 	t_binary	bin_problem;
 
-	if ((tside_find_biggest_weight((edge | BIN_CORNER_LESS) & BIN_CUBE)) != side_null)
+	if ((tside_find_biggest_weight((*edge | BIN_CORNER_LESS) & BIN_CUBE)) != side_null)
 		return (0);
 	TAB_TSIDE_NULL(tab_side_edge);
-	tab_tside_find_filled(tab_side_edge, (edge | BIN_CORNER_LESS) & BIN_CUBE);
-	bin_problem = TBIN_CONV_TSIDE(tab_side_edge[0], (edge | BIN_CORNER_LESS) & BIN_CUBE);
-	i = index_tab_tbin(bin_problem, (t_binary[4]){0b000001000, 0b000000010, 0b000100000, 0b010000000}, 4);
-
-	bin(BIN_CORNER_LESS | BIN_CORNER);
-
-	copy_tab_tmove(move, (t_move[3]){
-		{TSIDE_AROUND(TAROUND_ETATOR(around_right, i), tab_side_edge[0]), mod_reverse},
-		{tab_side_edge[0], mod_null},
-		{TSIDE_AROUND(TAROUND_ETATOR(around_down, i), tab_side_edge[0]), mod_reverse}});
-
-	return (
-		3);
+	tab_tside_find_filled(tab_side_edge, (*edge | BIN_CORNER_LESS) & BIN_CUBE);
+	bin_problem = TBIN_CONV_TSIDE(tab_side_edge[0], (*edge | BIN_CORNER_LESS) & BIN_CUBE);
+	I = index_tab_tbin(bin_problem, (t_binary[4]){0b000001000, 0b000000010, 0b000100000, 0b010000000}, 4);
+	J = -1;
+	if (edge ==  &BIN_EDGE_PRIM)
+	{
+		K = index_tab_tbin(bin_problem | TBIN_CONV_TSIDE(tab_side_edge[0], (BIN_EDGE | BIN_CORNER_LESS)),
+				(t_binary[8]){
+					0b000001011, 0b000100110, 0b110100000, 0b011001000,
+					0b011001000, 0b000001011, 0b000100110, 0b110100000}, 8);
+		move[++J] = (K < 4) ?
+			(t_move){TSIDE_AROUND(TAROUND_ETATOR(around_down, K % 4), tab_side_edge[0]), mod_twice} :
+			(t_move){TSIDE_AROUND(TAROUND_ETATOR(around_up, K % 4), tab_side_edge[0]), mod_twice};
+	}
+	move[++J] = (t_move){TSIDE_AROUND(TAROUND_ETATOR(around_right, I), tab_side_edge[0]), mod_reverse};
+	move[++J] = (t_move){tab_side_edge[0], mod_null};
+	move[++J] = (t_move){TSIDE_AROUND(TAROUND_ETATOR(around_down, I), tab_side_edge[0]), mod_reverse};
+	if (edge ==  &BIN_EDGE_PRIM)
+		move[++J] = (K < 4) ?
+			(t_move){TSIDE_AROUND(TAROUND_ETATOR(around_down, K % 4), tab_side_edge[0]), mod_reverse} :
+			(t_move){TSIDE_AROUND(TAROUND_ETATOR(around_up, K % 4), tab_side_edge[0]), mod_twice};
+	return (J);
 }
 
 short		tab_tmove_edge_two(t_move move[NB_MOVE_MAX], t_binary binary[6],
