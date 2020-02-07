@@ -218,7 +218,6 @@
 # define ROTATE_CORNER_TO_EDGE			"F' L B"
 # define ROTATE_EDGE					"R' F D' F'"
 
-FT(GRP, side, rotate)
 # define TAB_STRING_GROUPS(i)				(char[grp_null][10]) \
 											{ \
 												ROTATE_CORNER_TO_EDGE, \
