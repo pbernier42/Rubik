@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 17:51:47 by rlecart           #+#    #+#             */
-/*   Updated: 2020/01/24 17:03:33 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/02/06 20:06:01 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_move	stash_ins(t_move *tmp, size_t *count, size_t *j)
 	return (ret);
 }
 
-void	refine(t_move *tab, size_t nb)
+size_t	refine(t_move *tab, size_t nb)
 {
 	size_t	i;
 	size_t	j;
@@ -58,7 +58,7 @@ void	refine(t_move *tab, size_t nb)
 	{
 		if (i > 0)
 		{
-			if (i < nb && !(mod_range(tmp[sw].side, tab[i].side, 3)) && pdebug() && tab[i].side != tmp[sw].side)
+			if (i < nb && !(mod_range(tmp[sw].side, tab[i].side, 3)) && tab[i].side != tmp[sw].side)
 				sw = (sw + 1) % 2;
 			else if ((i < nb && tab[i].side != tmp[sw].side) || i == nb)
 			{
@@ -80,5 +80,7 @@ void	refine(t_move *tab, size_t nb)
 			count[sw] += tab[i].mod + 2;
 		i++;
 	}
-	print_ins(ret, j);
+	//printf("%lu\n", j);
+	//print_ins(ret, j);
+	return (j);
 }

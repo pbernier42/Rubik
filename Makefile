@@ -30,8 +30,10 @@ SRC_FIlE		=	main.c \
 					refine.c \
 					utils2.c \
 					utils3.c \
+					utils4.c \
 					utils/find.c \
 					utils/converter.c \
+					utils/converter2.c \
 					utils/parsing.c \
 					turn.c
 

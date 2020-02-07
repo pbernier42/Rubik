@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 17:22:23 by pbernier          #+#    #+#             */
-/*   Updated: 2020/02/06 16:56:07 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/02/06 19:42:19 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,12 @@ t_binary	tbin_conv_tab_tsides(t_side *side, short nb_side, t_binary binary);
 void		tab_tmove_conv_str(t_move *dst, int nb_move, char *str);
 
 /*
+** utils/converter2.c
+*/
+
+t_move		*tab_tmove_conv_env(void);
+
+/*
 ** utils/parsing.c
 */
 
@@ -104,7 +110,7 @@ char						***init_tab(void);
 ** refine.c
 */
 
-void						refine(t_move *tab, size_t nb);
+size_t						refine(t_move *tab, size_t nb);
 
 /*
 ** main.c
@@ -143,6 +149,12 @@ size_t						byte_counter(t_binary binary, size_t nb);
 void						fill_enum(int tab[NB_ITER], int type, int nb, ...);
 void						fill_side_bin(t_side tab[6], t_binary binary);
 void						add_env(t_move *move, int nb_move);
+
+/*
+** utils4.c
+*/
+
+void						erase_env(void);
 
 /*
 ** resolve.c
