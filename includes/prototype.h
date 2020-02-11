@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 17:22:23 by pbernier          #+#    #+#             */
-/*   Updated: 2020/02/06 19:42:19 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/02/11 17:11:45 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void		tab_tmove_conv_str(t_move *dst, int nb_move, char *str);
 ** utils/converter2.c
 */
 
-t_move		*tab_tmove_conv_env(void);
+t_move		*tab_tmove_conv_env(int *nb_move);
 
 /*
 ** utils/parsing.c

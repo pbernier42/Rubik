@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:04:51 by pbernier          #+#    #+#             */
-/*   Updated: 2020/02/06 19:56:09 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/02/11 17:12:20 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		main(int argc, char **argv)
 	cube = init_tab();
 	tab_tmove_conv_str(moves, arg_number, argv[1]);
 	add_env(moves, arg_number);
-	tmp = tab_tmove_conv_env();
+	tmp = tab_tmove_conv_env(&arg_number);
 	print_env();
 	erase_env();
 	//printf("\n\n\n\n");
@@ -39,9 +39,9 @@ int		main(int argc, char **argv)
 	//read_tab_tmove(cube, arg_number, moves);
 	//instructions(cube, arg_number, argv[1]);
 	//read_tab_tmove(cube, arg_count, env.buff);
-	resolve(cube);
+	//resolve(cube);
 	//ungly_display(cube);
-	//refine(args, arg_number);
+	refine(tmp, arg_number);
 	//DISPLAY(cube, side_null);
 	return (0);
 }
