@@ -12,6 +12,34 @@
 
 # include <rubik.h>
 
+size_t	sizet_count_arg(char *argv)
+{
+	size_t	len;
+	size_t	count;
+
+	len = sizet_skip_space(0, argv);
+	count = 0;
+	while (argv[len])
+	{
+		if (SHORT_IS_SIDE(argv[len]) == -1)
+			return (0);
+		if (!argv[++len])
+			return (++count);
+		if (SHORT_IS_MOD(argv[len]) == -1 && SHORT_IS_SPACE(argv[len]) == -1)
+			return (0);
+		len = sizet_skip_space(++len, argv);
+		++count;
+	}
+	return (count);
+}
+
+size_t	sizet_skip_space(size_t len, char *string)
+{
+	while (string && SHORT_IS_SPACE(string[len]) != -1)
+		++len;
+	return (len);
+}
+
 short	index_tab_tside(t_side side, t_side *tab_side, short size_tab)
 {
 	short	i;
@@ -51,7 +79,7 @@ short	index_tab_tbin(t_binary binary, t_binary *tab_binary, short size_tab)
 	return (-1);
 }
 
-short	index_string(char c, char *string)
+short	index_str(char c, char *string)
 {
 	short	len;
 
@@ -61,7 +89,7 @@ short	index_string(char c, char *string)
 	return ((string[len]) ? len : -1);
 }
 
-short	nb_byte_tbinary(t_binary binary, short spectrum)
+short	nb_byte_tbin(t_binary binary, short spectrum)
 {
 	short		i[2];
 
@@ -74,36 +102,4 @@ short	nb_byte_tbinary(t_binary binary, short spectrum)
 		binary = binary >> 1;
 	}
 	return (NB_BYTE);
-}
-
-short	copy_tab_tmove(t_move dest[NB_MOVE_MAX], t_move from[NB_MOVE_MAX])
-{
-	short	i[2];
-
-	//printf("?\n");
-	I = -1;
-	NB_MOVE = 0;
-	while (++I < NB_MOVE_MAX)
-	{
-		if (from[I].side != side_null)
-			NB_MOVE = (I + 1);
-		dest[I].side = from[I].side;
-		dest[I].mod = from[I].mod;
-	}
-	return (NB_MOVE);
-}
-
-short	copy_tab_tside(t_side dest[side_null], t_side from[side_null])
-{
-	short	i[2];
-
-	I = -1;
-	NB_SIDE = 0;
-	while (++I < side_null)
-	{
-		if (from[I] != side_null)
-			NB_SIDE = (I + 1);
-		dest[I] = from[I];
-	}
-	return (NB_SIDE);
 }

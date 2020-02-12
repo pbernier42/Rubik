@@ -56,7 +56,7 @@ t_side		tside_find_biggest_weight(t_binary binary)
 	same = false;
 	while (TSIDE_SIDE != side_null)
 	{
-		I = nb_byte_tbinary(TBIN_CONV_TSIDE(TSIDE_SIDE, binary), 9);
+		I = nb_byte_tbin(TBIN_CONV_TSIDE(TSIDE_SIDE, binary), 9);
 		if (I > NB_BYTE)
 		{
 			same = false;

@@ -38,14 +38,14 @@ t_move	stash_ins(t_move *tmp, size_t *count, size_t *j)
 	return (ret);
 }
 
-size_t	refine(t_move *tab, size_t nb)
+void	refine(t_move *tab, size_t *nb)
 {
 	size_t	i;
 	size_t	j;
 	int		sw;
 	size_t	count[2];
 	t_move	tmp[2];
-	t_move	ret[nb];
+	t_move	ret[*nb];
 
 	i = 0;
 	j = 0;
@@ -54,13 +54,13 @@ size_t	refine(t_move *tab, size_t nb)
 	tmp[1].side = side_null;
 	count[0] = 0;
 	count[1] = 0;
-	while (tab && i <= nb)
+	while (tab && i <= *nb)
 	{
 		if (i > 0)
 		{
-			if (i < nb && !(mod_range(tmp[sw].side, tab[i].side, 3)) && tab[i].side != tmp[sw].side)
+			if (i < *nb && !(NB_RANGE_SUB(tmp[sw].side, tab[i].side, 3)) && tab[i].side != tmp[sw].side)
 				sw = (sw + 1) % 2;
-			else if ((i < nb && tab[i].side != tmp[sw].side) || i == nb)
+			else if ((i < *nb && tab[i].side != tmp[sw].side) || i == *nb)
 			{
 				ret[j] = stash_ins(&tmp[sw], &count[sw], &j);
 				if (tmp[(sw + 1) % 2].side != side_null)
@@ -69,7 +69,7 @@ size_t	refine(t_move *tab, size_t nb)
 					ret[j] = stash_ins(&tmp[sw], &count[sw], &j);
 				}
 			}
-			if (i == nb)
+			if (i == *nb)
 				break ;
 		}
 		if (tmp[sw].side == side_null)
@@ -81,6 +81,5 @@ size_t	refine(t_move *tab, size_t nb)
 		i++;
 	}
 	//stash_ret(ret, );
-	print_ins(ret, j);
-	return (j);
+	*nb = j;
 }

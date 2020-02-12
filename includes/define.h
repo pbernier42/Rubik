@@ -24,11 +24,11 @@
 # define DISPLAY(cube, side_null)		display(cube, side_null, (int[12]){7, 4, 7, 7, 3, 7, 5, 1, 2, 7, 6, 7})
 # define BUFF_MOVE						50
 
-# define STRING_SIDE(i)					((char*[side_null + 1]){\
+# define STR_SIDE(i)					((char*[side_null + 1]){\
 											"front", "right", "up", "back", "left", "down", "null"})[i]
-# define STRING_MOD(i)					((char*[mod_null + 1]){\
+# define STR_MOD(i)					((char*[mod_null + 1]){\
 											"twice", "reverse", "null"})[i]
-# define STRING_AROUND(i)				((char*[around_null + 1]){\
+# define STR_AROUND(i)				((char*[around_null + 1]){\
 											"right", "down", "left", "up", "null"})[i]
 
 /*
@@ -46,22 +46,23 @@
 # define NB_SIDE						i[1]
 
 # define NB_TURN(tmod)					((int[3]){2, 3, 1})[tmod]
+# define NB_RANGE_SUB(a, b, n)			(((a > b) ? (a - b) : (b - a)) % n)
 
 /*
 ** STRING
 */
 
-# define STRING_INITIALS_SIDE			((char[7]){"FRUBLD"})
-# define STRING_INITIALS_MOD			((char[3]){"2'"})
-# define STRING_INITIALS_SPACE			((char[6]){" \t\r\v\f\0"})
+# define STR_INITIALS_SIDE			((char[7]){"FRUBLD"})
+# define STR_INITIALS_MOD			((char[3]){"2'"})
+# define STR_INITIALS_SPACE			((char[6]){" \t\r\v\f\0"})
 
 /*
 ** SHORT
 */
 
-# define SHORT_IS_SPACE(space)			index_string(space, STRING_INITIALS_SPACE)
-# define SHORT_IS_SIDE(side)			index_string(side, STRING_INITIALS_SIDE)
-# define SHORT_IS_MOD(mod)				index_string(mod, STRING_INITIALS_MOD)
+# define SHORT_IS_SPACE(space)			index_str(space, STR_INITIALS_SPACE)
+# define SHORT_IS_SIDE(side)			index_str(side, STR_INITIALS_SIDE)
+# define SHORT_IS_MOD(mod)				index_str(mod, STR_INITIALS_MOD)
 # define SHORT_ABSOLUTE(number)			((number < 0) ? (number * -1) : (number))
 
 # define INDEX_CORNER(tcolor)				index_tab_tstickers(\
@@ -164,6 +165,8 @@
 # define TSIDE_SIDE						side[0]
 # define TSIDE_SAVE						side[1]
 
+# define TSIDE_BIGGEST					tab_side_edge[0]
+
 # define TSIDE_PAD_SIX					side_null, side_null, side_null, side_null, side_null, side_null
 
 # define TAB_TSIDE_NULL(tab_tside)		copy_tab_tside(tab_tside, ((t_side[side_null]){TSIDE_PAD_SIX}))
@@ -182,6 +185,9 @@
 # define BIN_EDGE						(binary[3])
 # define BIN_EDGE_PRIM					(binary[4])
 # define BIN_EDGE_EXTREMITY				(binary[5])
+
+# define BIN_ORIGIN						(binary_angle[0])
+# define BIN_LAYER						(binary_angle[1])
 
 # define TAB_BIN_EDGE_OPPOSITE			(edge[0])
 # define TAB_BIN_EDGE_NEAR				(edge[1])
@@ -218,10 +224,10 @@
 # define ROTATE_CORNER_TO_EDGE			"F' L B"
 # define ROTATE_EDGE					"R' F D' F'"
 
-# define TAB_STRING_GROUPS(i)				(char[grp_null][10]) \
-											{ \
-												ROTATE_CORNER_TO_EDGE, \
-												ROTATE_EDGE \
-											}[i]
+# define TAB_STR_GROUPS(i)				(char[grp_null][10]) \
+										{ \
+											ROTATE_CORNER_TO_EDGE, \
+											ROTATE_EDGE \
+										}[i]
 
 #endif

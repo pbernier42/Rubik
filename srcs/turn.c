@@ -21,9 +21,10 @@ short	read_tab_tmove(char ***cube, int nb_move, t_move *move)
 	{
 		if (move[i].side == side_null)
 			return (i);
-		print_ins((t_move[1]){move[i]}, 1);
+		// print_ins((t_move[1]){move[i]}, 1);
 		turn_modifier(tturn_conv_tside(cube, move[i].side), move[i].mod);
 	}
+	//add
 	return (i);
 }
 
@@ -31,7 +32,6 @@ t_turn	tturn_conv_tside(char ***cube, t_side side)
 {
 	t_turn		turn;
 
-	//printf("side = [%d]\n", side);
 	tab_char_find_around(turn.right, cube, TAB_TLINE_AROUND(side)[around_right]);
 	tab_char_find_around(turn.down, cube, TAB_TLINE_AROUND(side)[around_down]);
 	tab_char_find_around(turn.left, cube, TAB_TLINE_AROUND(side)[around_left]);
@@ -52,7 +52,6 @@ void	turn_modifier(t_turn turn, t_mod mod)
 	short	i;
 
 	i = -1;
-	//printf("mod  = [%d]\n\n", mod);
 	while (++i < NB_TURN(mod))
 		turn_once(turn);
 }

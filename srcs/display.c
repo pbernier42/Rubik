@@ -68,7 +68,7 @@ void	display(char ***tab, int face, int cel[12])
 					ft_putchar(' ');
 				else if (face == side_null || (face != side_null && tmp[0] - 1 == face))
 					putchar_color(tmp[2], col + (tmp[1] *
-						find_col(tmp[2], STRING_INITIALS_SIDE)), tmp[1]);
+						find_col(tmp[2], STR_INITIALS_SIDE)), tmp[1]);
 			}
 			if ((face == side_null && j % 3 == 2) || (face != side_null && face == tmp[0] - 1))
 				ft_putchar('\n');

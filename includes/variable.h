@@ -23,6 +23,8 @@ typedef struct s_sticker	t_sticker;
 typedef unsigned long long	t_binary;
 
 typedef enum e_argument		t_argument;
+typedef enum e_arg_bin		t_arg_bin;
+
 typedef enum e_group		t_group;
 typedef enum e_side			t_side;
 typedef enum e_color		t_color;
@@ -33,6 +35,7 @@ typedef enum e_around		t_around;
 ** enums
 */
 
+//paranm!
 enum						e_argument
 {
 	arg_cube_all =		0b0000001,
@@ -43,6 +46,24 @@ enum						e_argument
 	arg_edge_prim =		0b0100000,
 	arg_cube_one =		0b1000000
 };
+
+// enum						e_argument
+// {
+// 	arg_cube =	0
+// 	arg_corner = 1
+// 	arg_edge = 2
+// 	arg_edge_prim = 3
+// };
+//
+//
+// enum						e_arg_bin
+// {
+// 	arg_bin_cube = 0b0000 0000 0000 1000,
+// 	arg_bin_corner = 0b0000 0000 1000 0000,
+// 	arg_bin_edge = 0b0000 1000 0000 0000,
+// 	arg_bin_edge_prim = 0b1000 0000 0000 0000
+// };
+
 
 enum						e_group
 {

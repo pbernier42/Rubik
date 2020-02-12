@@ -177,3 +177,78 @@ void		two_two_bloc(char ***cube, t_color corner[3])
 
 
 //# define SEL_SIDE	(side_len[1])
+
+// void	instructions(char ***cube, int arg_count, char *argv)
+// {
+// 	size_t		len;
+// 	int			count;
+// 	t_move		instruction[arg_count];
+//
+// 	len = skip_space(0, argv);
+// 	count = 0;
+// 	while (count < arg_count)
+// 	{
+// 		instruction[count++] = arg_instruction(
+// 			(char[2]){argv[len], argv[len + 1]});
+// 		len += 2;
+// 		len = skip_space(len, argv);
+// 		//printf("[%d] - [%d]\n", instruction[count - 1].side, instruction[count - 1].mod);
+// 	}
+// 	read_tab_tmove(cube, count, instruction);
+// 	(void)cube;
+// 	//refine(instruction, arg_count);
+// 	// t_binary	b;
+// 	// t_binary	b2;
+// 	// t_side		tab[6];
+// 	// t_side		s[3] = {instruction[0].side, instruction[1].side, instruction[2].side};
+// 	// b = bloc_binary(cube, s);
+// 	// bin(b);
+// 	// b2 = stob(s, 3, b);
+// 	// bin(b2);
+// 	// fill_side_bin(tab, b);
+// 	// int		i = -1;
+// 	// while (++i < 6)
+// 	// 	printf("tab[%d] = %d\n", i, tab[i]);
+// }
+
+// void	fill_enum(int tab[NB_ITER], int type, int nb, ...)
+// {
+// 	int		i;
+// 	va_list	ap;
+//
+// 	i = -1;
+// 	ft_memset(tab, type, NB_ITER);
+// 	va_start(ap, nb);
+// 	while (++i < nb)
+// 		tab[i] = va_arg(ap, int);
+// 	va_end(ap);
+// }
+
+// void 	ungly_display(char ***cube)
+// {
+// 	printf("          [%c][%c][%c]    \n", cube[side_back][0][0], cube[side_back][0][1], cube[side_back][0][2]);
+// 	printf("          [%c][%c][%c]    \n", cube[side_back][1][0], cube[side_back][1][1], cube[side_back][1][2]);
+// 	printf("          [%c][%c][%c]    \n\n", cube[side_back][2][0], cube[side_back][2][1], cube[side_back][2][2]);
+// 	printf("          [%c][%c][%c]    \n", cube[side_up][0][0], cube[side_up][0][1], cube[side_up][0][2]);
+// 	printf("          [%c][%c][%c]    \n", cube[side_up][1][0], cube[side_up][1][1], cube[side_up][1][2]);
+// 	printf("          [%c][%c][%c]    \n\n", cube[side_up][2][0], cube[side_up][2][1], cube[side_up][2][2]);
+// 	printf("[%c][%c][%c] [%c][%c][%c] [%c][%c][%c]\n", cube[side_left][0][0], cube[side_left][0][1], cube[side_left][0][2], cube[side_front][0][0], cube[side_front][0][1], cube[side_front][0][2], cube[side_right][0][0], cube[side_right][0][1], cube[side_right][0][2]);
+// 	printf("[%c][%c][%c] [%c][%c][%c] [%c][%c][%c]\n", cube[side_left][1][0], cube[side_left][1][1], cube[side_left][1][2], cube[side_front][1][0], cube[side_front][1][1], cube[side_front][1][2], cube[side_right][1][0], cube[side_right][1][1], cube[side_right][1][2]);
+// 	printf("[%c][%c][%c] [%c][%c][%c] [%c][%c][%c]\n\n", cube[side_left][2][0], cube[side_left][2][1], cube[side_left][2][2], cube[side_front][2][0], cube[side_front][2][1], cube[side_front][2][2], cube[side_right][2][0], cube[side_right][2][1], cube[side_right][2][2]);
+// 	printf("          [%c][%c][%c]    \n", cube[side_down][0][0], cube[side_down][0][1], cube[side_down][0][2]);
+// 	printf("          [%c][%c][%c]    \n", cube[side_down][1][0], cube[side_down][1][1], cube[side_down][1][2]);
+// 	printf("          [%c][%c][%c]    \n", cube[side_down][2][0], cube[side_down][2][1], cube[side_down][2][2]);
+// 	// printf("\n");
+// 	// printf("          [%c][%c][%c]    \n", cube[side_null][0][0], cube[side_null][0][1], cube[side_null][0][2]);
+// 	// printf("          [%c][%c][%c]    \n", cube[side_null][1][0], cube[side_null][1][1], cube[side_null][1][2]);
+// 	// printf("          [%c][%c][%c]    \n", cube[side_null][2][0], cube[side_null][2][1], cube[side_null][2][2]);
+// }
+
+// void	*better_memset(void *s, int c, size_t len, size_t byte)
+// {
+// 	while (len--)
+// 	{
+// 		((char*)s)[len * byte] = c;
+// 	}
+// 	return (s);
+// }

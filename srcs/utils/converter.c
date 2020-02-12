@@ -69,7 +69,7 @@ t_binary	tbin_conv_char(char **cube_side, t_side side)
 		while (++COO_X != 3)
 		{
 			binary = binary << 1;
-			if (cube_side[COO_Y][COO_X] == STRING_INITIALS_SIDE[side])
+			if (cube_side[COO_Y][COO_X] == STR_INITIALS_SIDE[side])
 				++binary;
 		}
 	}
@@ -96,13 +96,27 @@ void	tab_tmove_conv_str(t_move *dst, int nb_move, char *str)
 	size_t		len;
 	int			count;
 
-	len = skip_space(0, str);
+	len = sizet_skip_space(0, str);
 	count = 0;
 	while (count < nb_move)
 	{
-		dst[count++] = arg_instruction((char[2]){str[len], str[len + 1]});
+		dst[count++] = tmove_conv_char((char[2]){str[len], str[len + 1]});
 		len += 2;
-		len = skip_space(len, str);
-		//printf("[%d] - [%d]\n", instruction[count - 1].side, instruction[count - 1].mod);
+		len = sizet_skip_space(len, str);
 	}
+}
+
+t_move	tmove_conv_char(char arg[2])
+{
+	t_move	ret;
+
+	ret.side = side_front;
+	while (ret.side != side_null && arg[0] != STR_INITIALS_SIDE[ret.side])
+		++ret.side;
+	if (!arg[1] || SHORT_IS_SPACE(arg[1]) != -1)
+		return ((t_move){ret.side, mod_null});
+	ret.mod = mod_twice;
+	while (ret.mod != mod_null && arg[1] != STR_INITIALS_MOD[ret.mod])
+		++ret.mod;
+	return (ret);
 }

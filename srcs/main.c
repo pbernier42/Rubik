@@ -16,105 +16,108 @@ t_env	env;
 
 int		main(int argc, char **argv)
 {
-	int			arg_number;
+	size_t		arg_number;
 	char		***cube;
-	t_move		*tmp;
-	t_move		moves[BUFF_MOVE];
+	t_move		*moves;
 
 	env.nb_move = 0;
 	env.next = NULL;
 	arg_number = 0;
-	if (argc != 2 || !(arg_number = arg_count(argv[1])) || arg_number > BUFF_MOVE)
+	if (argc != 2 || !(arg_number = sizet_count_arg(argv[1])))
 		error(-1, "error");
-	cube = init_tab();
+	cube = init_cube();
+	if (!(moves = (t_move*)malloc(sizeof(t_move) * arg_number)))
+		error(-1, "Malloc");
 	tab_tmove_conv_str(moves, arg_number, argv[1]);
-	//arg_number = arg_count(TAB_STRING_GROUPS(1));
-	//tab_tmove_conv_str(moves, arg_number, TAB_STRING_GROUPS(1));
-	add_env(moves, arg_number);
-	tmp = tab_tmove_conv_env(&arg_number);
-	print_env();
+	read_tab_tmove(cube, arg_number, moves);
+	free(moves);
+	resolve(cube);
+	//free cube
+	moves = tab_tmove_conv_env(&arg_number);
 	erase_env();
-	//print_ins(tmp, arg_number);
-	//printf("\n\n\n\n");
-	//print_ins(tmp, env.nb_move);
-	//env.nb_move = refine(tmp, env.nb_move);
-	//print_ins(tmp, env.nb_move);
-	//read_tab_tmove(cube, arg_number, moves);
-	//instructions(cube, arg_number, argv[1]);
-	//read_tab_tmove(cube, arg_count, env.buff);
-	//resolve(cube);
-	//ungly_display(cube);
-	arg_number = refine(tmp, arg_number);
-	print_ins(tmp, arg_number);
-	//DISPLAY(cube, side_null);
+	refine(moves, &arg_number);
+	print_tab_tmove(moves, arg_number);
+	free(moves);
 	return (0);
 }
 
-int		arg_count(char *argv)
+char	***init_cube(void)
 {
-	size_t	len;
-	int		count;
+	int		i;
+	int		j;
+	char	***ret;
 
-	len = skip_space(0, argv);
-	count = 0;
-	while (argv[len])
+	ret = NULL;
+	if (!(ret = (char***)malloc(sizeof(char**) * 8)))
+		error(-1, "Malloc");
+	ret[7] = NULL;
+	if (!(ret[6] = (char**)malloc(sizeof(char*) * (18 + 1))))
+		error(-2, "Malloc");
+	ret[6][18] = NULL;
+	i = -1;
+	j = 0;
+	while (++i < 18)
 	{
-		if (SHORT_IS_SIDE(argv[len]) == -1)
-			return (0);
-		if (!argv[++len])
-			return (++count);
-		if (SHORT_IS_MOD(argv[len]) == -1 && SHORT_IS_SPACE(argv[len]) == -1)
-			return (0);
-		len = skip_space(++len, argv);
-		++count;
+		ret[6][i] = ft_strnew(3);
+		ret[6][i][0] = STR_INITIALS_SIDE[j];
+		ret[6][i][1] = STR_INITIALS_SIDE[j];
+		ret[6][i][2] = STR_INITIALS_SIDE[j];
+		if (!(i % 3))
+			ret[j] = &(ret[6][i]);
+		else if (!((i + 1) % 3) && j < 5)
+			j++;
 	}
-	return (count);
-}
-
-void	instructions(char ***cube, int arg_count, char *argv)
-{
-	size_t		len;
-	int			count;
-	t_move		instruction[arg_count];
-
-	len = skip_space(0, argv);
-	count = 0;
-	while (count < arg_count)
-	{
-		instruction[count++] = arg_instruction(
-			(char[2]){argv[len], argv[len + 1]});
-		len += 2;
-		len = skip_space(len, argv);
-		//printf("[%d] - [%d]\n", instruction[count - 1].side, instruction[count - 1].mod);
-	}
-	read_tab_tmove(cube, count, instruction);
-	(void)cube;
-	//refine(instruction, arg_count);
-	// t_binary	b;
-	// t_binary	b2;
-	// t_side		tab[6];
-	// t_side		s[3] = {instruction[0].side, instruction[1].side, instruction[2].side};
-	// b = bloc_binary(cube, s);
-	// bin(b);
-	// b2 = stob(s, 3, b);
-	// bin(b2);
-	// fill_side_bin(tab, b);
-	// int		i = -1;
-	// while (++i < 6)
-	// 	printf("tab[%d] = %d\n", i, tab[i]);
-}
-
-t_move	arg_instruction(char arg[2])
-{
-	t_move	ret;
-
-	ret.side = side_front;
-	while (ret.side != side_null && arg[0] != STRING_INITIALS_SIDE[ret.side])
-		++ret.side;
-	if (!arg[1] || SHORT_IS_SPACE(arg[1]) != -1)
-		return ((t_move){ret.side, mod_null});
-	ret.mod = mod_twice;
-	while (ret.mod != mod_null && arg[1] != STRING_INITIALS_MOD[ret.mod])
-		++ret.mod;
 	return (ret);
+}
+
+
+void		print_tab_tmove(t_move *tab, size_t nb)
+{
+	size_t	i;
+	size_t	j;
+
+	i = -1;
+	j = 0;
+	while (++i < nb)
+	{
+		ft_putchar(STR_INITIALS_SIDE[tab[i].side]);
+		ft_putchar(STR_INITIALS_MOD[tab[i].mod]);
+		if (i + 1 != nb)
+		ft_putchar(' ');
+	}
+	if (nb)
+		ft_putchar('\n');
+}
+
+int			pdebug(void)
+{
+	ft_putendl("a");
+	return (1);
+}
+
+void		bin(t_binary nbr)
+{
+	int		i;
+	char	cube[54];
+
+	i = 54;
+	printf("[%llu]\n", nbr);
+	while (--i != -1)
+	{
+		if (nbr)
+		{
+			cube[i] = (nbr % 2) + '0';
+			nbr /= 2;
+		}
+		else
+			cube[i] = '0';
+	}
+	if ((nbr))
+		printf("[%llu]\n", nbr);
+	printf("F %.3s %.3s %.3s\n", &cube[0], &cube[3], &cube[6]);
+	printf("R %.3s %.3s %.3s\n", &cube[9], &cube[12], &cube[15]);
+	printf("U %.3s %.3s %.3s\n", &cube[18], &cube[21], &cube[24]);
+	printf("B %.3s %.3s %.3s\n", &cube[27], &cube[30], &cube[33]);
+	printf("L %.3s %.3s %.3s\n", &cube[36], &cube[39], &cube[42]);
+	printf("D %.3s %.3s %.3s\n", &cube[45], &cube[48], &cube[51]);
 }

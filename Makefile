@@ -21,20 +21,17 @@ SRC_INCLUDE		=	rubik.h \
 					variable.h
 
 SRC_FIlE		=	main.c \
-					utils.c \
 					error.c \
-					init.c \
 					display.c \
 					resolve/resolve.c \
 					resolve/two_two_bloc.c \
 					refine.c \
-					utils2.c \
-					utils3.c \
-					utils4.c \
 					utils/find.c \
 					utils/converter.c \
-					utils/converter2.c \
 					utils/parsing.c \
+					utils/fill.c \
+					argument.c \
+					env.c \
 					turn.c
 
 INC				=	$(addprefix $(DIR_INC),$(SRC_INCLUDE)) \
