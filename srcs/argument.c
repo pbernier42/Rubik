@@ -13,9 +13,9 @@
 # include <rubik.h>
 
 
-# define TARGUMENT_ARGBIN(argument)			((t_binary[4]){arg_bin_cube, arg_bin_corner, arg_bin_edge, arg_bin_edge})
-# define SHORT_SELECT_SHIFT(argument)		((short[4]){0, 4, 8, 12})
-# define TBIN_ARG(argument, select)			(TARGUMENT_ARGBIN[argument] | (select << SHORT_SELECT_SHIFT[argument]))
+# define TAB_TPARAM_PARAMBIN				((t_binary[4]){arg_bin_cube, arg_bin_corner, arg_bin_edge, arg_bin_edge})
+# define TAB_SHORT_SELECT_SHIFT				((short[4]){0, 4, 8, 12})
+# define TBIN_PARAM(argument, select)		(TAB_TPARAM_PARAMBIN[argument] | (select << TAB_SHORT_SELECT_SHIFT[argument]))
 
 void		tbin_update(char ***cube, t_binary binary[6], t_color corner[3],
 				t_argument bin_argument)
@@ -55,7 +55,7 @@ void		tbin_update(char ***cube, t_binary binary[6], t_color corner[3],
 // 	return ()
 // }
 
-# define TAB_TBIN_SELECTER(i)	((t_binary[3]){0b100, 0b010, 0b001})[i]
+# define TAB_TBIN_SELECTER	((t_binary[3]){0b100, 0b010, 0b001})
 
 void		tab_tside_edit(t_side dest[3], t_side from[3], t_binary selecter)
 {
