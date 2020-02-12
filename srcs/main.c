@@ -31,9 +31,9 @@ int		main(int argc, char **argv)
 	tab_tmove_conv_str(moves, arg_number, argv[1]);
 	read_tab_tmove(cube, arg_number, moves);
 	free(moves);
-	resolve(cube);
+	moves = resolve(cube);
 	//free cube
-	moves = tab_tmove_conv_env(&arg_number);
+	tab_tmove_conv_env(&arg_number);
 	erase_env();
 	refine(moves, &arg_number);
 	print_tab_tmove(moves, arg_number);

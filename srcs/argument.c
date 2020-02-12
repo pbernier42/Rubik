@@ -12,9 +12,10 @@
 
 # include <rubik.h>
 
-# define TARGUMENT_ARGBIN(argument)			((t_binary[4]){arg_bin_cube, arg_bin_corner, arg_bin_edge, arg_bin_edge})[argument]
-# define SHORT_SELECT_SHIFT(argument)		((short[4]){0, 4, 8, 12})[argument]
-# define TBIN_ARG(argument, select)			(TARGUMENT_ARGBIN(argument) | (select << SHORT_SELECT_SHIFT(argument)))
+
+# define TARGUMENT_ARGBIN(argument)			((t_binary[4]){arg_bin_cube, arg_bin_corner, arg_bin_edge, arg_bin_edge})
+# define SHORT_SELECT_SHIFT(argument)		((short[4]){0, 4, 8, 12})
+# define TBIN_ARG(argument, select)			(TARGUMENT_ARGBIN[argument] | (select << SHORT_SELECT_SHIFT[argument]))
 
 void		tbin_update(char ***cube, t_binary binary[6], t_color corner[3],
 				t_argument bin_argument)
@@ -44,13 +45,14 @@ void		tbin_update(char ***cube, t_binary binary[6], t_color corner[3],
 
 }
 
-// void		tbin_update_individual(char ***cube, t_binary *bin_argument,
+// t_binary		tbin_update_individual(char ***cube, t_binary *bin_argument,
 // 				t_color corner[3])
 // {
 // 	t_side	select[3];
+// 	short	shift;
 //
 // 	tab_tside_edit(select, (t_side*)corner, (*bin_argument) << );
-// 	update =
+// 	return ()
 // }
 
 # define TAB_TBIN_SELECTER(i)	((t_binary[3]){0b100, 0b010, 0b001})[i]
@@ -62,7 +64,7 @@ void		tab_tside_edit(t_side dest[3], t_side from[3], t_binary selecter)
 	I = -1;
 	J = -1;
 	while (++I < 3)
-		if ((selecter & TAB_TBIN_SELECTER(I)))
+		if ((selecter & TAB_TBIN_SELECTER[I]))
 			dest[++J] = from[I];
 	while (J < 2)
 		dest[++J] = side_null;
