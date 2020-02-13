@@ -55,7 +55,7 @@ void		tbin_update(char ***cube, t_binary binary[6], t_color corner[3],
 // 	return ()
 // }
 
-# define TAB_TBIN_SELECTER	((t_binary[3]){0b100, 0b010, 0b001})
+# define TAB_TBIN_SELECTER		((t_binary[3]){0b100, 0b010, 0b001})
 
 void		tab_tside_edit(t_side dest[3], t_side from[3], t_binary selecter)
 {

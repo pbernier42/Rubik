@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:04:51 by pbernier          #+#    #+#             */
-/*   Updated: 2020/02/12 20:24:08 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/02/13 16:29:30 by pbernier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,16 @@ int		main(int argc, char **argv)
 	if (argc != 2 || !(arg_number = sizet_count_arg(argv[1])))
 		error(-1, ERR_WRONG_ARG_NUMBER, "main(), arg_number");
 	cube = init_cube();
-	erase_cube(cube);
 	if (!(moves = (t_move*)malloc(sizeof(t_move) * arg_number)))
 		error(-1, ERR_MALLOC, "main(), mix moves");
 	tab_tmove_conv_str(moves, arg_number, argv[1]);
 	read_tab_tmove(cube, arg_number, moves);
-	//free(moves);
-	//resolve(cube);
-	//free cube
-	add_env(moves, arg_number);
-	moves = tab_tmove_conv_env(&arg_number);
-	erase_env();
-	refine(moves, &arg_number);
-	print_tab_tmove(moves, arg_number);
+
 	free(moves);
+	find_best_resolve(cube, &arg_number);
+	//free cube
+	//print_tab_tmove(moves, arg_number);
+	//free(moves);
 	return (0);
 }
 

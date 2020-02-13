@@ -120,3 +120,46 @@ t_move	tmove_conv_char(char arg[2])
 		++ret.mod;
 	return (ret);
 }
+
+void	tab_tmove_adjust_group(t_move *moves, size_t nb_move,
+			t_side side_reference, short rotate)
+{
+	size_t	i;
+
+	i = -1;
+	while (++i < nb_move)
+		moves[i].side = ((t_side[6]){
+			side_reference,
+			TSIDE_AROUND(TAROUND_ROTATE(around_right, rotate), side_reference),
+			TSIDE_AROUND(TAROUND_ROTATE(around_up, rotate), side_reference),
+			(side_reference + 3) % 6,
+			TSIDE_AROUND(TAROUND_ROTATE(around_left, rotate), side_reference),
+			TSIDE_AROUND(TAROUND_ROTATE(around_down, rotate), side_reference)
+			})[moves[i].side];
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//

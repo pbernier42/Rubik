@@ -27,13 +27,13 @@ short	copy_tab_tmove(t_move dest[NB_MOVE_MAX], t_move from[NB_MOVE_MAX])
 	return (NB_MOVE);
 }
 
-short	copy_tab_tside(t_side dest[side_null], t_side from[side_null])
+short	copy_tab_tside(t_side *dest, t_side *from, short size_tab)
 {
 	short	i[2];
 
 	I = -1;
 	NB_SIDE = 0;
-	while (++I < side_null)
+	while (++I < size_tab)
 	{
 		if (from[I] != side_null)
 			NB_SIDE = (I + 1);

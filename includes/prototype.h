@@ -44,7 +44,8 @@ void		turn_once(t_turn turn);
 ** resolve/resolve.c
 */
 
-void		resolve(char ***cube);
+t_move		*find_best_resolve(char ***cube, size_t *arg_number);
+void		resolve(char ***cube, t_color corner[3]);
 
 /*
 ** resolve/two_two_bloc.c
@@ -84,6 +85,8 @@ t_binary	tbin_conv_char(char **cube_side, t_side side);
 t_binary	tbin_conv_tab_tsides(t_side *side, short nb_side, t_binary binary);
 void		tab_tmove_conv_str(t_move *dst, int nb_move, char *str);
 t_move		tmove_conv_char(char arg[2]);
+void		tab_tmove_adjust_group(t_move *moves, size_t nb_move,
+				t_side side_reference, short rotate);
 
 
 /*
@@ -103,7 +106,7 @@ short		nb_byte_tbin(t_binary binary, short spectrum);
 ** utils/fill.c
 */
 
-short		copy_tab_tside(t_side dest[side_null], t_side from[side_null]);
+short		copy_tab_tside(t_side *dest, t_side *from, short size_tab);
 short		copy_tab_tmove(t_move dest[NB_MOVE_MAX], t_move from[NB_MOVE_MAX]);
 void		copy_tmove(t_move *dest, t_side side, t_mod mod);
 
@@ -118,7 +121,7 @@ void		tab_tside_edit(t_side dest[3], t_side from[3], t_binary selecter);
 /*
 ** env.c
 */
-
+//soir utiliser *move soit realloc
 t_move		*tab_tmove_conv_env(size_t *nb_move);
 void		add_env(t_move *move, int nb_move);
 t_env		*find_chain(t_env *start);

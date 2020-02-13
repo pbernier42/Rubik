@@ -19,8 +19,8 @@ void		two_two_bloc(char ***cube, t_color corner[3])
 	t_binary	edge[2][3];
 	t_move		move[NB_MOVE_MAX];
 
-	I = INDEX_CORNER(corner);
-	bring_edge_opposite(cube, TAB_TSIDES_COLOR_TWO(corner[0], corner[1]), edge, I);
+	I = INDEX_CORNER(corner); // ici (-1)
+	bring_edge_opposite(cube, TAB_TSIDES_COLOR_TWO(corner[0], corner[1]), edge, I); // Du coup segfault ici avec I
 	BIN_CUBE = tbin_conv_tsides(cube, TAB_TSIDES_COLOR_TWO(corner[0], corner[1]));
 	tab_tbin_find_edge(TAB_BIN_EDGE_NEAR, TAB_TSTICKERS_CORNER[I]);
 	BIN_EDGE_EXTREMITY = BIN_EDGES_NEAR | BIN_EDGES_OPPOSITE;
@@ -61,7 +61,7 @@ short		bring_edge_opposite(char ***cube, t_side color[3],
 	t_binary	binary[2];
 	t_move		move[NB_MOVE_MAX];
 
-	BIN_CORNER = tbin_conv_tstickers(TAB_TSTICKERS_CORNER[index_corner]);
+	BIN_CORNER = tbin_conv_tstickers(TAB_TSTICKERS_CORNER[index_corner]); // ici
 	BIN_CUBE = tbin_conv_tsides(cube, TAB_TSIDES_COLOR_TWO(color[0], color[1]));
 	tab_tbin_find_edge(TAB_BIN_EDGE_OPPOSITE, TAB_TSTICKERS_CORNER[(index_corner + 4) % 8]);
 	nb_move = tab_tmove_edge_opposite(move, BIN_CUBE, TAB_BIN_EDGE_OPPOSITE,

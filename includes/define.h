@@ -176,7 +176,7 @@
 
 # define TSIDE_PAD_SIX					side_null, side_null, side_null, side_null, side_null, side_null
 
-# define TAB_TSIDE_NULL(tab_tside)		copy_tab_tside(tab_tside, ((t_side[side_null]){TSIDE_PAD_SIX}))
+# define TAB_TSIDE_NULL(tab_tside)		copy_tab_tside(tab_tside, ((t_side[side_null]){TSIDE_PAD_SIX}), 6)
 
 # define TAB_TSIDES_COLOR_ONE(tcolor_one) 				(t_side[3]){(t_side)tcolor_one, side_null , side_null}
 # define TAB_TSIDES_COLOR_TWO(tcolor_one, tcolor_two)	(t_side[3]){(t_side)tcolor_one, (t_side)tcolor_two, side_null}
