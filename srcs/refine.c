@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 17:51:47 by rlecart           #+#    #+#             */
-/*   Updated: 2020/02/11 17:37:39 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/02/12 19:49:15 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,15 @@ t_move	stash_ins(t_move *tmp, size_t *count, size_t *j)
 	tmp->mod = mod_null;
 	*count = 0;
 	return (ret);
+}
+
+void	stash_ret(t_move *dst, t_move *src, size_t nb)
+{
+	size_t	i;
+
+	i = -1;
+	while (++i < nb && src && dst)
+		dst[i] = src[i];
 }
 
 void	refine(t_move *tab, size_t *nb)
@@ -80,6 +89,6 @@ void	refine(t_move *tab, size_t *nb)
 			count[sw] += tab[i].mod + 2;
 		i++;
 	}
-	//stash_ret(ret, );
+	stash_ret(tab, ret, *nb);
 	*nb = j;
 }

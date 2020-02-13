@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 17:26:04 by pbernier          #+#    #+#             */
-/*   Updated: 2020/02/12 17:26:05 by pbernier         ###   ########.fr       */
+/*   Updated: 2020/02/12 20:06:13 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_move	*tab_tmove_conv_env(size_t *nb_move)
 	j = 0;
 	h = &env;
 	if (!(ret = (t_move*)malloc(sizeof(t_move) * env.nb_move)))
-		error(-1, "MALLOC ERROR CONV ENV TO TMOVE*");
+		error(-1, ERR_MALLOC, "tab_tmove_conv_env()");
 	while (i < env.nb_move)
 	{
 		if (!(i % BUFF_MOVE) && i && !(j = 0))
@@ -84,7 +84,7 @@ t_env	*create_new_chain(t_env *h)
 	t_env	*ret;
 
 	if (!(ret = (t_env*)malloc(sizeof(t_env))))
-		error(-1, "CREATE NEW CHAIN");
+		error(-1, ERR_MALLOC, "create_new_chain()");
 	ret->nb_move = h->nb_move;
 	ret->next = NULL;
 	return (ret);

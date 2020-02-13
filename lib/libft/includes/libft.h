@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/09 00:30:13 by pbernier          #+#    #+#             */
-/*   Updated: 2020/01/14 17:53:22 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/02/12 19:54:22 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,5 +163,6 @@ int					ft_max_val(int *tab, int size);
 int					ft_c_atoi(char *str);
 int					ft_al_exist(void *tab, int nb, int size);
 void				ft_putnstr(char *str, size_t len);
+int					pdebug(void);
 
 #endif

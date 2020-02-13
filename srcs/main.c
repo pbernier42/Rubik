@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:04:51 by pbernier          #+#    #+#             */
-/*   Updated: 2020/02/11 17:31:38 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/02/12 20:24:08 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,17 @@ int		main(int argc, char **argv)
 	env.next = NULL;
 	arg_number = 0;
 	if (argc != 2 || !(arg_number = sizet_count_arg(argv[1])))
-		error(-1, "error");
+		error(-1, ERR_WRONG_ARG_NUMBER, "main(), arg_number");
 	cube = init_cube();
+	erase_cube(cube);
 	if (!(moves = (t_move*)malloc(sizeof(t_move) * arg_number)))
-		error(-1, "Malloc");
+		error(-1, ERR_MALLOC, "main(), mix moves");
 	tab_tmove_conv_str(moves, arg_number, argv[1]);
 	read_tab_tmove(cube, arg_number, moves);
-	free(moves);
-	resolve(cube);
+	//free(moves);
+	//resolve(cube);
 	//free cube
+	add_env(moves, arg_number);
 	moves = tab_tmove_conv_env(&arg_number);
 	erase_env();
 	refine(moves, &arg_number);
@@ -40,36 +42,6 @@ int		main(int argc, char **argv)
 	free(moves);
 	return (0);
 }
-
-char	***init_cube(void)
-{
-	int		i;
-	int		j;
-	char	***ret;
-
-	ret = NULL;
-	if (!(ret = (char***)malloc(sizeof(char**) * 8)))
-		error(-1, "Malloc");
-	ret[7] = NULL;
-	if (!(ret[6] = (char**)malloc(sizeof(char*) * (18 + 1))))
-		error(-2, "Malloc");
-	ret[6][18] = NULL;
-	i = -1;
-	j = 0;
-	while (++i < 18)
-	{
-		ret[6][i] = ft_strnew(3);
-		ret[6][i][0] = STR_INITIALS_SIDE[j];
-		ret[6][i][1] = STR_INITIALS_SIDE[j];
-		ret[6][i][2] = STR_INITIALS_SIDE[j];
-		if (!(i % 3))
-			ret[j] = &(ret[6][i]);
-		else if (!((i + 1) % 3) && j < 5)
-			j++;
-	}
-	return (ret);
-}
-
 
 void		print_tab_tmove(t_move *tab, size_t nb)
 {
@@ -87,12 +59,6 @@ void		print_tab_tmove(t_move *tab, size_t nb)
 	}
 	if (nb)
 		ft_putchar('\n');
-}
-
-int			pdebug(void)
-{
-	ft_putendl("a");
-	return (1);
 }
 
 void		bin(t_binary nbr)

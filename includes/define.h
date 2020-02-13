@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 18:06:51 by pbernier          #+#    #+#             */
-/*   Updated: 2020/02/11 17:17:20 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/02/12 20:12:45 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,13 @@
 # define DEFINE_H
 
 # include "rubik.h"
+
+/*
+** error();
+*/
+
+# define ERR_WRONG_ARG_NUMBER			"Wrong number of arguments"
+# define ERR_MALLOC						"Can't malloc"
 
 /*
 ** ???
@@ -26,9 +33,9 @@
 
 # define STR_SIDE(i)					((char*[side_null + 1]){\
 											"front", "right", "up", "back", "left", "down", "null"})[i]
-# define STR_MOD(i)					((char*[mod_null + 1]){\
+# define STR_MOD(i)						((char*[mod_null + 1]){\
 											"twice", "reverse", "null"})[i]
-# define STR_AROUND(i)				((char*[around_null + 1]){\
+# define STR_AROUND(i)					((char*[around_null + 1]){\
 											"right", "down", "left", "up", "null"})[i]
 
 /*

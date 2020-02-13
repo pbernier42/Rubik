@@ -89,7 +89,8 @@ SRC			=	ft_putstr.c \
 				ft_max_val.c \
 				ft_c_atoi.c \
 				ft_al_exist.c \
-				ft_putnstr.c
+				ft_putnstr.c \
+				pdebug.c
 
 OBJ			=	$(addprefix $(OBJDIR),$(SRC:.c=.o))
 CC			=	gcc

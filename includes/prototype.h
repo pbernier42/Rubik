@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 17:22:23 by pbernier          #+#    #+#             */
-/*   Updated: 2020/02/11 17:11:45 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/02/12 20:22:52 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,14 @@
 */
 
 void		print_tab_tmove(t_move *tab, size_t nb);
-char		***init_cube(void);
-int			pdebug(void);
 void		bin(t_binary nbr);
+
+/*
+** cube.c
+*/
+
+char		***init_cube(void);
+void		erase_cube(char ***cube);
 
 /*
 ** turn.c
@@ -132,7 +137,7 @@ t_move		stash_ins(t_move *tmp, size_t *count, size_t *j);
 ** error.c
 */
 
-void		error(int typecode, char *str);
+void		error(int typecode, char *error_type, char *detail);
 
 /*
 ** display.c
