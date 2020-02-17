@@ -19,36 +19,42 @@
 									TSIDE_CORNER(i, SHORT_COLOR_ORDER(j, 1)),\
 									TSIDE_CORNER(i, SHORT_COLOR_ORDER(j, 2))})
 
-# define TMOVE_RESULT				move[0]
-# define TMOVE_SAVE					move[1]
+# define TINST_RESULT				instruct[0]
+# define TINST_SAVE					instruct[1]
 
 
-t_move		*find_best_resolve(char ***cube, size_t *arg_number)
+t_instruct		find_best_resolve(char ***cube, t_instruct shuffle)
 {
 	short		i[2];
 	t_color		color[3];
-	//t_move		*move[2] = {NULL, NULL};
+	t_instruct	instruct[2];
 
 	I = -1;
+	TINST_RESULT.nb_move = 0;
+	TINST_RESULT.move = NULL;
+	TINST_SAVE = TINST_RESULT;
+
 	while (++I < 8)
 	{
-
 		J = -1;
 		while (++J < 6)
 		{
+			read_tab_tmove(cube, shuffle.nb_move, shuffle.move);
 			copy_tab_tside((t_side*)color, TAB_TSIDE_REFINE(I, J), 3);
-			resolve(cube, color); // segfault a cause du '-1' de I envoye dans two_two_bloc()
-			//tab_tmove_conv_env(TMOVE_RESULT, env.nb_move, );
+			resolve(cube, color);
+			//TINST_RESULT = tab_tmove_conv_env(TINST_RESULT, ???);
+			if (TINST_SAVE.nb_move < TINST_RESULT.nb_move)
+				TINST_SAVE = TINST_RESULT;
+			//reset cube
 		}
+		printf("\n");
 	}
-	printf("DONE.\n");
-	*arg_number = 0;
-	return (NULL);
+	return (TINST_SAVE);
 }
 
 void		resolve(char ***cube, t_color color[3])
 {
-	printf("[%s][%s][%s]\n", STR_SIDE(color[0]), STR_SIDE(color[1]), STR_SIDE(color[2]));
+	//printf("[%s][%s][%s]\n", STR_SIDE(color[0]), STR_SIDE(color[1]), STR_SIDE(color[2]));
 
 	two_two_bloc(cube, color);
 }

@@ -14,13 +14,15 @@
 
 void	error(int typecode, char *error_type, char *detail)
 {
-	ft_putstr_fd(error_type, 2);
+	printf("%s\n", error_type);
+	//ft_putstr_fd(error_type, 2);
 	if (detail)
 	{
-		ft_putstr_fd(" at/trying to { ", 2);
-		ft_putstr_fd(detail, 2);
-		ft_putstr_fd(" }", 2);
+		printf(" at/trying to {%s}\n", detail);
+		// ft_putstr_fd(" at/trying to { ", 2);
+		// ft_putstr_fd(detail, 2);
+		// ft_putstr_fd(" }", 2);
 	}
-	ft_putstr_fd("\n", 2);
+	//ft_putstr_fd("\n", 2);
 	exit(typecode);
 }

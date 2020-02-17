@@ -22,6 +22,7 @@
 
 void		print_tab_tmove(t_move *tab, size_t nb);
 void		bin(t_binary nbr);
+void 		ungly_display(char ***cube);
 
 /*
 ** cube.c
@@ -44,7 +45,7 @@ void		turn_once(t_turn turn);
 ** resolve/resolve.c
 */
 
-t_move		*find_best_resolve(char ***cube, size_t *arg_number);
+t_instruct	find_best_resolve(char ***cube, t_instruct shuffle);
 void		resolve(char ***cube, t_color corner[3]);
 
 /*
@@ -122,7 +123,7 @@ void		tab_tside_edit(t_side dest[3], t_side from[3], t_binary selecter);
 ** env.c
 */
 //soir utiliser *move soit realloc
-t_move		*tab_tmove_conv_env(size_t *nb_move);
+t_move		*tab_tmove_conv_env(size_t *nb_move); //return instructuion
 void		add_env(t_move *move, int nb_move);
 t_env		*find_chain(t_env *start);
 t_env		*create_new_chain(t_env *h);

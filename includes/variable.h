@@ -19,6 +19,7 @@ typedef struct s_line		t_line;
 typedef struct s_move		t_move;
 typedef struct s_turn		t_turn;
 typedef struct s_sticker	t_sticker;
+typedef struct s_instruct	t_instruct;
 
 typedef unsigned long long	t_binary;
 
@@ -147,5 +148,12 @@ struct						s_sticker
 	t_side					side;
 	short					coo[2];
 };
+
+struct						s_instruct
+{
+	size_t					nb_move;
+	t_move					*move;
+};
+
 
 #endif

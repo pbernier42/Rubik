@@ -25,6 +25,8 @@
 # define C_PINK "\033[38;5;5m"
 # define C_BRIGHT_BLUE "\033[38;5;6m"
 # define C_GREY "\033[38;5;8m"
+# define C_WHITE "\e[97m"
+# define C_ORANGE "\033[38;5;208m"
 
 # define C_BBLACK	"\033[40;01;01;01;01m"
 # define C_BRED		"\033[41;01;01;01;01m"

@@ -19,7 +19,17 @@ void		two_two_bloc(char ***cube, t_color corner[3])
 	t_binary	edge[2][3];
 	t_move		move[NB_MOVE_MAX];
 
-	I = INDEX_CORNER(corner); // ici (-1)
+	//bin(tbin_conv_tsides(cube, TAB_TSIDES_COLOR_ALL(corner)));
+	I = INDEX_CORNER(corner);
+	if (I == -1)
+	{
+		printf("corner notfound\n");
+		// ungly_display(cube);
+		printf("[%s][%s][%s]\n", STR_SIDE(corner[0]), STR_SIDE(corner[1]), STR_SIDE(corner[2]));
+		return ;
+	}
+	else
+		printf("([%s][%s][%s])\n", STR_SIDE(corner[0]), STR_SIDE(corner[1]), STR_SIDE(corner[2]));
 	bring_edge_opposite(cube, TAB_TSIDES_COLOR_TWO(corner[0], corner[1]), edge, I); // Du coup segfault ici avec I
 	BIN_CUBE = tbin_conv_tsides(cube, TAB_TSIDES_COLOR_TWO(corner[0], corner[1]));
 	tab_tbin_find_edge(TAB_BIN_EDGE_NEAR, TAB_TSTICKERS_CORNER[I]);

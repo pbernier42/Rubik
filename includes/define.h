@@ -77,7 +77,7 @@
 												TAB_TSTICKERS_CORNER, 8)
 # define INDEX_EDGE(tcolor_one, tcolor_two)	index_tab_tstickers(\
 												tbin_conv_tsides(cube, TAB_TSIDES_COLOR_TWO(tcolor_one, tcolor_two)),\
-												TAB_TSTICKERS_EDGE, 8)
+												TAB_TSTICKERS_EDGE, 12)
 
 
 /*
