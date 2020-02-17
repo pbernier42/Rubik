@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 18:05:25 by pbernier          #+#    #+#             */
-/*   Updated: 2020/02/06 17:30:16 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/02/17 20:54:09 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ typedef struct s_line		t_line;
 typedef struct s_move		t_move;
 typedef struct s_turn		t_turn;
 typedef struct s_sticker	t_sticker;
-typedef struct s_instruct	t_instruct;
+typedef struct s_list		t_list;
 
 typedef unsigned long long	t_binary;
 
@@ -149,7 +149,7 @@ struct						s_sticker
 	short					coo[2];
 };
 
-struct						s_instruct
+struct						s_list
 {
 	size_t					nb_move;
 	t_move					*move;

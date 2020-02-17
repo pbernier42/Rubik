@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 19:04:09 by pbernier          #+#    #+#             */
-/*   Updated: 2020/01/24 18:58:06 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/02/17 21:15:24 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@
 # define TINST_SAVE					instruct[1]
 
 
-t_instruct		find_best_resolve(char ***cube, t_instruct shuffle)
+t_list		find_best_resolve(char ***cube, t_list shuffle)
 {
 	short		i[2];
 	t_color		color[3];
-	t_instruct	instruct[2];
+	t_list	instruct[2];
 
 	I = -1;
 	TINST_RESULT.nb_move = 0;

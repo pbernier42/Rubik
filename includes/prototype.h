@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 17:22:23 by pbernier          #+#    #+#             */
-/*   Updated: 2020/02/12 20:22:52 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/02/17 21:30:00 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void 		ungly_display(char ***cube);
 
 char		***init_cube(void);
 void		erase_cube(char ***cube);
+void		reset_cube(char ***cube);
 
 /*
 ** turn.c
@@ -45,7 +46,7 @@ void		turn_once(t_turn turn);
 ** resolve/resolve.c
 */
 
-t_instruct	find_best_resolve(char ***cube, t_instruct shuffle);
+t_list		find_best_resolve(char ***cube, t_list shuffle);
 void		resolve(char ***cube, t_color corner[3]);
 
 /*
@@ -123,7 +124,7 @@ void		tab_tside_edit(t_side dest[3], t_side from[3], t_binary selecter);
 ** env.c
 */
 //soir utiliser *move soit realloc
-t_move		*tab_tmove_conv_env(size_t *nb_move); //return instructuion
+t_list		tab_tmove_conv_env(t_list src); //return instructuion
 void		add_env(t_move *move, int nb_move);
 t_env		*find_chain(t_env *start);
 t_env		*create_new_chain(t_env *h);

@@ -6,32 +6,39 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 17:26:04 by pbernier          #+#    #+#             */
-/*   Updated: 2020/02/12 20:06:13 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/02/17 21:10:49 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <rubik.h>
 
-t_move	*tab_tmove_conv_env(size_t *nb_move)
+int		erase_move(t_move *move)
+{
+	free(move);
+	return (0);
+}
+
+t_list	tab_tmove_conv_env(t_list src)
 {
 	size_t	i;
 	size_t	j;
 	t_env	*h;
-	t_move	*ret;
+	t_list	ret;
 
 	i = 0;
 	j = 0;
 	h = &env;
-	if (!(ret = (t_move*)malloc(sizeof(t_move) * env.nb_move)))
+	if (env.nb_move <= src.nb_move)
+		ret.move = src.move;
+	else if (!(erase_move(src.move)) && !(ret.move = (t_move*)malloc(sizeof(t_move) * env.nb_move)))
 		error(-1, ERR_MALLOC, "tab_tmove_conv_env()");
 	while (i < env.nb_move)
 	{
 		if (!(i % BUFF_MOVE) && i && !(j = 0))
 			h = h->next;
-		ret[i++] = h->move_all[j++];
+		ret.move[i++] = h->move_all[j++];
 	}
-	if (nb_move)
-		*nb_move = j;
+	ret.nb_move = j;
 	return (ret);
 }
 

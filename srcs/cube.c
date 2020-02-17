@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 20:16:38 by rlecart           #+#    #+#             */
-/*   Updated: 2020/02/12 20:26:38 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/02/17 21:26:10 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,17 @@ void	erase_cube(char ***cube)
 {
 	ft_memdel(((void*)cube[6]));
 	ft_memdel((void*)cube);
+}
+
+void	reset_cube(char ***cube)
+{
+	int		i;
+
+	i = -1;
+	while (++i < 18)
+	{
+		cube[6][i][0] = STR_INITIALS_SIDE[i / 3];
+		cube[6][i][1] = STR_INITIALS_SIDE[i / 3];
+		cube[6][i][2] = STR_INITIALS_SIDE[i / 3];
+	}
 }

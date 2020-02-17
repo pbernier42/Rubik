@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:04:51 by pbernier          #+#    #+#             */
-/*   Updated: 2020/02/13 16:29:30 by pbernier         ###   ########.fr       */
+/*   Updated: 2020/02/17 21:26:27 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ t_env	env;
 int		main(int argc, char **argv)
 {
 	char		***cube;
-	t_instruct	shuffle;
-	t_instruct	res;
+	t_list	shuffle;
+	t_list	res;
 
 	env.nb_move = 0;
 	env.next = NULL;
@@ -85,29 +85,6 @@ void		bin(t_binary nbr)
 	printf("L %.3s %.3s %.3s\n", &cube[36], &cube[39], &cube[42]);
 	printf("D %.3s %.3s %.3s\n", &cube[45], &cube[48], &cube[51]);
 }
-
-
-# define C_RESET "\033[0m"
-# define C_RED "\033[38;5;1m"
-# define C_RED_MINUS "\033[38;5;9m"
-# define C_GREEN "\033[38;5;2m"
-# define C_YELLOW "\033[38;5;3m"
-# define C_BLUE "\033[38;5;4m"
-# define C_PINK "\033[38;5;5m"
-# define C_BRIGHT_BLUE "\033[38;5;6m"
-# define C_GREY "\033[38;5;8m"
-# define C_WHITE "\e[97m"
-# define C_ORANGE "\033[38;5;208m"
-
-# define C_BBLACK	"\033[40;01;01;01;01m"
-# define C_BRED		"\033[41;01;01;01;01m"
-# define C_BGREEN	"\033[42;01;01;01;01m"
-# define C_BYELLOW	"\033[43;01;01;01;01m"
-# define C_BBLUE	"\033[44;01;01;01;01m"
-# define C_BPURPLE	"\033[45;01;01;01;01m"
-# define C_BORANGE	"\033[48;2;255;165;1m"
-# define C_BCYAN	"\033[46;01;01;01;01m"
-# define C_BWHITE	"\033[47;01;01;01;01m"
 
 void	print_sticker(char c)
 {
