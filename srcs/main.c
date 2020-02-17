@@ -173,4 +173,5 @@ void 	ungly_display(char ***cube)
 	print_face(((char**[3]){NULL, cube[side_up], NULL}), false);
 	print_face(((char**[3]){cube[side_left], cube[side_front], cube[side_right]}), false);
 	print_face(((char**[3]){NULL, cube[side_down], NULL}), false);
+	printf("--------- --------- ---------\n");
 }

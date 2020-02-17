@@ -141,7 +141,9 @@
 # define TAB_COO_RIGHT					{{0, 2}, {1, 2}, {2, 2}}
 # define TAB_COO_DOWN					{{2, 0}, {2, 1}, {2, 2}}
 
+# define TAB_COO_LEFT_INVERTED			{{2, 0}, {1, 0}, {0, 0}}
 # define TAB_COO_UP_INVERTED			{{0, 2}, {0, 1}, {0, 0}}
+# define TAB_COO_RIGHT_INVERTED			{{2, 2}, {1, 2}, {0, 2}}
 # define TAB_COO_DOWN_INVERTED			{{2, 2}, {2, 1}, {2, 0}}
 
 /*
@@ -153,11 +155,11 @@
 # define TAB_TLINE_AROUND_RIGHT			((t_line[6]){TLINE(side_right, TAB_COO_LEFT), TLINE(side_back, TAB_COO_LEFT), TLINE(side_right, TAB_COO_UP), \
 											TLINE(side_left, TAB_COO_LEFT), TLINE(side_front, TAB_COO_LEFT), TLINE(side_right, TAB_COO_DOWN)})
 # define TAB_TLINE_AROUND_DOWN			((t_line[6]){TLINE(side_down, TAB_COO_UP), TLINE(side_down, TAB_COO_RIGHT), TLINE(side_front, TAB_COO_UP), \
-											TLINE(side_down, TAB_COO_DOWN_INVERTED), TLINE(side_down, TAB_COO_LEFT), TLINE(side_back, TAB_COO_DOWN)})
+											TLINE(side_down, TAB_COO_DOWN_INVERTED), TLINE(side_down, TAB_COO_LEFT_INVERTED), TLINE(side_back, TAB_COO_DOWN)})
 # define TAB_TLINE_AROUND_LEFT			((t_line[6]){TLINE(side_left, TAB_COO_RIGHT), TLINE(side_front, TAB_COO_RIGHT), TLINE(side_left, TAB_COO_UP), \
-											TLINE(side_right, TAB_COO_RIGHT), TLINE(side_back, TAB_COO_RIGHT), TLINE(side_left, TAB_COO_DOWN)})
-# define TAB_TLINE_AROUND_UP			((t_line[6]){TLINE(side_up, TAB_COO_DOWN), TLINE(side_up, TAB_COO_RIGHT), TLINE(side_back, TAB_COO_UP), \
-											TLINE(side_up, TAB_COO_UP_INVERTED), TLINE(side_up, TAB_COO_LEFT), TLINE(side_front, TAB_COO_DOWN)})
+											TLINE(side_right, TAB_COO_RIGHT), TLINE(side_back, TAB_COO_RIGHT_INVERTED), TLINE(side_left, TAB_COO_DOWN)})
+# define TAB_TLINE_AROUND_UP			((t_line[6]){TLINE(side_up, TAB_COO_DOWN), TLINE(side_up, TAB_COO_RIGHT_INVERTED), TLINE(side_back, TAB_COO_UP), \
+											TLINE(side_up, TAB_COO_UP_INVERTED), TLINE(side_up, TAB_COO_LEFT_INVERTED), TLINE(side_front, TAB_COO_DOWN)})
 
 # define TAB_TLINE_AROUND(tside)		((t_line[4]){TAB_TLINE_AROUND_RIGHT[tside], TAB_TLINE_AROUND_DOWN[tside], \
 											TAB_TLINE_AROUND_LEFT[tside], TAB_TLINE_AROUND_UP[tside]})

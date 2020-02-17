@@ -24,12 +24,14 @@ void		two_two_bloc(char ***cube, t_color corner[3])
 	if (I == -1)
 	{
 		printf("corner notfound\n");
-		// ungly_display(cube);
-		printf("[%s][%s][%s]\n", STR_SIDE(corner[0]), STR_SIDE(corner[1]), STR_SIDE(corner[2]));
-		return ;
+		printf("!!!!!!\n[%s][%s][%s]\n", STR_SIDE(corner[0]), STR_SIDE(corner[1]), STR_SIDE(corner[2]));
+		ungly_display(cube);
 	}
 	else
-		printf("([%s][%s][%s])\n", STR_SIDE(corner[0]), STR_SIDE(corner[1]), STR_SIDE(corner[2]));
+//	printf("([%s][%s][%s])\n", STR_SIDE(corner[0]), STR_SIDE(corner[1]), STR_SIDE(corner[2]));
+	//ungly_display(cube);
+
+
 	bring_edge_opposite(cube, TAB_TSIDES_COLOR_TWO(corner[0], corner[1]), edge, I); // Du coup segfault ici avec I
 	BIN_CUBE = tbin_conv_tsides(cube, TAB_TSIDES_COLOR_TWO(corner[0], corner[1]));
 	tab_tbin_find_edge(TAB_BIN_EDGE_NEAR, TAB_TSTICKERS_CORNER[I]);
@@ -264,9 +266,9 @@ short		tab_tmove_right_angle(t_move move[NB_MOVE_MAX], t_binary binary[6],
 		(t_binary[8]){0b001001000, 0b000001001, 0b000000011, 0b000000110,
 			0b000100100, 0b100100000, 0b110000000, 0b011000000}, 8)) != -1)
 		copy_tmove(&move[0], TSIDE_AROUND((I / 2), TSIDE_BIGGEST), !(I % 2) ? mod_null : mod_reverse);
-	J = index_tab_tbin((BIN_ORIGIN & BIN_LAYER),
-		(t_binary[4]){0b000001000, 0b000000010, 0b000100000, 0b010000000}, 4);
-	move[1].side = TSIDE_AROUND(J, TSIDE_BIGGEST);
+	J = index_tab_tbin((BIN_ORIGIN & BIN_LAYER), // print bin_origin et bin_layer
+		(t_binary[4]){0b000001000, 0b000000010, 0b000100000, 0b010000000}, 4); // Ici J = -1
+	move[1].side = TSIDE_AROUND(J, TSIDE_BIGGEST); // Segfault ici a cause de J
 	if (rotate != around_null)
 		move[1].mod = TSIDE_AROUND(TAROUND_ROTATE(J, 1), TSIDE_BIGGEST) == side_destination ?
 			mod_reverse : mod_null;

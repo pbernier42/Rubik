@@ -43,8 +43,8 @@ t_instruct		find_best_resolve(char ***cube, t_instruct shuffle)
 			copy_tab_tside((t_side*)color, TAB_TSIDE_REFINE(I, J), 3);
 			resolve(cube, color);
 			//TINST_RESULT = tab_tmove_conv_env(TINST_RESULT, ???);
-			if (TINST_SAVE.nb_move < TINST_RESULT.nb_move)
-				TINST_SAVE = TINST_RESULT;
+			//if (TINST_SAVE.nb_move < TINST_RESULT.nb_move)
+			//	TINST_SAVE = TINST_RESULT;
 			//reset cube
 		}
 		printf("\n");
