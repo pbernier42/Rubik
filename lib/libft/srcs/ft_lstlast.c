@@ -6,15 +6,15 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 06:32:51 by pbernier          #+#    #+#             */
-/*   Updated: 2017/08/18 13:07:28 by pbernier         ###   ########.fr       */
+/*   Updated: 2020/02/17 20:48:47 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list		*ft_lstlast(t_list **alst)
+t_clist		*ft_lstlast(t_clist **alst)
 {
-	t_list		*ptr;
+	t_clist		*ptr;
 
 	ptr = *alst;
 	while (ptr->next)

@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/09 00:30:13 by pbernier          #+#    #+#             */
-/*   Updated: 2020/02/12 19:54:22 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/02/17 20:45:16 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,12 @@ typedef struct		s_gsml
 	char			*keep_tmp;
 }					t_gsml;
 
-typedef struct		s_list
+typedef struct		s_clist
 {
 	void			*content;
 	size_t			content_size;
-	struct s_list	*next;
-}					t_list;
+	struct s_clist	*next;
+}					t_clist;
 
 typedef struct		s_strsplit
 {
@@ -135,17 +135,17 @@ void				ft_putstr_fd(char const *s, int fd);
 void				ft_putendl_fd(char const *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
 size_t				ft_strlcat(char *dst, const char *src, size_t size);
-t_list				*ft_lstnew(void const *content, size_t content_size);
-void				ft_lstdelone(t_list **alst, void (*del)(void*, size_t));
-void				ft_lstdel(t_list **alst, void (*del)(void*, size_t));
-void				ft_lstadd(t_list **alst, t_list *newlst);
-void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
-t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
+t_clist				*ft_lstnew(void const *content, size_t content_size);
+void				ft_lstdelone(t_clist **alst, void (*del)(void*, size_t));
+void				ft_lstdel(t_clist **alst, void (*del)(void*, size_t));
+void				ft_lstadd(t_clist **alst, t_clist *newlst);
+void				ft_lstiter(t_clist *lst, void (*f)(t_clist *elem));
+t_clist				*ft_lstmap(t_clist *lst, t_clist *(*f)(t_clist *elem));
 int					ft_sqrt(int nb);
 void				ft_swap(void *tab, size_t len);
 int					*ft_range(int min, int max);
 char				*ft_strrev(char *str);
-t_list				*ft_lstlast(t_list **alst);
+t_clist				*ft_lstlast(t_clist **alst);
 int					get_next_line(const int fd, char **line);
 void				ft_strtabdel(char ***tab);
 char				*ft_strjoin_clean(char **s1, char **s2);

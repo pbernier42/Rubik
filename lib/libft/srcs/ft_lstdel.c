@@ -6,15 +6,15 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/21 15:51:56 by pbernier          #+#    #+#             */
-/*   Updated: 2017/08/18 13:06:58 by pbernier         ###   ########.fr       */
+/*   Updated: 2020/02/17 20:45:28 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstdel(t_list **alst, void (*del)(void*, size_t))
+void	ft_lstdel(t_clist **alst, void (*del)(void*, size_t))
 {
-	t_list		*ptr;
+	t_clist		*ptr;
 
 	ptr = *alst;
 	while (ptr)

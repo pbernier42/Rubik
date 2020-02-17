@@ -6,15 +6,15 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/21 18:08:22 by pbernier          #+#    #+#             */
-/*   Updated: 2017/08/18 13:07:41 by pbernier         ###   ########.fr       */
+/*   Updated: 2020/02/17 20:48:27 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list		*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
+t_clist		*ft_lstmap(t_clist *lst, t_clist *(*f)(t_clist *elem))
 {
-	t_list		*ptr;
+	t_clist		*ptr;
 
 	ptr = NULL;
 	if (lst && f)

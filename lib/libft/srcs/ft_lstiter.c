@@ -6,13 +6,13 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/21 18:04:25 by pbernier          #+#    #+#             */
-/*   Updated: 2017/08/18 13:07:20 by pbernier         ###   ########.fr       */
+/*   Updated: 2020/02/17 20:47:42 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstiter(t_list *lst, void (*f)(t_list *elem))
+void	ft_lstiter(t_clist *lst, void (*f)(t_clist *elem))
 {
 	while (lst)
 	{
