@@ -90,11 +90,11 @@
 # define TSTICKERS_FRONT_UP_RIGHT		{{side_front, {0, 2}}, {side_up, {2, 2}}, {side_right, {0, 0}}}
 # define TSTICKERS_FRONT_DOWN_RIGHT		{{side_front, {2, 2}}, {side_down, {0, 2}}, {side_right, {2, 0}}}
 # define TSTICKERS_FRONT_DOWN_LEFT		{{side_front, {2, 0}}, {side_down, {0, 0}}, {side_left, {2, 2}}}
+
 # define TSTICKERS_BACK_DOWN_RIGHT		{{side_back, {2, 0}}, {side_down, {2, 2}}, {side_right, {2, 2}}}
 # define TSTICKERS_BACK_DOWN_LEFT		{{side_back, {2, 2}}, {side_down, {2, 0}}, {side_left, {2, 0}}}
 # define TSTICKERS_BACK_UP_LEFT			{{side_back, {0, 2}}, {side_up, {0, 0}}, {side_left, {0, 0}}}
 # define TSTICKERS_BACK_UP_RIGHT		{{side_back, {0, 0}}, {side_up, {0, 2}}, {side_right, {0, 2}}}
-
 
 # define TSTICKER_FRONT_UP				{{side_front, {0, 1}}, {side_up, {2, 1}}, TSTICKER_NULL}
 # define TSTICKER_FRONT_RIGHT			{{side_front, {1, 2}}, {side_right, {1, 0}}, TSTICKER_NULL}
@@ -105,11 +105,11 @@
 # define TSTICKER_RIGHT_UP				{{side_right, {0, 1}}, {side_up, {1, 2}}, TSTICKER_NULL}
 
 # define TSTICKER_BACK_DOWN				{{side_back, {2, 1}}, {side_down, {2, 1}}, TSTICKER_NULL}
-# define TSTICKER_BACK_LEFT				{{side_back, {1, 0}}, {side_left, {1, 0}}, TSTICKER_NULL}
+# define TSTICKER_BACK_LEFT				{{side_back, {1, 2}}, {side_left, {1, 0}}, TSTICKER_NULL}
 # define TSTICKER_BACK_UP				{{side_back, {0, 1}}, {side_up, {0, 1}}, TSTICKER_NULL}
-# define TSTICKER_BACK_RIGHT			{{side_back, {1, 2}}, {side_right, {1, 2}}, TSTICKER_NULL}
+# define TSTICKER_BACK_RIGHT			{{side_back, {1, 0}}, {side_right, {1, 2}}, TSTICKER_NULL}
 
-# define TSTICKER_RIGHT_DOWN			{{side_right, {0, 1}}, {side_down, {1, 2}}, TSTICKER_NULL}
+# define TSTICKER_RIGHT_DOWN			{{side_right, {2, 1}}, {side_down, {1, 2}}, TSTICKER_NULL}
 # define TSTICKER_LEFT_DOWN				{{side_left, {2, 1}}, {side_down, {1, 0}}, TSTICKER_NULL}
 
 # define TAB_TSTICKERS_FRONT_CORNER		TSTICKERS_FRONT_UP_LEFT, TSTICKERS_FRONT_UP_RIGHT, \
@@ -152,14 +152,17 @@
 
 # define TLINE(l_side, l_coo)			((t_line){l_side, l_coo})
 
-# define TAB_TLINE_AROUND_RIGHT			((t_line[6]){TLINE(side_right, TAB_COO_LEFT), TLINE(side_back, TAB_COO_LEFT), TLINE(side_right, TAB_COO_UP), \
+# define TAB_TLINE_AROUND_RIGHT			((t_line[6]){TLINE(side_right, TAB_COO_LEFT), TLINE(side_back, TAB_COO_LEFT), TLINE(side_right, TAB_COO_UP_INVERTED), \
 											TLINE(side_left, TAB_COO_LEFT), TLINE(side_front, TAB_COO_LEFT), TLINE(side_right, TAB_COO_DOWN)})
+
 # define TAB_TLINE_AROUND_DOWN			((t_line[6]){TLINE(side_down, TAB_COO_UP), TLINE(side_down, TAB_COO_RIGHT), TLINE(side_front, TAB_COO_UP), \
-											TLINE(side_down, TAB_COO_DOWN_INVERTED), TLINE(side_down, TAB_COO_LEFT_INVERTED), TLINE(side_back, TAB_COO_DOWN)})
+											TLINE(side_down, TAB_COO_DOWN_INVERTED), TLINE(side_down, TAB_COO_LEFT_INVERTED), TLINE(side_back, TAB_COO_DOWN_INVERTED)})
+
 # define TAB_TLINE_AROUND_LEFT			((t_line[6]){TLINE(side_left, TAB_COO_RIGHT), TLINE(side_front, TAB_COO_RIGHT), TLINE(side_left, TAB_COO_UP), \
-											TLINE(side_right, TAB_COO_RIGHT), TLINE(side_back, TAB_COO_RIGHT_INVERTED), TLINE(side_left, TAB_COO_DOWN)})
-# define TAB_TLINE_AROUND_UP			((t_line[6]){TLINE(side_up, TAB_COO_DOWN), TLINE(side_up, TAB_COO_RIGHT_INVERTED), TLINE(side_back, TAB_COO_UP), \
-											TLINE(side_up, TAB_COO_UP_INVERTED), TLINE(side_up, TAB_COO_LEFT_INVERTED), TLINE(side_front, TAB_COO_DOWN)})
+											TLINE(side_right, TAB_COO_RIGHT), TLINE(side_back, TAB_COO_RIGHT), TLINE(side_left, TAB_COO_DOWN_INVERTED)})
+
+# define TAB_TLINE_AROUND_UP			((t_line[6]){TLINE(side_up, TAB_COO_DOWN), TLINE(side_up, TAB_COO_RIGHT_INVERTED), TLINE(side_back, TAB_COO_UP_INVERTED), \
+											TLINE(side_up, TAB_COO_UP_INVERTED), TLINE(side_up, TAB_COO_LEFT), TLINE(side_front, TAB_COO_DOWN)})
 
 # define TAB_TLINE_AROUND(tside)		((t_line[4]){TAB_TLINE_AROUND_RIGHT[tside], TAB_TLINE_AROUND_DOWN[tside], \
 											TAB_TLINE_AROUND_LEFT[tside], TAB_TLINE_AROUND_UP[tside]})

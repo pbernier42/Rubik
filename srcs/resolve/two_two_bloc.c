@@ -19,20 +19,22 @@ void		two_two_bloc(char ***cube, t_color corner[3])
 	t_binary	edge[2][3];
 	t_move		move[NB_MOVE_MAX];
 
+	if (!(corner[0] == 3 && corner[1] == 5 && corner[2] == 1))
+		return ;
+
 	//bin(tbin_conv_tsides(cube, TAB_TSIDES_COLOR_ALL(corner)));
 	I = INDEX_CORNER(corner);
-	if (I == -1)
-	{
-		printf("corner notfound\n");
-		printf("!!!!!!\n[%s][%s][%s]\n", STR_SIDE(corner[0]), STR_SIDE(corner[1]), STR_SIDE(corner[2]));
-		ungly_display(cube);
-	}
-	else
-//	printf("([%s][%s][%s])\n", STR_SIDE(corner[0]), STR_SIDE(corner[1]), STR_SIDE(corner[2]));
+	printf("%d\n", I);
+	// if (I == -1)
+	// {
+	// 	printf("corner notfound\n");
+	printf("!!!!!!\n[%d][%d][%d]\n", corner[0], corner[1], corner[2]);
+	// 	ungly_display(cube);
+	// }
+	// else
+	// 	printf("([%s][%s][%s])\n", STR_SIDE(corner[0]), STR_SIDE(corner[1]), STR_SIDE(corner[2]));
 	//ungly_display(cube);
-
-
-	bring_edge_opposite(cube, TAB_TSIDES_COLOR_TWO(corner[0], corner[1]), edge, I); // Du coup segfault ici avec I
+	bring_edge_opposite(cube, TAB_TSIDES_COLOR_TWO(corner[0], corner[1]), edge, I);
 	BIN_CUBE = tbin_conv_tsides(cube, TAB_TSIDES_COLOR_TWO(corner[0], corner[1]));
 	tab_tbin_find_edge(TAB_BIN_EDGE_NEAR, TAB_TSTICKERS_CORNER[I]);
 	BIN_EDGE_EXTREMITY = BIN_EDGES_NEAR | BIN_EDGES_OPPOSITE;
@@ -41,14 +43,22 @@ void		two_two_bloc(char ***cube, t_color corner[3])
 		TAB_TSTICKERS_EDGE, 12);
 	NB_MOVE = tab_tmove_edge_middle(move, I, BIN_CORNER);
 	read_tab_tmove(cube, NB_MOVE, move);
+
 	tbin_update(cube, binary, corner,
 		(arg_corner | arg_corner_less | arg_edge));
 	NB_MOVE = tab_tmove_edge_near(move, binary);
 	read_tab_tmove(cube, NB_MOVE, move);
 	tbin_update(cube, binary, corner,
 		(arg_edge | arg_corner_less | arg_cube_one));
-	tab_tmove_twist_edge(move, binary, &BIN_EDGE);
+
+
+	ungly_display(cube);
+	NB_MOVE = tab_tmove_twist_edge(move, binary, &BIN_EDGE);
+	print_tab_tmove(move, NB_MOVE);
 	read_tab_tmove(cube, NB_MOVE, move);
+	ungly_display(cube);
+
+
 	I = INDEX_CORNER(corner);
 	bring_edge_opposite(cube, TAB_TSIDES_COLOR_TWO(corner[0], corner[2]), edge, I);
 	tbin_update(cube, binary, corner,
@@ -58,7 +68,9 @@ void		two_two_bloc(char ***cube, t_color corner[3])
 	read_tab_tmove(cube, NB_MOVE, move);
 	tbin_update(cube, binary, corner,
 		(arg_corner_less | arg_edge_prim | arg_cube_one));
+
 	NB_MOVE = tab_tmove_twist_edge(move, binary, &BIN_EDGE_PRIM);
+	ungly_display(cube);
 	read_tab_tmove(cube, NB_MOVE, move);
 	tbin_update(cube, binary, corner,
 		(arg_corner | arg_edge_prim | arg_edge | arg_cube_one));
@@ -73,7 +85,7 @@ short		bring_edge_opposite(char ***cube, t_side color[3],
 	t_binary	binary[2];
 	t_move		move[NB_MOVE_MAX];
 
-	BIN_CORNER = tbin_conv_tstickers(TAB_TSTICKERS_CORNER[index_corner]); // ici
+	BIN_CORNER = tbin_conv_tstickers(TAB_TSTICKERS_CORNER[index_corner]);
 	BIN_CUBE = tbin_conv_tsides(cube, TAB_TSIDES_COLOR_TWO(color[0], color[1]));
 	tab_tbin_find_edge(TAB_BIN_EDGE_OPPOSITE, TAB_TSTICKERS_CORNER[(index_corner + 4) % 8]);
 	nb_move = tab_tmove_edge_opposite(move, BIN_CUBE, TAB_BIN_EDGE_OPPOSITE,
@@ -89,8 +101,10 @@ short		tab_tmove_edge_opposite(t_move move[NB_MOVE_MAX], t_binary bin_cube,
 	i = -1;
 	while (++i < 3)
 		if (tab_bin_edge_opposite[i] == (bin_cube & tab_bin_edge_opposite[i]))
-			return (copy_tab_tmove(move,
-				TAB_TMOVE_ONE(((t_move){corner[i].side, mod_null}))));
+	{
+		return (copy_tab_tmove(move,
+			TAB_TMOVE_ONE(((t_move){corner[i].side, mod_null}))));
+	}
 	return (0);
 }
 
@@ -182,12 +196,20 @@ short		tab_tmove_twist_edge(t_move move[NB_MOVE_MAX], t_binary	binary[5], t_bina
 
 	if ((tside_find_biggest_weight((*edge | BIN_CORNER_LESS) & BIN_CUBE)) != side_null)
 		return (0);
+
 	TAB_TSIDE_NULL(tab_side_edge);
 	tab_tside_find_filled(tab_side_edge, (*edge | BIN_CORNER_LESS) & BIN_CUBE);
+
+	bin((*edge | BIN_CORNER_LESS) & BIN_CUBE);
+
+	//tab_side_edge[0]
 	bin_problem = TBIN_CONV_TSIDE(TSIDE_BIGGEST, (*edge | BIN_CORNER_LESS) & BIN_CUBE);
+
+	bin(bin_problem);
 	I = index_tab_tbin(bin_problem, (t_binary[4]){0b000001000, 0b000000010, 0b000100000, 0b010000000}, 4);
+	printf("[%d]\n", I);
 	J = -1;
-	if (edge ==  &BIN_EDGE_PRIM)
+	if (edge == &BIN_EDGE_PRIM)
 	{
 		K = index_tab_tbin(bin_problem | TBIN_CONV_TSIDE(TSIDE_BIGGEST, (BIN_EDGE | BIN_CORNER_LESS)),
 				(t_binary[8]){
@@ -204,7 +226,7 @@ short		tab_tmove_twist_edge(t_move move[NB_MOVE_MAX], t_binary	binary[5], t_bina
 		move[++J] = (K < 4) ?
 			(t_move){TSIDE_AROUND(TAROUND_ETATOR(around_down, K % 4), TSIDE_BIGGEST), mod_reverse} :
 			(t_move){TSIDE_AROUND(TAROUND_ETATOR(around_up, K % 4), TSIDE_BIGGEST), mod_twice};
-	return (J);
+	return (++J);
 }
 
 short		tab_tmove_edge_two(t_move move[NB_MOVE_MAX], t_binary binary[6],
@@ -257,15 +279,22 @@ short		tab_tmove_right_angle(t_move move[NB_MOVE_MAX], t_binary binary[6],
 	tab_tside_find_filled(&TSIDE_BIGGEST, BIN_RIGHT_ANGLE);
 	if (TSIDE_BIGGEST == side_destination)
 	 	return (0);
+
+	// printf("(%d) %d\n", side_destination, tab_side_edge[0]);
+	// bin(BIN_RIGHT_ANGLE);
 	BIN_ORIGIN = TBIN_CONV_TSIDE(TSIDE_BIGGEST, BIN_RIGHT_ANGLE);
+	//bin(BIN_ORIGIN);
 	rotate = around_right;
 	while (rotate != around_null && TSIDE_AROUND(rotate, TSIDE_BIGGEST) != side_destination)
 	 	++rotate;
+
 	BIN_LAYER = ((t_binary[2]){0b010000010, 0b000101000})[rotate % 2];
 	if ((I = index_tab_tbin(((BIN_ORIGIN & BIN_LAYER) ^ BIN_ORIGIN),
 		(t_binary[8]){0b001001000, 0b000001001, 0b000000011, 0b000000110,
 			0b000100100, 0b100100000, 0b110000000, 0b011000000}, 8)) != -1)
 		copy_tmove(&move[0], TSIDE_AROUND((I / 2), TSIDE_BIGGEST), !(I % 2) ? mod_null : mod_reverse);
+
+	//bin((BIN_ORIGIN & BIN_LAYER));
 	J = index_tab_tbin((BIN_ORIGIN & BIN_LAYER), // print bin_origin et bin_layer
 		(t_binary[4]){0b000001000, 0b000000010, 0b000100000, 0b010000000}, 4); // Ici J = -1
 	move[1].side = TSIDE_AROUND(J, TSIDE_BIGGEST); // Segfault ici a cause de J

@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 19:04:09 by pbernier          #+#    #+#             */
-/*   Updated: 2020/02/17 21:15:24 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/01/24 18:58:06 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,27 +19,27 @@
 									TSIDE_CORNER(i, SHORT_COLOR_ORDER(j, 1)),\
 									TSIDE_CORNER(i, SHORT_COLOR_ORDER(j, 2))})
 
-# define TINST_RESULT				instruct[0]
-# define TINST_SAVE					instruct[1]
+# define TLIST_RESULT				list[0]
+# define TLIST_SAVE					list[1]
 
 
 t_list		find_best_resolve(char ***cube, t_list shuffle)
 {
 	short		i[2];
 	t_color		color[3];
-	t_list	instruct[2];
+	t_list		list[2];
 
 	I = -1;
-	TINST_RESULT.nb_move = 0;
-	TINST_RESULT.move = NULL;
-	TINST_SAVE = TINST_RESULT;
+	TLIST_RESULT.nb_move = 0;
+	TLIST_RESULT.move = NULL;
+	TLIST_SAVE = TLIST_RESULT;
 
+	read_tab_tmove(cube, shuffle.nb_move, shuffle.move);
 	while (++I < 8)
 	{
 		J = -1;
 		while (++J < 6)
 		{
-			read_tab_tmove(cube, shuffle.nb_move, shuffle.move);
 			copy_tab_tside((t_side*)color, TAB_TSIDE_REFINE(I, J), 3);
 			resolve(cube, color);
 			//TINST_RESULT = tab_tmove_conv_env(TINST_RESULT, ???);
@@ -49,7 +49,7 @@ t_list		find_best_resolve(char ***cube, t_list shuffle)
 		}
 		printf("\n");
 	}
-	return (TINST_SAVE);
+	return (TLIST_SAVE);
 }
 
 void		resolve(char ***cube, t_color color[3])
