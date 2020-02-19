@@ -4,7 +4,7 @@ NAME			=	rubik
 NO_TO_BE		=	ON
 
 CC				=	gcc
-FLAGS			=	-Wall -Werror -Wextra 
+FLAGS			=	-Wall -Werror -Wextra $(DFLAGS)
 DFLAGS			=	-g -fsanitize=address
 
 # DIR_LIB			=	lib/

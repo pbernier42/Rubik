@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 17:26:04 by pbernier          #+#    #+#             */
-/*   Updated: 2020/02/17 21:10:49 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/02/19 17:59:03 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,21 +39,23 @@ t_list	tab_tmove_conv_env(t_list src)
 		ret.move[i++] = h->move_all[j++];
 	}
 	ret.nb_move = j;
+	printf("src = %p\n", src.move);
+	printf("dst = %p\n", ret.move);
 	return (ret);
 }
 
-void	add_env(t_move *move, int nb_move)
+void	add_env(t_list l)
 {
-	int		i;
-	int		j;
-	int		left;
+	size_t	i;
+	size_t	j;
+	size_t	left;
 	t_env	*h;
 
 	i = 0;
 	j = env.nb_move % BUFF_MOVE;
 	left = BUFF_MOVE - j;
 	h = find_chain(NULL);
-	while (i < nb_move)
+	while (i < l.nb_move)
 	{
 		if (!left && env.nb_move)
 		{
@@ -61,7 +63,7 @@ void	add_env(t_move *move, int nb_move)
 			left = BUFF_MOVE;
 			j = 0;
 		}
-		h->move_all[j] = move[i];
+		h->move_all[j] = l.move[i];
 		env.nb_move++;
 		left--;
 		i++;

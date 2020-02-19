@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:04:51 by pbernier          #+#    #+#             */
-/*   Updated: 2020/02/17 21:26:27 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/02/19 18:13:28 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,33 +29,33 @@ int		main(int argc, char **argv)
 
 	if (!(shuffle.move = (t_move*)malloc(sizeof(t_move) * shuffle.nb_move)))
 		error(-1, ERR_MALLOC, "main(), mix shuffle");
-	tab_tmove_conv_str(shuffle.move, shuffle.nb_move, argv[1]);
+	tab_tmove_conv_str(shuffle, argv[1]);
 
 	res = find_best_resolve(cube, shuffle);
 	free(shuffle.move);
 	//free cube
-	print_tab_tmove(res.move, res.nb_move);
+	print_tab_tmove(res);
 	free(res.move);
 	return (0);
 }
 
 
 
-void		print_tab_tmove(t_move *tab, size_t nb)
+void		print_tab_tmove(t_list l)
 {
 	size_t	i;
 	size_t	j;
 
 	i = -1;
 	j = 0;
-	while (++i < nb)
+	while (++i < l.nb_move)
 	{
-		write(1, &(STR_INITIALS_SIDE[tab[i].side]), 1);
-		write(1, &(STR_INITIALS_MOD[tab[i].mod]), 1);
-		if (i + 1 != nb)
+		write(1, &(STR_INITIALS_SIDE[l.move[i].side]), 1);
+		write(1, &(STR_INITIALS_MOD[l.move[i].mod]), 1);
+		if (i + 1 != l.nb_move)
 			write(1, &(" "), 1);
 	}
-	if (nb)
+	if (l.nb_move)
 		write(1, &("\n"), 1);
 }
 

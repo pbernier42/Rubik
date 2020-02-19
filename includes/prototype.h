@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 17:22:23 by pbernier          #+#    #+#             */
-/*   Updated: 2020/02/17 21:30:00 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/02/19 17:55:45 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 ** main.c
 */
 
-void		print_tab_tmove(t_move *tab, size_t nb);
+void		print_tab_tmove(t_list l);
 void		bin(t_binary nbr);
 void 		ungly_display(char ***cube);
 
@@ -36,7 +36,7 @@ void		reset_cube(char ***cube);
 ** turn.c
 */
 
-short		read_tab_tmove(char ***cube, int nb_move, t_move *move);
+short		read_tab_tmove(char ***cube, t_list l);
 t_turn		tturn_conv_tside(char ***cube, t_side side);
 void		tab_char_find_around(char *data[3], char ***cube, t_line line);
 void		turn_modifier(t_turn turn, t_mod mod);
@@ -85,10 +85,9 @@ t_binary	tbin_conv_tstickers(t_sticker bloc[3]);
 t_binary	tbin_conv_tsides(char ***cube, t_side side[3]);
 t_binary	tbin_conv_char(char **cube_side, t_side side);
 t_binary	tbin_conv_tab_tsides(t_side *side, short nb_side, t_binary binary);
-void		tab_tmove_conv_str(t_move *dst, int nb_move, char *str);
+void		tab_tmove_conv_str(t_list l, char *str);
 t_move		tmove_conv_char(char arg[2]);
-void		tab_tmove_adjust_group(t_move *moves, size_t nb_move,
-				t_side side_reference, short rotate);
+void		tab_tmove_adjust_group(t_list l, t_side side_reference, short rotate);
 
 
 /*
@@ -125,7 +124,7 @@ void		tab_tside_edit(t_side dest[3], t_side from[3], t_binary selecter);
 */
 //soir utiliser *move soit realloc
 t_list		tab_tmove_conv_env(t_list src); //return instructuion
-void		add_env(t_move *move, int nb_move);
+void		add_env(t_list l);
 t_env		*find_chain(t_env *start);
 t_env		*create_new_chain(t_env *h);
 void		erase_env(void);
