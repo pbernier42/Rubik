@@ -207,7 +207,7 @@ short		tab_tmove_twist_edge(t_move move[NB_MOVE_MAX], t_binary	binary[5], t_bina
 
 	bin(bin_problem);
 	I = index_tab_tbin(bin_problem, (t_binary[4]){0b000001000, 0b000000010, 0b000100000, 0b010000000}, 4);
-	printf("[%d]\n", I);
+
 	J = -1;
 	if (edge == &BIN_EDGE_PRIM)
 	{
