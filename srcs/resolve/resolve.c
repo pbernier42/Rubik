@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 19:04:09 by pbernier          #+#    #+#             */
-/*   Updated: 2020/01/24 18:58:06 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/02/19 17:50:45 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_list		find_best_resolve(char ***cube, t_list shuffle)
 	TLIST_RESULT.move = NULL;
 	TLIST_SAVE = TLIST_RESULT;
 
-	read_tab_tmove(cube, shuffle.nb_move, shuffle.move);
+	read_tab_tmove(cube, shuffle);
 	while (++I < 8)
 	{
 		J = -1;

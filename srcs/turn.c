@@ -6,23 +6,23 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 14:36:45 by pbernier          #+#    #+#             */
-/*   Updated: 2020/01/29 14:36:46 by pbernier         ###   ########.fr       */
+/*   Updated: 2020/02/19 18:10:31 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <rubik.h>
 
-short	read_tab_tmove(char ***cube, int nb_move, t_move *move)
+short	read_tab_tmove(char ***cube, t_list l)
 {
 	short	i;
 
 	i = -1;
-	while (++i < nb_move)
+	while (++i < (int)l.nb_move)
 	{
-		if (move[i].side == side_null)
+		if (l.move[i].side == side_null)
 			return (i);
 		// print_ins((t_move[1]){move[i]}, 1);
-		turn_modifier(tturn_conv_tside(cube, move[i].side), move[i].mod);
+		turn_modifier(tturn_conv_tside(cube, l.move[i].side), l.move[i].mod);
 		//ungly_display(cube);
 	}
 	//add

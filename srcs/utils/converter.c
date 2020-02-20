@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 18:22:17 by pbernier          #+#    #+#             */
-/*   Updated: 2020/02/05 22:24:31 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/02/19 17:58:25 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,16 +91,16 @@ t_binary	tbin_conv_tab_tsides(t_side *side, short nb_side, t_binary binary)
 	return (ret);
 }
 
-void	tab_tmove_conv_str(t_move *dst, int nb_move, char *str)
+void	tab_tmove_conv_str(t_list l, char *str)
 {
 	size_t		len;
-	int			count;
+	size_t		count;
 
 	len = sizet_skip_space(0, str);
 	count = 0;
-	while (count < nb_move)
+	while (count < l.nb_move)
 	{
-		dst[count++] = tmove_conv_char((char[2]){str[len], str[len + 1]});
+		l.move[count++] = tmove_conv_char((char[2]){str[len], str[len + 1]});
 		len += 2;
 		len = sizet_skip_space(len, str);
 	}
@@ -121,21 +121,20 @@ t_move	tmove_conv_char(char arg[2])
 	return (ret);
 }
 
-void	tab_tmove_adjust_group(t_move *moves, size_t nb_move,
-			t_side side_reference, short rotate)
+void	tab_tmove_adjust_group(t_list l, t_side side_reference, short rotate)
 {
 	size_t	i;
 
 	i = -1;
-	while (++i < nb_move)
-		moves[i].side = ((t_side[6]){
+	while (++i < l.nb_move)
+		l.move[i].side = ((t_side[6]){
 			side_reference,
 			TSIDE_AROUND(TAROUND_ROTATE(around_right, rotate), side_reference),
 			TSIDE_AROUND(TAROUND_ROTATE(around_up, rotate), side_reference),
 			(side_reference + 3) % 6,
 			TSIDE_AROUND(TAROUND_ROTATE(around_left, rotate), side_reference),
 			TSIDE_AROUND(TAROUND_ROTATE(around_down, rotate), side_reference)
-			})[moves[i].side];
+			})[l.move[i].side];
 }
 
 

@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 17:28:26 by pbernier          #+#    #+#             */
-/*   Updated: 2020/01/28 17:28:27 by pbernier         ###   ########.fr       */
+/*   Updated: 2020/02/19 20:42:13 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void		two_two_bloc(char ***cube, t_color corner[3])
 	// if (I == -1)
 	// {
 	// 	printf("corner notfound\n");
-	printf("!!!!!!\n[%d][%d][%d]\n", corner[0], corner[1], corner[2]);
+	printf("!!!!!!\n[%c][%c][%c]\n", STR_INITIALS_SIDE[corner[0]], STR_INITIALS_SIDE[corner[1]], STR_INITIALS_SIDE[corner[2]]);
 	// 	ungly_display(cube);
 	// }
 	// else
@@ -42,21 +42,22 @@ void		two_two_bloc(char ***cube, t_color corner[3])
 	I = index_tab_tstickers(BIN_CUBE ^ (BIN_CUBE & BIN_EDGE_EXTREMITY),
 		TAB_TSTICKERS_EDGE, 12);
 	NB_MOVE = tab_tmove_edge_middle(move, I, BIN_CORNER);
-	read_tab_tmove(cube, NB_MOVE, move);
+	read_tab_tmove(cube, (t_list){NB_MOVE, move});
 
 	tbin_update(cube, binary, corner,
 		(arg_corner | arg_corner_less | arg_edge));
 	NB_MOVE = tab_tmove_edge_near(move, binary);
-	read_tab_tmove(cube, NB_MOVE, move);
+	read_tab_tmove(cube, (t_list){NB_MOVE, move});
 	tbin_update(cube, binary, corner,
 		(arg_edge | arg_corner_less | arg_cube_one));
 
 
 	ungly_display(cube);
 	NB_MOVE = tab_tmove_twist_edge(move, binary, &BIN_EDGE);
-	print_tab_tmove(move, NB_MOVE);
-	read_tab_tmove(cube, NB_MOVE, move);
+	print_tab_tmove((t_list){NB_MOVE, move});
+	read_tab_tmove(cube, (t_list){NB_MOVE, move});
 	ungly_display(cube);
+	//while (1);
 
 
 	I = INDEX_CORNER(corner);
@@ -65,17 +66,17 @@ void		two_two_bloc(char ***cube, t_color corner[3])
 		(arg_corner | arg_edge | arg_edge_prim));
 	I = INDEX_CORNER(corner);
 	NB_MOVE = tab_tmove_edge_two(move, binary, I);
-	read_tab_tmove(cube, NB_MOVE, move);
+	read_tab_tmove(cube, (t_list){NB_MOVE, move});
 	tbin_update(cube, binary, corner,
 		(arg_corner_less | arg_edge_prim | arg_cube_one));
 
 	NB_MOVE = tab_tmove_twist_edge(move, binary, &BIN_EDGE_PRIM);
 	ungly_display(cube);
-	read_tab_tmove(cube, NB_MOVE, move);
+	read_tab_tmove(cube, (t_list){NB_MOVE, move});
 	tbin_update(cube, binary, corner,
 		(arg_corner | arg_edge_prim | arg_edge | arg_cube_one));
 	NB_MOVE = tab_tmove_right_angle(move, binary, (t_side)corner[0]);
-	read_tab_tmove(cube, NB_MOVE, move);
+	read_tab_tmove(cube, (t_list){NB_MOVE, move});
 }
 
 short		bring_edge_opposite(char ***cube, t_side color[3],
@@ -90,7 +91,7 @@ short		bring_edge_opposite(char ***cube, t_side color[3],
 	tab_tbin_find_edge(TAB_BIN_EDGE_OPPOSITE, TAB_TSTICKERS_CORNER[(index_corner + 4) % 8]);
 	nb_move = tab_tmove_edge_opposite(move, BIN_CUBE, TAB_BIN_EDGE_OPPOSITE,
 	 	TAB_TSTICKERS_CORNER[(index_corner + 4) % 8]);
-	return (read_tab_tmove(cube, nb_move, move));
+	return (read_tab_tmove(cube, (t_list){nb_move, move}));
 }
 
 short		tab_tmove_edge_opposite(t_move move[NB_MOVE_MAX], t_binary bin_cube,
@@ -195,7 +196,10 @@ short		tab_tmove_twist_edge(t_move move[NB_MOVE_MAX], t_binary	binary[5], t_bina
 	t_binary	bin_problem;
 
 	if ((tside_find_biggest_weight((*edge | BIN_CORNER_LESS) & BIN_CUBE)) != side_null)
+	{
+		pdebug();
 		return (0);
+	}
 
 	TAB_TSIDE_NULL(tab_side_edge);
 	tab_tside_find_filled(tab_side_edge, (*edge | BIN_CORNER_LESS) & BIN_CUBE);
