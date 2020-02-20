@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 17:22:23 by pbernier          #+#    #+#             */
-/*   Updated: 2020/02/19 17:55:45 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/02/20 17:45:03 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,18 @@ void		bin(t_binary nbr);
 void 		ungly_display(char ***cube);
 
 /*
-** cube.c
+** layer.c
 */
 
-char		***init_cube(void);
-void		erase_cube(char ***cube);
-void		reset_cube(char ***cube);
+void		highlight_turn(char ***layer, t_side side, t_line line[4]);
+
+/*
+** layer.c
+*/
+
+char		***init_layer(char *str);
+void		erase_layer(char ***layer);
+void		reset_layer(char ***layer, char *str);
 
 /*
 ** turn.c

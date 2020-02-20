@@ -33,7 +33,7 @@ SRC_FIlE		=	main.c \
 					argument.c \
 					env.c \
 					turn.c \
-					cube.c
+					layer.c
 
 INC				=	$(addprefix $(DIR_INC),$(SRC_INCLUDE)) \
 					lib/libft/includes/libft.h
