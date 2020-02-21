@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:06:32 by pbernier          #+#    #+#             */
-/*   Updated: 2020/02/05 22:41:29 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/02/21 18:14:24 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 
 typedef struct s_env		t_env;
 extern t_env				env;
+
+extern char ***g_layer;
 
 # include "define.h"
 # include "variable.h"

@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:04:51 by pbernier          #+#    #+#             */
-/*   Updated: 2020/02/20 19:07:45 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/02/21 18:41:52 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ int		main(int argc, char **argv)
 		error(-1, ERR_MALLOC, "main(), mix shuffle");
 	tab_tmove_conv_str(shuffle, argv[1]);
 	ungly_display(cube);
-	ungly_display(g_layer);
-	highlight_turn(g_layer, side_up, TAB_TLINE_AROUND(side_up));
 	//ungly_display(g_layer);
 	//res = find_best_resolve(cube, shuffle);
 	free(shuffle.move);
@@ -89,32 +87,32 @@ void		bin(t_binary nbr)
 	printf("D %.3s %.3s %.3s\n", &cube[45], &cube[48], &cube[51]);
 }
 
-void	print_sticker(char c)
+void	print_sticker(char c, t_side side, int hl)
 {
-	if (c == 'F')
-		printf("%s", C_BRED);
-	else if (c == 'R')
-		printf("%s", C_BYELLOW);
-	else if (c == 'U')
-		printf("%s", C_BBLUE);
-	else if (c == 'B')
-		printf("%s", C_BORANGE);
-	else if (c == 'L')
-		printf("%s", C_BWHITE);
-	else if (c == 'D')
-		printf("%s", C_BGREEN);
+	if (hl != -1)
+		printf("%s", TAB_COLORS(hl, side));
 	printf("[%c]" C_RESET, c);
 }
 
 void	print_line(char *line, t_side side, short y)
 {
+	int		hl[3];
+
+	if (side == side_null)
+		ft_memset(hl, -1, sizeof(int) * 3);
+	else
+	{
+		hl[0] = g_layer[side][y][0] - '0';
+		hl[1] = g_layer[side][y][1] - '0';
+		hl[2] = g_layer[side][y][2] - '0';
+	}
 	if (!line)
 		printf("         ");
 	else
 	{
-		print_sticker(line[0]);
-		print_sticker(line[1]);
-		print_sticker(line[2]);
+		print_sticker(line[0], side, hl[0]);
+		print_sticker(line[1], side, hl[1]);
+		print_sticker(line[2], side, hl[2]);
 	}
 	printf(" ");
 }
@@ -122,30 +120,27 @@ void	print_line(char *line, t_side side, short y)
 void	print_face(char ***side, bool back, t_side s[3]) // rajouter les s[] ainsi que les y[3] pour les coordonnees
 {
 	print_line(side[0] ? side[0][0] : NULL, s[0], 0);
-	
 	if (!back)
-		print_line(side[1] ? side[1][0] : NULL, s[1], 1);
+		print_line(side[1] ? side[1][0] : NULL, s[1], 0);
 	else
-		print_line((char[3]){side[1][0][2], side[1][0][1], side[1][0][0]}, s 1);
-	
-	print_line(side[2] ? side[2][0] : NULL);
+		print_line((char[3]){side[1][0][2], side[1][0][1], side[1][0][0]}, s[1], 0);
+	print_line(side[2] ? side[2][0] : NULL, s[2], 0);
 	printf("\n");
 
-
-	print_line(side[0] ? side[0][1] : NULL);
+	print_line(side[0] ? side[0][1] : NULL, s[0], 1);
 	if (!back)
-		print_line(side[1] ? side[1][1] : NULL);
+		print_line(side[1] ? side[1][1] : NULL, s[1], 1);
 	else
-		print_line((char[3]){side[1][1][2], side[1][1][1], side[1][1][0]});
-	print_line(side[2] ? side[2][1] : NULL);
+		print_line((char[3]){side[1][1][2], side[1][1][1], side[1][1][0]}, s[1], 1);
+	print_line(side[2] ? side[2][1] : NULL, s[2], 1);
 	printf("\n");
 
-	print_line(side[0] ? side[0][2] : NULL);
+	print_line(side[0] ? side[0][2] : NULL, s[0], 2);
 	if (!back)
-		print_line(side[1] ? side[1][2] : NULL);
+		print_line(side[1] ? side[1][2] : NULL, s[1], 2);
 	else
-		print_line((char[3]){side[1][2][2], side[1][2][1], side[1][2][0]});
-	print_line(side[2] ? side[2][2] : NULL);
+		print_line((char[3]){side[1][2][2], side[1][2][1], side[1][2][0]}, s[1], 2);
+	print_line(side[2] ? side[2][2] : NULL, s[2], 2);
 	printf("\n\n");
 }
 
