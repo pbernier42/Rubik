@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:04:51 by pbernier          #+#    #+#             */
-/*   Updated: 2020/02/24 16:46:00 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/02/24 19:45:34 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,10 @@ void		bin(t_binary nbr)
 	printf("D %.3s %.3s %.3s\n", &cube[45], &cube[48], &cube[51]);
 }
 
-void	print_sticker(char c, t_side side, int hl)
+void	print_sticker(char c, int hl)
 {
 	if (hl != -1)
-		printf("%s", TAB_COLORS(hl, side));
+		printf("%s", TAB_COLORS(hl, tside_find_char(c)));
 	printf("[%c]" C_RESET, c);
 }
 
@@ -112,9 +112,9 @@ void	print_line(char *line, t_side side, short y)
 		printf("         ");
 	else
 	{
-		print_sticker(line[0], side, hl[0]);
-		print_sticker(line[1], side, hl[1]);
-		print_sticker(line[2], side, hl[2]);
+		print_sticker(line[0], hl[0]);
+		print_sticker(line[1], hl[1]);
+		print_sticker(line[2], hl[2]);
 	}
 	printf(" ");
 }

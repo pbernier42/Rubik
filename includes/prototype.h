@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 17:22:23 by pbernier          #+#    #+#             */
-/*   Updated: 2020/02/20 17:45:03 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/02/24 19:18:07 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,12 @@ void 		ungly_display(char ***cube);
 */
 
 void		highlight_turn(char ***layer, t_side side, t_line line[4]);
+
+/*
+** debug.c
+*/
+
+void		find_inverted_res(t_list src);
 
 /*
 ** layer.c
@@ -82,6 +88,7 @@ void		tab_tbin_find_edge(t_binary edge_linked[3], t_sticker corner[3]);
 t_sticker	tsticker_find_edge(t_sticker edge[2]);
 t_side		tside_find_biggest_weight(t_binary binary);
 short		tab_tside_find_filled(t_side tab_side[side_null], t_binary binary);
+t_side		tside_find_char(char c);
 
 /*
 ** utils/converter.c
