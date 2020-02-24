@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:04:51 by pbernier          #+#    #+#             */
-/*   Updated: 2020/02/21 18:41:52 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/02/24 16:46:00 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int		main(int argc, char **argv)
 		error(-1, ERR_MALLOC, "main(), mix shuffle");
 	tab_tmove_conv_str(shuffle, argv[1]);
 	ungly_display(cube);
+	read_tab_tmove(cube, shuffle);
+
 	//ungly_display(g_layer);
 	//res = find_best_resolve(cube, shuffle);
 	free(shuffle.move);
@@ -102,9 +104,9 @@ void	print_line(char *line, t_side side, short y)
 		ft_memset(hl, -1, sizeof(int) * 3);
 	else
 	{
-		hl[0] = g_layer[side][y][0] - '0';
+		hl[0] = g_layer[side][y][side == side_back ? 2 : 0] - '0';
 		hl[1] = g_layer[side][y][1] - '0';
-		hl[2] = g_layer[side][y][2] - '0';
+		hl[2] = g_layer[side][y][side == side_back ? 0 : 2] - '0';
 	}
 	if (!line)
 		printf("         ");

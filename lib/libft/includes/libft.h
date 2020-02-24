@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/09 00:30:13 by pbernier          #+#    #+#             */
-/*   Updated: 2020/02/21 17:58:19 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/02/24 16:37:21 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,12 @@
 # define C_LWHITE		"\033[7;49;97m"
 # define C_LGREEN		"\033[7;49;92m"
 
-# define C_GRED			"\033[7;49;31m"
-# define C_GYELLOW		"\033[7;49;33m"
-# define C_GBLUE		"\033[7;49;34m"
-# define C_GORANGE		"\033[48;2;255;165;01;30m"
-# define C_GWHITE		"\033[7;49;37m"
-# define C_GGREEN		"\033[7;49;32m"
+# define C_GRED			"\033[7;47;31;01m"
+# define C_GYELLOW		"\033[7;49;33;01m"
+# define C_GBLUE		"\033[7;49;34;01m"
+# define C_GORANGE		"\033[48;2;255;165;01;30;01m"
+# define C_GWHITE		"\033[7;49;37;01m"
+# define C_GGREEN		"\033[7;49;32;01m"
 
 # include <string.h>
 # include <stdlib.h>
