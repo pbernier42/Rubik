@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 17:22:23 by pbernier          #+#    #+#             */
-/*   Updated: 2020/02/24 19:18:07 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/02/25 17:10:29 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void		highlight_turn(char ***layer, t_side side, t_line line[4]);
 */
 
 void		find_inverted_res(t_list src);
+bool		is_valid(t_color c[3], bool need);
 
 /*
 ** layer.c

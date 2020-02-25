@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:04:51 by pbernier          #+#    #+#             */
-/*   Updated: 2020/02/24 19:45:34 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/02/25 17:16:42 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int		main(int argc, char **argv)
 		error(-1, ERR_MALLOC, "main(), mix shuffle");
 	tab_tmove_conv_str(shuffle, argv[1]);
 	ungly_display(cube);
-	read_tab_tmove(cube, shuffle);
+	//read_tab_tmove(cube, shuffle);
 
 	//ungly_display(g_layer);
 	//res = find_best_resolve(cube, shuffle);

@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 18:06:51 by pbernier          #+#    #+#             */
-/*   Updated: 2020/02/24 16:38:11 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/02/25 17:13:32 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -272,5 +272,47 @@
 												C_HGREEN \
 											} \
 										}[highlight][i]
+
+# define P_VALID						true
+# define P_INVAL						false
+
+# define VALID_PATTERN(i)				(t_color[8][3]) \
+										{ \
+											{ \
+												color_red, \
+												color_blue, \
+												color_white \
+											}, \
+											{ \
+												color_red, \
+												color_yellow, \
+												color_blue \
+											}, \
+											{ \
+												color_yellow, \
+												color_blue, \
+												color_red \
+											}, \
+											{ \
+												color_yellow, \
+												color_red, \
+												color_green \
+											}, \
+											{ \
+												color_red, \
+												color_green, \
+												color_white \
+											}, \
+											{ \
+												color_orange, \
+												color_green, \
+												color_white \
+											}, \
+											{ \
+												color_yellow, \
+												color_orange, \
+												color_blue \
+											} \
+										}[i]
 
 #endif
