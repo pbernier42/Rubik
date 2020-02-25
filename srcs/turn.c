@@ -21,10 +21,11 @@ short	read_tab_tmove(char ***cube, t_list l)
 	{
 		if (l.move[i].side == side_null)
 			return (i);
-		// print_ins((t_move[1]){move[i]}, 1);
+
 		turn_modifier(tturn_conv_tside(cube, l.move[i].side), l.move[i].mod);
 		//ungly_display(cube);
 	}
+	//print_tab_tmove(l);
 	//add
 	return (i);
 }

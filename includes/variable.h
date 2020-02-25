@@ -39,13 +39,14 @@ typedef enum e_around		t_around;
 //paranm!
 enum						e_argument
 {
-	arg_cube_all =		0b0000001,
-	arg_corner =		0b0000010,
-	arg_cube_two =		0b0000100,
-	arg_corner_less =	0b0001000,
-	arg_edge =			0b0010000,
-	arg_edge_prim =		0b0100000,
-	arg_cube_one =		0b1000000
+	arg_cube_all =			0b00000001,
+	arg_corner =			0b00000010,
+	arg_cube_two =			0b00000100,
+	arg_corner_less =		0b00001000,
+	arg_edge =				0b00010000,
+	arg_edge_prim =			0b00100000,
+	arg_cube_one =			0b01000000,
+	arg_corner_less_prim =	0b10000000
 };
 
 // enum						e_argument

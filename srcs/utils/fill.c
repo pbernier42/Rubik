@@ -12,13 +12,13 @@
 
 #include <rubik.h>
 
-short	copy_tab_tmove(t_move dest[NB_MOVE_MAX], t_move from[NB_MOVE_MAX])
+short	copy_tab_tmove(t_move *dest, t_move *from, short size_tab)
 {
 	short	i[2];
 
 	I = -1;
 	NB_MOVE = 0;
-	while (++I < NB_MOVE_MAX)
+	while (++I < size_tab)
 	{
 		if (from[I].side != side_null)
 			NB_MOVE = (I + 1);

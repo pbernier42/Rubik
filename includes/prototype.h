@@ -56,7 +56,7 @@ void		resolve(char ***cube, t_color corner[3]);
 void		two_two_bloc(char ***cube, t_color corner[3]);
 short		bring_edge_opposite(char ***cube, t_side color[3],
 				t_binary edge[2][3], short index_corner);
-short		tab_tmove_edge_opposite(t_move move[NB_MOVE_MAX], t_binary bin_cube,
+short		tab_tmove_edge_opposite(t_move move[NB_MOVE_MAX], t_binary binary[2],
 				t_binary tab_bin_edge_opposite[3],  t_sticker corner[3]);
 short		tab_tmove_edge_middle(t_move move[NB_MOVE_MAX], short index_edge,
 				t_binary bin_corner);
@@ -64,6 +64,7 @@ short		tab_tmove_edge_near(t_move move[NB_MOVE_MAX], t_binary binary[6]);
 short		tab_tmove_twist_edge(t_move move[NB_MOVE_MAX], t_binary	binary[6], t_binary *edge);
 short		tab_tmove_edge_two(t_move move[NB_MOVE_MAX], t_binary binary[6],
 				short index_corner);
+short		tab_tmove_rotate_prim(t_move move[NB_MOVE_MAX], t_binary binary[6]);
 short		tab_tmove_right_angle(t_move move[NB_MOVE_MAX], t_binary binary[6],
 				t_side side_destination);
 
@@ -108,7 +109,7 @@ short		nb_byte_tbin(t_binary binary, short spectrum);
 */
 
 short		copy_tab_tside(t_side *dest, t_side *from, short size_tab);
-short		copy_tab_tmove(t_move dest[NB_MOVE_MAX], t_move from[NB_MOVE_MAX]);
+short		copy_tab_tmove(t_move *dest, t_move *from, short size_tab);
 void		copy_tmove(t_move *dest, t_side side, t_mod mod);
 
 /*

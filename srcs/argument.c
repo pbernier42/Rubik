@@ -41,7 +41,11 @@ void		tbin_update(char ***cube, t_binary binary[6], t_color corner[3],
 		BIN_EDGE_PRIM = tbin_conv_tstickers(TAB_TSTICKERS_EDGE[INDEX_EDGE(corner[0], corner[2])]);
 
 	if ((bin_argument & arg_corner_less))
-		BIN_CORNER_LESS = tbin_conv_tsides(cube, TAB_TSIDES_COLOR_ALL(corner)) & tbin_conv_tstickers(TAB_TSTICKERS_CORNER[INDEX_CORNER(corner)]);
+		BIN_CORNER_LESS = tbin_conv_tsides(cube, TAB_TSIDES_COLOR_TWO(corner[0], corner[1])) &
+		tbin_conv_tstickers(TAB_TSTICKERS_CORNER[INDEX_CORNER(corner)]);
+	if ((bin_argument & arg_corner_less_prim))
+		BIN_CORNER_LESS = tbin_conv_tsides(cube, TAB_TSIDES_COLOR_TWO(corner[0], corner[2])) &
+		tbin_conv_tstickers(TAB_TSTICKERS_CORNER[INDEX_CORNER(corner)]);
 
 }
 
