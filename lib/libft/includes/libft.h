@@ -6,7 +6,7 @@
 /*   By: pbernier <pbernier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/09 00:30:13 by pbernier          #+#    #+#             */
-/*   Updated: 2020/02/17 20:45:16 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/02/24 16:37:21 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,29 @@
 # define C_ORANGE "\033[38;5;208m"
 
 # define C_BBLACK	"\033[40;01;01;01;01m"
-# define C_BRED		"\033[41;01;01;01;01m"
-# define C_BGREEN	"\033[42;01;01;01;01m"
-# define C_BYELLOW	"\033[43;01;01;01;01m"
-# define C_BBLUE	"\033[44;01;01;01;01m"
 # define C_BPURPLE	"\033[45;01;01;01;01m"
-# define C_BORANGE	"\033[48;2;255;165;1m"
 # define C_BCYAN	"\033[46;01;01;01;01m"
-# define C_BWHITE	"\033[47;01;01;01;01m"
+
+# define C_HRED		"\033[41;01;01;01;01m"
+# define C_HGREEN	"\033[42;01;01;01;01m"
+# define C_HYELLOW	"\033[43;01;01;01;01m"
+# define C_HBLUE	"\033[44;01;01;01;01m"
+# define C_HORANGE	"\033[48;2;255;165;45;01m"
+# define C_HWHITE	"\033[47;01;01;01;01m"
+
+# define C_LRED			"\033[7;49;91m"
+# define C_LYELLOW		"\033[7;49;93m"
+# define C_LBLUE		"\033[7;49;94m"
+# define C_LORANGE		"\033[48;2;245;200;45;30m"
+# define C_LWHITE		"\033[7;49;97m"
+# define C_LGREEN		"\033[7;49;92m"
+
+# define C_GRED			"\033[7;47;31;01m"
+# define C_GYELLOW		"\033[7;49;33;01m"
+# define C_GBLUE		"\033[7;49;34;01m"
+# define C_GORANGE		"\033[48;2;255;165;01;30;01m"
+# define C_GWHITE		"\033[7;49;37;01m"
+# define C_GGREEN		"\033[7;49;32;01m"
 
 # include <string.h>
 # include <stdlib.h>

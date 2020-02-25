@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 17:53:05 by pbernier          #+#    #+#             */
-/*   Updated: 2020/01/28 17:53:07 by pbernier         ###   ########.fr       */
+/*   Updated: 2020/02/24 19:19:24 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,19 @@ short	tab_tside_find_filled(t_side tab_side[side_null], t_binary binary)
 		++side;
 	}
 	return (nb_side);
+}
+
+t_side	tside_find_char(char c)
+{
+	size_t	i;
+	t_side	ret;
+
+	i = -1;
+	ret = side_null;
+	while (++i < 6)
+	{
+		if (c == STR_INITIALS_SIDE[i])
+			ret = i;
+	}
+	return (ret);
 }

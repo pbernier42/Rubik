@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 18:06:51 by pbernier          #+#    #+#             */
-/*   Updated: 2020/02/12 20:12:45 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/02/24 16:38:11 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@
 ** STRING
 */
 
+# define STR_INITIALS_LAYER			((char[7]){"000000"})
 # define STR_INITIALS_SIDE			((char[7]){"FRUBLD"})
 # define STR_INITIALS_MOD			((char[3]){"2'"})
 # define STR_INITIALS_SPACE			((char[6]){" \t\r\v\f\0"})
@@ -241,5 +242,35 @@
 											ROTATE_CORNER_TO_EDGE, \
 											ROTATE_EDGE \
 										}[i]
+
+# define COLOR_BG_RED					"R' F D' F'"
+
+# define TAB_COLORS(highlight, i)		(char[3][side_null][25]) \
+										{ \
+											{ \
+												C_LRED, \
+												C_LYELLOW, \
+												C_LBLUE, \
+												C_LORANGE, \
+												C_LWHITE, \
+												C_LGREEN \
+											}, \
+											{ \
+												C_HRED, \
+												C_HYELLOW, \
+												C_HBLUE, \
+												C_HORANGE, \
+												C_HWHITE, \
+												C_HGREEN \
+											}, \
+											{ \
+												C_HRED, \
+												C_HYELLOW, \
+												C_HBLUE, \
+												C_HORANGE, \
+												C_HWHITE, \
+												C_HGREEN \
+											} \
+										}[highlight][i]
 
 #endif

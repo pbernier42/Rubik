@@ -6,12 +6,12 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/08 16:15:53 by rlecart           #+#    #+#             */
-/*   Updated: 2020/01/14 17:46:29 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/02/21 18:09:03 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <rubik.h>
-
+/*
 void	init_colors(char col[103])
 {
 	ft_bzero(col, 103);
@@ -76,3 +76,4 @@ void	display(char ***tab, int face, int cel[12])
 		i += 3;
 	}
 }
+*/
