@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:04:51 by pbernier          #+#    #+#             */
-/*   Updated: 2020/02/25 17:16:42 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/02/27 18:40:27 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,13 @@ int		main(int argc, char **argv)
 	if (!(shuffle.move = (t_move*)malloc(sizeof(t_move) * shuffle.nb_move)))
 		error(-1, ERR_MALLOC, "main(), mix shuffle");
 	tab_tmove_conv_str(shuffle, argv[1]);
-	ungly_display(cube);
-	//read_tab_tmove(cube, shuffle);
+	find_inverted_res(shuffle);
+	//ungly_display(cube);
+	read_tab_tmove(cube, shuffle);
+
+	t_color		c[3];
+
+	two_two_three_bloc(cube, c, find_new_color(cube, c));
 
 	//ungly_display(g_layer);
 	//res = find_best_resolve(cube, shuffle);

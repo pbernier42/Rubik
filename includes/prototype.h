@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 17:22:23 by pbernier          #+#    #+#             */
-/*   Updated: 2020/02/25 17:10:29 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/02/27 18:38:48 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,12 @@ void		highlight_turn(char ***layer, t_side side, t_line line[4]);
 
 void		find_inverted_res(t_list src);
 bool		is_valid(t_color c[3], bool need);
+
+/*
+** layer.c
+*/
+
+t_color		find_new_color(char ***cube, t_color c[3]);
 
 /*
 ** layer.c
@@ -81,6 +87,11 @@ short		tab_tmove_rotate_prim(t_move move[NB_MOVE_MAX], t_binary binary[6]);
 short		tab_tmove_right_angle(t_move move[NB_MOVE_MAX], t_binary binary[6],
 				t_side side_destination);
 
+/*
+** resolve/two_two_bloc.c
+*/
+
+void		two_two_three_bloc(char ***cube, t_color c[3], t_color exclude);
 
 /*
 ** utils/find.c

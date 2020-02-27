@@ -34,7 +34,8 @@ SRC_FIlE		=	main.c \
 					env.c \
 					turn.c \
 					layer.c \
-					debug.c
+					debug.c \
+					resolve/two_two_three_bloc.c
 
 INC				=	$(addprefix $(DIR_INC),$(SRC_INCLUDE)) \
 					lib/libft/includes/libft.h

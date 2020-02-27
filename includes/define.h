@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 18:06:51 by pbernier          #+#    #+#             */
-/*   Updated: 2020/02/25 17:13:32 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/02/27 18:38:02 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -276,7 +276,7 @@
 # define P_VALID						true
 # define P_INVAL						false
 
-# define VALID_PATTERN(i)				(t_color[8][3]) \
+# define VALID_PATTERN(i)				(t_color[7][3]) \
 										{ \
 											{ \
 												color_red, \
@@ -314,5 +314,101 @@
 												color_blue \
 											} \
 										}[i]
+
+# define CORNERS_LIST(i, j)				(t_color[8][3]) \
+										{ \
+											{ \
+												color_red, \
+												color_blue, \
+												color_white \
+											}, \
+											{ \
+												color_orange, \
+												color_yellow, \
+												color_blue \
+											}, \
+											{ \
+												color_green, \
+												color_yellow, \
+												color_orange \
+											}, \
+											{ \
+												color_red, \
+												color_white, \
+												color_green \
+											}, \
+											{ \
+												color_red, \
+												color_green, \
+												color_yellow \
+											}, \
+											{ \
+												color_orange, \
+												color_blue, \
+												color_white \
+											}, \
+											{ \
+												color_orange, \
+												color_white, \
+												color_green \
+											}, \
+											{ \
+												color_red, \
+												color_yellow, \
+												color_blue \
+											} \
+										}[i][j]
+
+# define EDGES_LIST(i, j)					(t_color[12][2]) \
+										{ \
+											{ \
+												color_orange, \
+												color_white, \
+											}, \
+											{ \
+												color_orange, \
+												color_blue \
+											}, \
+											{ \
+												color_orange, \
+												color_yellow \
+											}, \
+											{ \
+												color_orange, \
+												color_green \
+											}, \
+											{ \
+												color_green, \
+												color_yellow \
+											}, \
+											{ \
+												color_green, \
+												color_red, \
+											}, \
+											{ \
+												color_greem, \
+												color_white \
+											}, \
+											{ \
+												color_yellow, \
+												color_red \
+											}, \
+											{ \
+												color_yellow, \
+												color_blue \
+											}, \
+											{ \
+												color_white, \
+												color_red, \
+											}, \
+											{ \
+												color_white, \
+												color_blue \
+											}, \
+											{ \
+												color_red, \
+												color_blue \
+											} \
+										}[i][j]
 
 #endif
