@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 17:22:23 by pbernier          #+#    #+#             */
-/*   Updated: 2020/02/27 18:38:48 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/03/02 21:12:15 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,10 @@ short		tab_tmove_right_angle(t_move move[NB_MOVE_MAX], t_binary binary[6],
 				t_side side_destination);
 
 /*
-** resolve/two_two_bloc.c
+** resolve/step2.c
 */
 
-void		two_two_three_bloc(char ***cube, t_color c[3], t_color exclude);
+void		step_two(char ***cube, t_color c[3], t_color exclude);
 
 /*
 ** utils/find.c

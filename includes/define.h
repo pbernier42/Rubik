@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 18:06:51 by pbernier          #+#    #+#             */
-/*   Updated: 2020/02/27 18:38:02 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/03/02 21:55:37 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -315,49 +315,6 @@
 											} \
 										}[i]
 
-# define CORNERS_LIST(i, j)				(t_color[8][3]) \
-										{ \
-											{ \
-												color_red, \
-												color_blue, \
-												color_white \
-											}, \
-											{ \
-												color_orange, \
-												color_yellow, \
-												color_blue \
-											}, \
-											{ \
-												color_green, \
-												color_yellow, \
-												color_orange \
-											}, \
-											{ \
-												color_red, \
-												color_white, \
-												color_green \
-											}, \
-											{ \
-												color_red, \
-												color_green, \
-												color_yellow \
-											}, \
-											{ \
-												color_orange, \
-												color_blue, \
-												color_white \
-											}, \
-											{ \
-												color_orange, \
-												color_white, \
-												color_green \
-											}, \
-											{ \
-												color_red, \
-												color_yellow, \
-												color_blue \
-											} \
-										}[i][j]
 
 # define EDGES_LIST(i, j)					(t_color[12][2]) \
 										{ \

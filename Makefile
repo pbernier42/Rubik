@@ -18,7 +18,8 @@ INCLUDES		=	-I $(DIR_INC)
 SRC_INCLUDE		=	rubik.h \
 					define.h \
 					prototype.h \
-					variable.h
+					variable.h \
+					colors.h
 
 SRC_FIlE		=	main.c \
 					error.c \
@@ -35,7 +36,7 @@ SRC_FIlE		=	main.c \
 					turn.c \
 					layer.c \
 					debug.c \
-					resolve/two_two_three_bloc.c
+					resolve/step2.c
 
 INC				=	$(addprefix $(DIR_INC),$(SRC_INCLUDE)) \
 					lib/libft/includes/libft.h

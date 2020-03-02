@@ -6,13 +6,13 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 20:13:53 by rlecart           #+#    #+#             */
-/*   Updated: 2020/02/27 18:39:57 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/03/02 21:10:53 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <rubik.h>
 
-void	two_two_three_bloc(char ***cube, t_color c[3], t_color exclude)
+void	step_two(char ***cube, t_color c[3], t_color exclude)
 {
 	(void)cube;
 	(void)c;

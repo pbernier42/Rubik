@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:04:51 by pbernier          #+#    #+#             */
-/*   Updated: 2020/02/27 18:40:27 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/03/02 21:58:55 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int		main(int argc, char **argv)
 
 	t_color		c[3];
 
-	two_two_three_bloc(cube, c, find_new_color(cube, c));
+	step_two(cube, c, find_new_color(cube, c));
 
 	//ungly_display(g_layer);
 	//res = find_best_resolve(cube, shuffle);

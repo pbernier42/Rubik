@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/13 19:04:09 by pbernier          #+#    #+#             */
-/*   Updated: 2020/02/27 18:05:04 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/03/02 21:11:38 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,6 @@ void		resolve(char ***cube, t_color color[3])
 {
 	//printf("[%s][%s][%s]\n", STR_SIDE(color[0]), STR_SIDE(color[1]), STR_SIDE(color[2]));
 
-	two_two_bloc(cube, color);
-	//two_two_three_bloc(cube, color);
+	//two_two_bloc(cube, color);
+	//step_two(cube, color);
 }
