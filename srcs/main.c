@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:04:51 by pbernier          #+#    #+#             */
-/*   Updated: 2020/03/02 21:58:55 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/03/03 21:34:24 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,17 @@ int		main(int argc, char **argv)
 	//ungly_display(cube);
 	read_tab_tmove(cube, shuffle);
 
-	t_color		c[3];
+	t_color		c[3] = {color_orange, color_white, color_blue};
 
-	step_two(cube, c, find_new_color(cube, c));
+	step_two(cube, c);
 
 	//ungly_display(g_layer);
 	//res = find_best_resolve(cube, shuffle);
 	free(shuffle.move);
 	//free cube
 	//print_tab_tmove(res);
-	free(res.move);
+	(void)res;
+//	free(res.move);
 	return (0);
 }
 
