@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 14:36:45 by pbernier          #+#    #+#             */
-/*   Updated: 2020/02/24 16:18:39 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/03/05 19:16:37 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ short	read_tab_tmove(char ***cube, t_list l)
 
 		turn_modifier(tturn_conv_tside(cube, l.move[i].side), l.move[i].mod);
 		highlight_turn(g_layer, l.move->side, TAB_TLINE_AROUND(l.move->side));
-		ungly_display(cube);
+		//ungly_display(cube);
 	}
 	//print_tab_tmove(l);
 	//add

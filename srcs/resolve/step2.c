@@ -6,7 +6,7 @@
 /*   By: rlecart <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 20:13:53 by rlecart           #+#    #+#             */
-/*   Updated: 2020/03/03 21:42:56 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/03/05 20:00:03 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,8 @@ void	step_two(char ***cube, t_color c[3])
 	t_color		new[3] = {c[1], color_red, c[2]};
 
 	//find_square(cube, c, new, rot);
+	//place_corner(cube, new);
+	//bin(tbin_conv_tstickers(new), true);
 	orient_corner(cube, new);
+	(void)rot;
 }

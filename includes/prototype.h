@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 17:22:23 by pbernier          #+#    #+#             */
-/*   Updated: 2020/03/03 19:08:11 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/03/05 19:58:04 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void		step_two(char ***cube, t_color c[3]);
 */
 
 void		tab_tbin_find_edge(t_binary edge_linked[3], t_sticker corner[3]);
-t_sticker	tsticker_find_edge(t_sticker edge[2]);
+t_sticker	tsticker_find_bloc(t_sticker edge[3], bool choice);
 t_side		tside_find_biggest_weight(t_binary binary);
 short		tab_tside_find_filled(t_side tab_side[side_null], t_binary binary);
 t_side		tside_find_char(char c);

@@ -6,7 +6,7 @@
 /*   By: pbernier <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 17:53:05 by pbernier          #+#    #+#             */
-/*   Updated: 2020/02/24 19:19:24 by rlecart          ###   ########.fr       */
+/*   Updated: 2020/03/05 19:59:39 by rlecart          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,21 @@ void		tab_tbin_find_edge(t_binary edge_linked[3], t_sticker corner[3])
 {
 	t_sticker		sticker[2];
 
-	sticker[0] = tsticker_find_edge((t_sticker[2]){corner[0], corner[1]});
-	sticker[1] = tsticker_find_edge((t_sticker[2]){corner[1], corner[0]});
+	sticker[0] = tsticker_find_bloc((t_sticker[3]){corner[0], corner[1], TSTICKER_NULL}, false);
+	sticker[1] = tsticker_find_bloc((t_sticker[3]){corner[1], corner[0], TSTICKER_NULL}, false);
 	edge_linked[0] = tbin_conv_tstickers((t_sticker[3]){sticker[0], sticker[1], TSTICKER_NULL});
-	sticker[0] = tsticker_find_edge((t_sticker[2]){corner[1], corner[2]});
-	sticker[1] = tsticker_find_edge((t_sticker[2]){corner[2], corner[1]});
+	sticker[0] = tsticker_find_bloc((t_sticker[3]){corner[1], corner[2], TSTICKER_NULL}, false);
+	sticker[1] = tsticker_find_bloc((t_sticker[3]){corner[2], corner[1], TSTICKER_NULL}, false);
 	edge_linked[1] = tbin_conv_tstickers((t_sticker[3]){sticker[0], sticker[1], TSTICKER_NULL});
-	sticker[0] = tsticker_find_edge((t_sticker[2]){corner[2], corner[0]});
-	sticker[1] = tsticker_find_edge((t_sticker[2]){corner[0], corner[2]});
+	sticker[0] = tsticker_find_bloc((t_sticker[3]){corner[2], corner[0], TSTICKER_NULL}, false);
+	sticker[1] = tsticker_find_bloc((t_sticker[3]){corner[0], corner[2], TSTICKER_NULL}, false);
 	edge_linked[2] = tbin_conv_tstickers((t_sticker[3]){sticker[0], sticker[1], TSTICKER_NULL});
 }
 
-t_sticker	tsticker_find_edge(t_sticker edge[2])
+t_sticker	tsticker_find_bloc(t_sticker edge[3], bool choice)
 {
 	t_line		line;
+	//t_line		tmp;
 	bool		found;
 	short		i;
 
@@ -40,6 +41,8 @@ t_sticker	tsticker_find_edge(t_sticker edge[2])
 		line = TAB_TLINE_AROUND(edge[0].side)[++i];
 		if (line.side == edge[1].side)
 			found = true;
+		(void)choice;
+		printf("line.side = %d\n", line.side);
 	}
 	return ((t_sticker){line.side, {line.coo[1][0], line.coo[1][1]}});
 }
